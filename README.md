@@ -1,4 +1,4 @@
-# SSS(self study spot)
+# SSS(self study spots)
 
 ## サイト概要
 
