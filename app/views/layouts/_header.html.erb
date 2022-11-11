@@ -6,16 +6,16 @@
         </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <div>
-        検索フォーム
+        ここに検索フォームを実装
       </div>
         <ul class="navbar-nav">
   <!--リンクを実装-->
           <% if member_signed_in? %>
             <li class="nav-item mr-3 btn  btn btn-dark">
-              マイページ
+              <%= link_to "マイページ", public_my_page_path(current_member) %>
             </li>
-            <li class="mx-3 btn  btn btn-dark">
-              投稿一覧
+            <li class="mx-3 btn">
+              <%= link_to "投稿一覧", posts_path, class: "btn btn-dark" %>
             </li>
             <li class="mx-3 btn  btn btn-dark">
               会員一覧
@@ -37,21 +37,21 @@
               ログアウト
             </li>
           <% else %>
-            <li class="mx-3 btn  btn btn-dark">
-              アバウト
+             <li class="mx-3 btn">
+              <%= link_to "About", home_about_path, class: "btn btn-dark" %>
             </li>
-            <li class="mx-3 btn  btn btn-dark">
-              投稿一覧
+            <li class="mx-3 btn">
+              <%= link_to "投稿一覧", posts_path, class: "btn btn-dark" %>
             </li>
-            <li class="mx-3 btn  btn btn-dark">
-              新規会員登録
+            <li class="mx-3 btn">
+              <%= link_to "新規登録", new_member_registration_path, class: "btn btn-dark" %>
             </li>
-            <li class="mx-3 btn  btn btn-dark">
-              ログイン
+            <li class="mx-3 btn">
+              <%= link_to "ログイン", new_member_session_path, class: "btn btn-dark" %>
             </li>
           <% end %>
+
         </ul>
-        <!--ボタン下に検索フォームを追加-->
       </div>
     </div>
 </nav>
