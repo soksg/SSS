@@ -39,6 +39,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[6.1]
       t.string :fast_name, null: false
       t.string :last_name_kana, null: false
       t.string :fast_name_kana, null: false
+      t.boolean :is_active, null: false, default: true
     end
 
     add_index :members, :email,                unique: true

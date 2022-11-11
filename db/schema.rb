@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2022_11_10_052350) do
     t.string "fast_name", null: false
     t.string "last_name_kana", null: false
     t.string "fast_name_kana", null: false
+    t.boolean "is_active", default: true, null: false
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
