@@ -2,17 +2,19 @@
 <html>
   <head>
     <title>SSS</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header><%= render 'layouts/header' %></header>
-      <%= yield %>
-    <footer><%= render 'layouts/footer' %></footer>
+  <body class="mb-auto">
+    <header class="shadow-sm"  style="background-color: #ff9933;"><%= render 'layouts/header' %></header>
+      <div class="container m-4">
+        <%= yield %>
+      </div>
+    <footer class="bg-dark pt-5 pb-4" style="color: white;"><%= render 'layouts/footer' %></footer>
   </body>
 </html>
