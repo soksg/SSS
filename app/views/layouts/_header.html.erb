@@ -11,42 +11,42 @@
         <ul class="navbar-nav">
   <!--リンクを実装-->
           <% if member_signed_in? %>
-            <li class="nav-item mr-3 btn  btn- btn-dark">
+            <li class="nav-item mr-3 btn  btn btn-dark">
               マイページ
             </li>
-            <li class="mx-3 btn  btn- btn-dark">
+            <li class="mx-3 btn  btn btn-dark">
               投稿一覧
             </li>
-            <li class="mx-3 btn  btn- btn-dark">
+            <li class="mx-3 btn  btn btn-dark">
               会員一覧
             </li>
-            <li class="mx-3 btn  btn- btn-dark">
+            <li class="mx-3 btn  btn btn-dark">
               ログアウト
             </li>
           <% elsif admin_signed_in? %>
-            <li class="mx-3 btn  btn- btn-dark">
+            <li class="mx-3 btn  btn btn-dark">
               投稿一覧
             </li>
-            <li class="mx-3 btn  btn- btn-dark">
+            <li class="mx-3 btn  btn btn-dark">
               会員一覧
             </li>
-            <li class="mx-3 btn  btn- btn-dark">
+            <li class="mx-3 btn  btn btn-dark">
               タグ一覧
             </li>
-            <li class="mx-3 btn  btn- btn-dark">
+            <li class="mx-3 btn  btn btn-dark">
               ログアウト
             </li>
           <% else %>
             <li class="mx-3 btn  btn btn-dark">
               アバウト
             </li>
-            <li class="mx-3 btn  btn- btn-dark">
+            <li class="mx-3 btn  btn btn-dark">
               投稿一覧
             </li>
-            <li class="mx-3 btn  btn- btn-dark">
+            <li class="mx-3 btn  btn btn-dark">
               新規会員登録
             </li>
-            <li class="mx-3 btn  btn- btn-dark">
+            <li class="mx-3 btn  btn btn-dark">
               ログイン
             </li>
           <% end %>
