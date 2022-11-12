@@ -16,4 +16,8 @@ class Public::PostsController < ApplicationController
 
   def destroy
   end
+
+  private
+  params.require(post).permit(:image)
+
 end
