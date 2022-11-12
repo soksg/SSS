@@ -12,16 +12,16 @@
   <!--リンクを実装-->
           <% if member_signed_in? %>
             <li class="nav-item mr-3 btn  btn btn-dark">
-              <%= link_to "マイページ", public_my_page_path(current_member) %>
+              <%= link_to "マイページ", my_page_path(current_member) %>
             </li>
             <li class="mx-3 btn">
               <%= link_to "投稿一覧", posts_path, class: "btn btn-dark" %>
             </li>
+            <!--<li class="mx-3 btn  btn btn-dark">-->
+            <!--  会員一覧-->
+            <!--</li>-->
             <li class="mx-3 btn  btn btn-dark">
-              会員一覧
-            </li>
-            <li class="mx-3 btn  btn btn-dark">
-              ログアウト
+              <%= link_to "ログアウト", destroy_member_session, class: "btn btn-dark" %>
             </li>
           <% elsif admin_signed_in? %>
             <li class="mx-3 btn  btn btn-dark">
