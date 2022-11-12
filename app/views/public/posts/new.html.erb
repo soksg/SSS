@@ -1,2 +1,26 @@
 <h2>新規投稿フォーム</h2>
-  
+  <div>
+    <table class="table table-borderless">
+      <% form_with model: @post, url: posts_path, method: :post do |f| %>
+        <tr>
+          <td>画像選択</td>
+          <td><%= f.file_field :image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <td>説明</td>
+          <td><%= f.text_area :description %></td>
+        </tr>
+        <tr>
+          <td>タグを選択</td>
+          <td>tag_name</td>
+        </tr>
+        <tr>
+          <td><%= f.submit "投稿" %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div>
+    <!--googlemap実装-->
+  </div>
