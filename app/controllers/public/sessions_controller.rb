@@ -24,7 +24,7 @@ class Public::SessionsController < Devise::SessionsController
     @member=Member.find_by(email: params[:member][:email])
     return if !@member
       flash[:notice] = "該当するアカウントが見つかりません"
-    if @member.vaild_passward?(params[:member][:passward]) && (@member.is_active == false)
+    if @member.valid_password?(params[:member][:password]) && (@member.is_active == false)
       redirect_to new_member_registration_path
     else
       flash[:notice] = "項目を入力してください"
@@ -32,7 +32,7 @@ class Public::SessionsController < Devise::SessionsController
   end
 
   def after_sigin_out_path_for(resource)
-    root_path
+    posts_path
   end
 
   # 会員の論理削除のための記述。退会後のログインを阻止。

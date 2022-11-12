@@ -1,8 +1,14 @@
 class Public::PostsController < ApplicationController
+  def new
+    @post=Post.new
+  end
+
   def index
+    @posts=Post.all
   end
 
   def show
+    @post=Post.find(params[:id])
   end
 
   def create
@@ -18,6 +24,7 @@ class Public::PostsController < ApplicationController
   end
 
   private
-  params.require(post).permit(:image)
-
+  def post_params
+    params.require(post).permit(:member_id, :spot_id, :image)
+  end
 end
