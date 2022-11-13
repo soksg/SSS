@@ -39,7 +39,8 @@
     <script>
       function initMap(){
         let map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: <%= @spot.latitube %>, lng: <%= @spot.longitube %>  },
+          center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>  },
+
           zoom: 15
         });
       }

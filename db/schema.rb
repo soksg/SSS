@@ -78,7 +78,14 @@ ActiveRecord::Schema.define(version: 2022_11_12_020044) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "member", null: false
-    t.integer "spot", null: false
+    t.string "name", null: false
+    t.string "address", null: false
+    t.float "longitude", null: false
+    t.float "latitude", null: false
+    t.string "url", null: false
+    t.string "phone_number", null: false
+    t.string "opening_hour", null: false
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
