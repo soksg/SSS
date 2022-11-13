@@ -1,6 +1,15 @@
 class Public::PostsController < ApplicationController
   def new
     @post=Post.new
+    @spot=Spot.new
+  end
+
+  def create
+    @post=Post.new(post_params)
+    @post.member_id=current_member.id
+    @post.save
+    redirect_to posts_path
+    # @spot=Spot.new()
   end
 
   def index
@@ -9,9 +18,6 @@ class Public::PostsController < ApplicationController
 
   def show
     @post=Post.find(params[:id])
-  end
-
-  def create
   end
 
   def edit

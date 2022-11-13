@@ -1,2 +1,31 @@
-<h2>新規投稿フォーム</h2>
-  
+<!--postではなく、spot？-->
+<h2 class="my-4 ml-5 px-5">新規投稿フォーム</h2>
+  <div class="ml-5 px-5">
+    <table class="table table-borderless ml-5">
+      <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+        <tr>
+          <td>施設名</td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td>画像選択</td>
+          <td><%= f.file_field :image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <td>説明</td>
+          <td><%= f.text_area :description %></td>
+        </tr>
+        <tr>
+          <td>タグを選択</td>
+          <td>tag_name一覧</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= f.submit " 投稿 " %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div>
+    googlemap実装
+  </div>
