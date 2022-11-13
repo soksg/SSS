@@ -8,7 +8,7 @@
         </tr>
         <tr>
           <td>場所</td>
-          <td><%= f.text_field :address, class: 'form_control' %></td>
+          <td><%= f.text_field :address, class: 'form-control' %></td>
         </tr>
         <tr>
           <td>画像選択</td>
@@ -40,7 +40,6 @@
       function initMap(){
         let map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>  },
-
           zoom: 15
         });
       }
