@@ -24,7 +24,6 @@ test:
 #   <<: *default
 #   database: db/production.sqlite3
 
-config/database.yml
 production:
   <<: *default
   database: <%= ENV['DB_DATABASE'] %>
