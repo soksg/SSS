@@ -95,12 +95,12 @@ ActiveRecord::Schema.define(version: 2022_11_12_020044) do
   create_table "spots", force: :cascade do |t|
     t.integer "post", null: false
     t.string "name", null: false
-    t.integer "longitude", null: false
-    t.integer "latitude", null: false
+    t.string "address", null: false
+    t.float "longitude", null: false
+    t.float "latitude", null: false
     t.string "url", null: false
     t.string "phone_number", null: false
-    t.string "post_code", null: false
-    t.string "location", null: false
+    t.string "opening_hour"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

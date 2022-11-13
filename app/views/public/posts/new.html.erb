@@ -8,6 +8,10 @@
           <td><%= f.text_field :name %></td>
         </tr>
         <tr>
+          <td>場所</td>
+          <td><%= f.text_field :address, class: 'form_control' %></td>
+        </tr>
+        <tr>
           <td>画像選択</td>
           <td><%= f.file_field :image, accept: "image/*" %></td>
         </tr>
@@ -26,6 +30,24 @@
       <% end %>
     </table>
   </div>
-  <div>
-    googlemap実装
+<!--ここにgooglemapを表示-->
+  <div class="map">
+    <div id="map">
+    </div>
   </div>
+
+  <div type ="text/javasctipt">
+    <script>
+      function initMap(){
+        let map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: <%= @post.latitube %>, lng: <%= @post.longitube %>  },
+          zoom: 15
+        });
+      }
+    </script>
+    <script src=""https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer>"></script>
+  <!--.envファイル AIzaSyBhMztn6nqvgABy3ORs_5S1Ct8RPxPRNS4-->
+  </div>
+
+
+</div>
