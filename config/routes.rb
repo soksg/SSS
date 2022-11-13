@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: "homes#top"
+  root to: "public/posts#index"
   get "/home/about" => "homes#about"
 
   devise_for :members, skip: [:passwords], controllers: {
@@ -12,10 +12,11 @@ Rails.application.routes.draw do
 }
 
   scope module: :public do
-    resources :posts, only: [:new,:index,:show,:create,:edit,:update,:destroy]
-    resources :bookmarks, only: [:index,:destroy,:create]
-    resources :spots, only: [:edit,:update,:destroy]
-    resources :reviews, only: [:index,:create,:update,:destroy]
+    resources :posts, only: [:new,:index,:show,:create,:edit,:update,:destroy] do
+      resources :bookmark, only: [:index,:destroy,:create]
+      resource :spots, only: [:edit,:update,:destroy]
+      resources :reviews, only: [:index,:create,:update,:destroy]
+    end
     resources :searches, only: [:get]
     # ここからmembersのルーティング
       get "members/my_page" => "customers#show", as: "my_page"
@@ -31,9 +32,10 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/home/top" => "homes#top"
     resources :members, only: [:index,:show,:edit,:update]
-    resources :posts, only: [:index,:show,:destroy]
-    resources :spots, only: [:index,:show,:edit,:update,:destroy]
-    resources :reviews, only: [:index,:destroy]
+    resources :posts, only: [:index,:show,:destroy] do
+      resource :spots, only: [:index,:show,:edit,:update,:destroy]
+      resources :reviews, only: [:index,:destroy]
+    end
     resources :searches, only: [:get]
 
   end

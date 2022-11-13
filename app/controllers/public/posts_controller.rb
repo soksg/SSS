@@ -6,6 +6,9 @@ class Public::PostsController < ApplicationController
 
   def create
     @post=Post.new(post_params)
+    @post.member_id=current_member.id
+    @post.save
+    redirect_to posts_path
     # @spot=Spot.new()
   end
 
