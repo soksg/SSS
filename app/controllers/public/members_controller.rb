@@ -1,4 +1,5 @@
 class Public::MembersController < ApplicationController
+    before_action :authenticate_current_member!
 
   private
   def member_params

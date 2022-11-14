@@ -1,7 +1,4 @@
 class Public::ReviewsController < ApplicationController
+  before_action :authenticate_current_member!, except: [:index, :show]
 
-  private
-  def review_params
-    params.require(:review).permit(:member_id, :post_id, :star, :comment)
-  end
 end

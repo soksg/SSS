@@ -1,4 +1,5 @@
 class Public::BookmarksController < ApplicationController
+  before_action :authenticate_current_member!
 
 
   private
