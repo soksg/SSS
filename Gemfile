@@ -59,6 +59,7 @@ gem 'kaminari'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem 'dotenv-rails'
+gem 'image_processing', '~> 1.2'
 group :production do
   gem 'mysql2'
 end

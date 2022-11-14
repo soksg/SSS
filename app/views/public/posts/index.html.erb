@@ -1,5 +1,6 @@
 <h1>投稿一覧</h1>
   <div class="row">
+<!--部分テンプレート化するか-->
     <div class="col-3">
       <div>
         <h5>カテゴリ</h5>
@@ -8,14 +9,18 @@
         <h5>地域</h5>
       </div>
     </div>
+<!--検索結果-->
     <div class="col-9">
-        <!--検索結果-->
-      <% @posts.each do |post| %>
-        <div>
-          <p><%= post.name %></p>
-          <p><%= post.address %></p>
-          <p><%= image_tag post.get_image(100,100) %></p>
-        </div>
-      <% end %>
+       <% if @posts.empty? %>
+          <div class="mt-5 mr-5 pr-3 mb-0"><h3 class="text-center"><b>投稿が見つかりませんでした</b></h3></div>
+       <% else %>
+       　 <% @posts.each do |post| %>
+          　<div>
+              <p><%= post.name %></p>
+              <p><%= post.address %></p>
+              <p><%= image_tag post.get_image(100,100) %></p>
+            </div>
+       　 <% end %>
+       <% end %>
     </div>
   </div>

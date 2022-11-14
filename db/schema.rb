@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 2022_11_12_020044) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer "member", null: false
-    t.integer "post", null: false
+    t.integer "member_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2022_11_12_020044) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "member", null: false
+    t.integer "member_id", null: false
     t.string "name", null: false
     t.string "address", null: false
     t.float "longitude", null: false
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 2022_11_12_020044) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "member", null: false
-    t.integer "post", null: false
+    t.integer "member_id", null: false
+    t.integer "post_id", null: false
     t.integer "star", null: false
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
@@ -114,13 +114,14 @@ ActiveRecord::Schema.define(version: 2022_11_12_020044) do
   end
 
   create_table "tag_posts", force: :cascade do |t|
-    t.integer "post", null: false
-    t.integer "tag", null: false
+    t.integer "post_id", null: false
+    t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tags", force: :cascade do |t|
+    t.integer "post_id", null: false
     t.string "tag_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
