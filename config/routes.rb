@@ -29,13 +29,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get "/home/top" => "homes#top"
     resources :members, only: [:index,:show,:edit,:update]
     resources :posts, only: [:index,:show,:destroy] do
       resources :reviews, only: [:index,:destroy]
     end
+    resources :tags, only: [:new, :create, :index, :edit, :destroy]
     resources :searches, only: [:get]
-
   end
 
 
