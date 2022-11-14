@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_current_member!, except: [:index, :show]
+  before_action :authenticate_member!, except: [:index, :show]
 
   def new
     @post=Post.new
@@ -17,7 +17,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @post=Post.all
+    @posts=Post.all
   end
 
   def show
