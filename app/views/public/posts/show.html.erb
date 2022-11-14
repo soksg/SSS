@@ -5,38 +5,63 @@
         <tr>
           <td>施設名</td>
           <td><%= @post.name %></td>
+          <td></td>
+          <td></td>
         </tr>
         <tr>
           <td>所在地</td>
           <td><%= @post.address %></td>
+          <td></td>
+          <td></td>
         </tr>
         <tr>
           <td>画像選択</td>
           <td><%= image_tag @post.get_image(100,100) %></td>
+          <td></td>
+          <td></td>
         </tr>
         <tr>
           <td>電話番号</td>
           <td><%=  @post.phone_number %></td>
+          <td></td>
+          <td></td>
         </tr>
         <tr>
           <td>営業時間</td>
           <td><%= @post.opening_hour %></td>
+          <td></td>
+          <td></td>
         </tr>
         <tr>
           <td>URL</td>
           <td><%= @post.url %></td>
+          <td></td>
+          <td></td>
         </tr>
         <tr>
           <td>説明</td>
           <td><%= @post.description %></td>
+          <td></td>
+          <td></td>
         </tr>
         <tr>
           <td>タグを選択</td>
           <td>tag_name</td>
+          <td></td>
+          <td></td>
         </tr>
         <tr>
           <td>投稿日</td>
           <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+          <td></td>
+          <td></td>
+        </tr>
+<!--編集・削除タグ-->
+        <tr>
+          <td></td>
+          <td></td>
+          <td><%= link_to "編集" edit_post_path, class: "btn btn-success" %></td>
+          <td><%= link_to "削除" post_path, method: :delete, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     </table>
@@ -57,7 +82,7 @@
       }
     </script>
 <!--.envファイル にAPIキーを記述-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer>"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
   </div>
 
 
