@@ -36,29 +36,29 @@
         </tr>
         <tr>
           <td></td>
-          <td><%= f.submit " 投稿 " %></td>
+          <td><%= f.submit " 投稿 ", class: "btn btn-success"  %></td>
         </tr>
       <% end %>
     </table>
   </div>
 <!--ここにgooglemapを表示-->
-  <div class="map">
-    <div id="map">
-    </div>
-  </div>
+<!--  <div class="map">-->
+<!--    <div id="map">-->
+<!--    </div>-->
+<!--  </div>-->
 
-  <div type ="text/javasctipt">
-    <script>
-      function initMap(){
-        let map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>  },
-          zoom: 15
-        });
-      }
-    </script>
+<!--  <div type ="text/javasctipt">-->
+<!--    <script>-->
+<!--      function initMap(){-->
+<!--        let map = new google.maps.Map(document.getElementById('map'), {-->
+<!--          center: {lat: <%#= @post.latitude %>, lng: <%#= @post.longitude %>  },-->
+<!--          zoom: 15-->
+<!--        });-->
+<!--      }-->
+<!--    </script>-->
 <!--.envファイル にAPIキーを記述-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
-  </div>
+<!--    <script src="https://maps.googleapis.com/maps/api/js?key=<%#= ENV['API_KEY'] %>&callback=initMap" async defer></script>-->
+<!--  </div>-->
 
 
 </div>
