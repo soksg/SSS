@@ -12,21 +12,18 @@
   <!--リンクを実装-->
           <% if member_signed_in? %>
             <li class="mx-3 btn">
-              <%= link_to "投稿一覧", posts_path, class: "btn btn-dark" %>
+              <%= link_to "投稿フォーム", new_post_path, class: "btn btn-dark" %>
             </li>
             <li class="nav-item mx-3 btn">
               <%= link_to "マイページ", my_page_path(current_member), class: "btn btn-dark" %>
             </li>
             <li class="mx-3 btn">
-              <%= link_to "ブックマーク一覧", bookmarks_path(current_member), class: "btn btn-dark" %>
+              <%= link_to "ブックマーク一覧", post_bookmarks_path(current_member), class: "btn btn-dark" %>
             </li>
             <li class="mx-3 btn">
               <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-dark" %>
             </li>
           <% elsif admin_signed_in? %>
-            <li class="mx-3 btn btn btn-dark">
-              投稿一覧
-            </li>
             <li class="mx-3 btn  btn btn-dark">
               会員一覧
             </li>
@@ -39,9 +36,6 @@
           <% else %>
              <li class="mx-3 btn">
               <%= link_to "About", home_about_path, class: "btn btn-dark" %>
-            </li>
-            <li class="mx-3 btn">
-              <%= link_to "投稿一覧", posts_path, class: "btn btn-dark" %>
             </li>
             <li class="mx-3 btn">
               <%= link_to "新規登録", new_member_registration_path, class: "btn btn-dark" %>
