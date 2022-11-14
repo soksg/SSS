@@ -1,2 +1,48 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<h2 class="my-4 ml-5 px-5">投稿詳細</h2>
+  <div class="ml-5 px-5">
+    <table class="table table-borderless ml-5">
+
+        <tr>
+          <td>施設名</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>場所</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>タグ</td>
+          <td>tag_name一覧</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<!--ここにgooglemapを表示-->
+  <div class="map">
+    <div id="map">
+    </div>
+  </div>
+
+  <div type ="text/javasctipt">
+    <script>
+      function initMap(){
+        let map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>  },
+          zoom: 15
+        });
+      }
+    </script>
+<!--.envファイル にAPIキーを記述-->
+    <script src=""https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer>"></script>
+  </div>
+
+
+</div>
