@@ -16,11 +16,18 @@
                   </div>
                 </div>
                   <script>
-                    function initMap(){
-                      let map = new google.maps.Map(document.getElementById('map'), {
-                        center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>  },
-                        zoom: 15
+                    function initMap() {
+                      map = new google.maps.Map(document.getElementById('map'), {
+                        center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+                        zoom: 15,
                       });
+
+                      (function(){
+                        marker = new google.maps.Marker({
+                          position:{lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+                          map: map,
+                        });
+                      })();
                     }
                   </script>
                     <!--.envファイル にAPIキーを記述-->

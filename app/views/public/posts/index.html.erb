@@ -24,9 +24,10 @@
                   <%= post.name %>
                 <% end %>
               </td>
-              <% if post.bookmarked_by?(current_member) %>
+              <!--左から判断される-->
+              <% if member_signed_in? && post.bookmarked_by?(current_member) %>
                 <td>
-                  <%= link_to post_bookmark_path(post), method: :delete do %>
+                  <%= link_to post_bookmark_path(post, post.bookmarked(current_member).id), method: :delete do %>
                     ★
                   <% end %>
                 </td>
