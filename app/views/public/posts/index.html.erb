@@ -12,14 +12,32 @@
 <!--検索結果-->
     <div class="col-9">
        <% if @posts.empty? %>
-          <div class="mt-5 mr-5 pr-3 mb-0"><h3 class="text-center"><b>投稿が見つかりませんでした</b></h3></div>
+          <div class="mt-5 mr-5 pr-3 mb-0">
+             <h3 class="text-center"><b>投稿が見つかりませんでした</b></h3>
+          </div>
        <% else %>
-       　 <% @posts.each do |post| %>
-          　<div>
-              <p><%= post.name %></p>
-              <p><%= post.address %></p>
-              <p><%= image_tag post.get_image(100,100) %></p>
+         <% @posts.each do |post| %>
+          <table>
+            <tr>
+              <td>
+                <%= link_to post_path(post) do %>
+                  <%= post.name %>
+                <% end %>
+              </td>
+                <td>ここにブックマークボタンを実装</td>
+            </tr>
+            <tr>
+              <td><%= post.address %></td>
+            </tr>
+            <tr>
+              <td><%= image_tag post.get_image(100,100) %></td>
+            </tr>
+            <div>
+              ここにレビューを実装（星）
             </div>
+            <div>
+              ここにタグを実装
+          </table>
        　 <% end %>
        <% end %>
     </div>
