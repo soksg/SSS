@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_current_member!, except: [:index, :show]
+  before_action :authenticate_member!, except: [:index, :show]
 
   def new
     @post=Post.new
@@ -17,7 +17,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @post=Post.all
+    @posts=Post.all
   end
 
   def show
@@ -31,7 +31,7 @@ class Public::PostsController < ApplicationController
   def update
     @post=Post.find(params[:id])
     if  @post.update(post_params)
-        redirect_to posts_path, notice: "投稿内容を更新しました"
+        redirect_to post_path(@post), notice: "投稿内容を更新しました"
     else
         render "edit"
     end
