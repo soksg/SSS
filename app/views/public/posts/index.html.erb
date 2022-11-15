@@ -24,7 +24,19 @@
                   <%= post.name %>
                 <% end %>
               </td>
-                <td>ここにブックマークボタンを実装</td>
+              <% if post.bookmarked_by?(current_member) %>
+                <td>
+                  <%= link_to post_bookmark_path(post), method: :delete do %>
+                    ★
+                  <% end %>
+                </td>
+              <% else %>
+                <td>
+                  <%= link_to post_bookmarks_path(post), method: :post do %>
+                    ☆
+                  <% end %>
+                </td>
+              <% end %>
             </tr>
             <tr>
               <td><%= post.address %></td>
@@ -32,12 +44,13 @@
             <tr>
               <td><%= image_tag post.get_image(100,100) %></td>
             </tr>
+          </table>
             <div>
               ここにレビューを実装（星）
             </div>
             <div>
               ここにタグを実装
-          </table>
+            </div>
        　 <% end %>
        <% end %>
     </div>

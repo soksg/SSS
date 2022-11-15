@@ -15,4 +15,7 @@ class Post < ApplicationRecord
     image.variant(resize_to_limit:[width,height]).processed
   end
 
+  def bookmarked_by?(member)
+    bookmarks.exists?(member_id: member.id)
+  end
 end

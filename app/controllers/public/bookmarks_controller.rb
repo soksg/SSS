@@ -1,10 +1,21 @@
 class Public::BookmarksController < ApplicationController
-  before_action :authenticate_current_member!
 
+  def index
 
-  private
-  def bookmark_params
-    params.require(bookmark).permit(:member_id, :post_id)
+  end
+
+  def create
+    post=Post.find(params[:post_id])
+    bookmark=current_member.bookmarks.new(post_id: post.id)
+    bookmark.save
+    redirect_to post_path(post)
+  end
+
+  def destroy
+    post=Post.find(params[:post_id])
+    bookmark=current_member.bookmarks.find_by(post_id: post_id)
+    bookmark.destroy
+    redirect_to post_path(post)
   end
 
 end
