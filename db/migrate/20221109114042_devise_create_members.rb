@@ -35,10 +35,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[6.1]
 
       t.timestamps null: false
 
-      t.string :last_name, null: false
-      t.string :first_name, null: false
-      t.string :last_name_kana, null: false
-      t.string :first_name_kana, null: false
+      t.string :name, null: false
       t.boolean :is_active, null: false, default: true
     end
 
