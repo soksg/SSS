@@ -1,25 +1,33 @@
 <h2 class="my-4 ml-5 px-5">ブックマーク一覧</h2>
   <div class="row ml-2">
+    <% if @bookmark_posts.empty? %>
+      <div class="col-10 offset-2">
+        <div class="mt-5 ">
+           <h3 style="text-align: center;"><b>ここにブックマークした投稿が表示されます</b></h3>
+        </div>
+      </div>
+    <% else %>
     <div class="col-9">
       <div class="ml-5 px-5">
-        <% @bookmark_posts.each do |post| %>
-          <table class="table ml-5">
-            <tr>
-              <td class="lead">
-                <b>
-                  <%= link_to post_path(post) do %>
-                    <%= post.name %>
-                  <% end %>
-                </b>
-              </td>
-            </tr>
-            <tr>
-              <td><%= post.address %></td>
-            </tr>
-            <tr>
-              <td><%= image_tag post.get_image(100,100) %></td>
-            </tr>
-          </table>
+          <% @bookmark_posts.each do |post| %>
+            <table class="table ml-5">
+              <tr>
+                <td class="lead">
+                  <b>
+                    <%= link_to post_path(post) do %>
+                      <%= post.name %>
+                    <% end %>
+                  </b>
+                </td>
+              </tr>
+              <tr>
+                <td><%= post.address %></td>
+              </tr>
+              <tr>
+                <td><%= image_tag post.get_image(100,100) %></td>
+              </tr>
+            </table>
+          <% end %>
         <% end %>
       </div>
     </div>
