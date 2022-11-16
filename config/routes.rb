@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :posts, only: [:new,:index,:show,:create,:edit,:update,:destroy] do
       resources :bookmarks, only: [:index,:destroy,:create]
       resources :reviews, only: [:index,:create,:update,:destroy]
+      resources :post_comments, only: [:create]
+    end
     end
     resources :searches, only: [:get]
     # ここからmembersのルーティング
@@ -29,18 +31,20 @@ Rails.application.routes.draw do
       member do
       get :bookmarks
     end
-  end
+
   end
 
   namespace :admin do
     resources :members, only: [:index,:show,:edit,:update]
     resources :posts, only: [:index,:show,:destroy] do
       resources :reviews, only: [:index,:destroy]
+      resources :comments, only: [:destroy]
     end
     resources :tags, only: [:new, :create, :index, :edit, :destroy]
     resources :searches, only: [:get]
   end
 
+end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-end
+
