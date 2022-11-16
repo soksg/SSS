@@ -1,9 +1,5 @@
 class Public::BookmarksController < ApplicationController
 
-  def index
-
-  end
-
   def create
     if member_signed_in?
       post=Post.find(params[:post_id])
