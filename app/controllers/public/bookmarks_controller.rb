@@ -9,7 +9,7 @@ class Public::BookmarksController < ApplicationController
       post=Post.find(params[:post_id])
       bookmark=current_member.bookmarks.new(post_id: post.id)
       bookmark.save
-      redirect_to posts_path
+      redirect_to request.referer
     else
       redirect_to new_member_session_path
     end
@@ -19,7 +19,7 @@ class Public::BookmarksController < ApplicationController
     post=Post.find(params[:post_id])
     bookmark=current_member.bookmarks.find_by(post_id: post.id)
     bookmark.destroy
-    redirect_to posts_path
+    redirect_to request.referer
   end
 
 end

@@ -1,7 +1,7 @@
 <h2 class="my-4 ml-5 px-5">新規投稿フォーム</h2>
   <div class="ml-5 px-5">
-    <table class="table table-borderless ml-5">
-      <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+    <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+      <table class="table table-borderless ml-5">
         <tr>
           <td>施設名</td>
           <td><%= f.text_field :name %></td>
@@ -38,8 +38,8 @@
           <td></td>
           <td><%= f.submit " 投稿 ", class: "btn btn-success"  %></td>
         </tr>
-      <% end %>
-    </table>
+      </table>
+    <% end %>
   </div>
 <!--ここにgooglemapを表示-->
 <!--  <div class="map">-->
