@@ -8,6 +8,25 @@
               <td><%= @post.name %></td>
             </tr>
             <tr>
+              <td>ここにレビュー（評価）表示</td>
+              <!--レビュー実装後、colspan予定-->
+                <!--ブックマークボタン-->
+                <!--左から判断される-->
+                <% if member_signed_in? && @post.bookmarked_by?(current_member) %>
+                  <td>
+                    <%= link_to post_bookmark_path(@post, @post.bookmarked(current_member).id), method: :delete do %>
+                      ★
+                    <% end %>
+                  </td>
+                <% else %>
+                  <td>
+                    <%= link_to post_bookmarks_path(@post), method: :post do %>
+                      ☆
+                    <% end %>
+                  </td>
+                <% end %>
+            </tr>
+            <tr>
               <td><b>住所・地図</b></td>
               <td><%= @post.address %>
                 <!--ここにgooglemapを表示-->
@@ -16,11 +35,18 @@
                   </div>
                 </div>
                   <script>
-                    function initMap(){
-                      let map = new google.maps.Map(document.getElementById('map'), {
-                        center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>  },
-                        zoom: 15
+                    function initMap() {
+                      map = new google.maps.Map(document.getElementById('map'), {
+                        center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+                        zoom: 15,
                       });
+
+                      (function(){
+                        marker = new google.maps.Marker({
+                          position:{lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+                          map: map,
+                        });
+                      })();
                     }
                   </script>
                     <!--.envファイル にAPIキーを記述-->
@@ -56,10 +82,12 @@
               <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
             </tr>
         </table>
-        <p class="mt-2" style="text-align: end;">
-          <%= link_to "投稿編集", edit_post_path(@post), class: "btn btn-success mr-4" %>
-          <%= link_to "投稿削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
-        </p>
+        <% if member_signed_in? && current_member.id == @post.member_id %>
+          <p class="mt-2" style="text-align: end;">
+            <%= link_to "投稿編集", edit_post_path(@post), class: "btn btn-success mr-4" %>
+            <%= link_to "投稿削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
+          </p>
+        <% end %>
       </div>
     </div>
   </div>

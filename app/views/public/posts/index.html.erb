@@ -16,15 +16,31 @@
              <h3 class="text-center"><b>投稿が見つかりませんでした</b></h3>
           </div>
        <% else %>
+         <div class="mt-5 mr-5 pr-3 mb-0">
          <% @posts.each do |post| %>
           <table>
             <tr>
-              <td>
-                <%= link_to post_path(post) do %>
-                  <%= post.name %>
-                <% end %>
+              <td class="lead">
+                <b>
+                  <%= link_to post_path(post) do %>
+                    <%= post.name %>
+                  <% end %>
+                </b>
               </td>
-                <td>ここにブックマークボタンを実装</td>
+              <!--左から判断される-->
+              <% if member_signed_in? && post.bookmarked_by?(current_member) %>
+                <td>
+                  <%= link_to post_bookmark_path(post, post.bookmarked(current_member).id), method: :delete do %>
+                    ★
+                  <% end %>
+                </td>
+              <% else %>
+                <td>
+                  <%= link_to post_bookmarks_path(post), method: :post do %>
+                    ☆
+                  <% end %>
+                </td>
+              <% end %>
             </tr>
             <tr>
               <td><%= post.address %></td>
@@ -32,13 +48,15 @@
             <tr>
               <td><%= image_tag post.get_image(100,100) %></td>
             </tr>
+          </table>
             <div>
               ここにレビューを実装（星）
             </div>
-            <div>
+            <div class="border-bottom border-5">
               ここにタグを実装
-          </table>
+            </div>
        　 <% end %>
+       　</div>
        <% end %>
     </div>
   </div>
