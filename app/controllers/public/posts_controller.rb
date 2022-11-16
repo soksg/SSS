@@ -17,7 +17,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts=Post.all
+    @posts = Post.all
+    @posts = @posts.where("name LIKE?","%#{params[:word]}%") if params[:word].present?
   end
 
   def show

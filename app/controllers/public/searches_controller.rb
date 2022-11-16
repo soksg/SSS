@@ -1,9 +1,8 @@
 class Public::SearchesController < ApplicationController
-  before_action :authenticate_current_member!, except: [:index, :show]
 
-
-  private
-  def _params
-    params.require().permit()
+  def search
+    # @range = params[:range]
+    @posts = Post.looks(params[:search], params[:word])
+    render 'public/posts/index'
   end
 end

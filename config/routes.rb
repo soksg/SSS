@@ -17,22 +17,21 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index,:create,:update,:destroy]
       resources :post_comments, only: [:create]
     end
-    end
-    resources :searches, only: [:get]
-    # ここからmembersのルーティング
-    get "members/my_page" => "customers#show", as: "my_page"
-    get "members/my_page/edit" => "customers#edit", as: "edit"
-    patch "members/members" => "customers#update", as: "update"
-     # 退会確認画面
-    get 'members/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
-    # 論理削除用のルーティング
-    patch 'members/withdraw' => 'customers#withdraw', as: 'withdraw'
-    resources :members, only: [:show] do
-      member do
-      get :bookmarks
-    end
-
   end
+  # ここからmembersのルーティング
+  get "members/my_page" => "customers#show", as: "my_page"
+  get "members/my_page/edit" => "customers#edit", as: "edit"
+  patch "members/members" => "customers#update", as: "update"
+   # 退会確認画面
+  get 'members/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+  # 論理削除用のルーティング
+  patch 'members/withdraw' => 'customers#withdraw', as: 'withdraw'
+  resources :members, only: [:show] do
+    member do
+    get :bookmarks
+  end
+
+end
 
   namespace :admin do
     resources :members, only: [:index,:show,:edit,:update]
@@ -41,7 +40,6 @@ Rails.application.routes.draw do
       resources :comments, only: [:destroy]
     end
     resources :tags, only: [:new, :create, :index, :edit, :destroy]
-    resources :searches, only: [:get]
   end
 
 end
