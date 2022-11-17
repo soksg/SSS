@@ -10,21 +10,8 @@
             <tr>
               <td>ここにレビュー（評価）表示</td>
               <!--レビュー実装後、colspan予定-->
-                <!--ブックマークボタン-->
-                <!--左から判断される-->
-                <% if member_signed_in? && @post.bookmarked_by?(current_member) %>
-                  <td>
-                    <%= link_to post_bookmark_path(@post, @post.bookmarked(current_member).id), method: :delete do %>
-                      ★
-                    <% end %>
-                  </td>
-                <% else %>
-                  <td>
-                    <%= link_to post_bookmarks_path(@post), method: :post do %>
-                      ☆
-                    <% end %>
-                  </td>
-                <% end %>
+              <!--ブックマークボタン-->
+              <%= render 'bookmark', post: @post %>
             </tr>
             <tr>
               <td><b>住所・地図</b></td>
