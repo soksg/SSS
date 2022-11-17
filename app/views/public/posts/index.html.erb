@@ -27,8 +27,13 @@
                   <% end %>
                 </b>
               </td>
+
               <!--ブックマークボタン-->
-              <%= render 'bookmark', post: post %>
+               
+              <td id="bookmark_buttons_<%= post.id %>">
+                <%= render 'public/bookmarks/bookmark', post: post %>
+              <td>
+
             </tr>
             <tr>
               <td><%= post.address %></td>

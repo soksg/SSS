@@ -13,9 +13,6 @@ class Public::MembersController < ApplicationController
     def update
       @member=Member.find
       @member.update
-
-    end
-
     end
 
     def bookmarks

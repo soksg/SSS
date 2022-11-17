@@ -62,6 +62,7 @@ gem 'gmaps4rails'
 gem 'geocoder'
 gem 'dotenv-rails'
 gem 'image_processing', '~> 1.2'
+gem 'jquery-rails'
 group :production do
   gem 'mysql2'
 end
