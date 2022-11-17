@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-auto px-4 ml-5 my-4">
+    <div class="row">
+      <h2 class="px-3">会員情報編集</h2>
+    </div>
+  </div>
+</div>
+　　　　　　　　　　　　<!--情報更新するのでupdate_path-->
+  <%= form_with model: @member, url: update_path, method: :patch do |f| %>
+    <div class="row">
+      <div class="col-3 py-1 mt-2">
+        ユーザーネーム
+      </div>
+      <div class="col-3 py-1">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3 py-1 mt-1">
+        メールアドレス
+      </div>
+      <div class="col-3 py-1">
+        <%= f.text_field :email %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+      </div>
+      <div class="col-4 mt-2">
+        <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+        <% end %>
+      </div>
+
+      <div class="col-1">
+      </div>
+      <div class="col-2 py-2">
+        <%= link_to "退会する", unsubscribe_path, method: :get, class: "btn btn-danger" %>
+    </div>
+    </div>
+</div>
