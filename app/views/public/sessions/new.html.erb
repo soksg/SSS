@@ -23,5 +23,10 @@
         <td><%= render "public/shared/links" %></td>
       </tr>
     </table>
+    <div>
+      <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary", method: :post %>
+    </div>
+
+
   <% end %>
 </div>

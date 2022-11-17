@@ -13,15 +13,18 @@ class Public::MembersController < ApplicationController
     def update
       @member=Member.find
       @member.update
-
-    end
-
     end
 
     def bookmarks
       @member=Member.find(params[:id])
       bookmarks=Bookmark.where(member_id: @member.id).pluck(:post_id)
       @bookmark_posts=Post.find(bookmarks)
+    end
+
+    def guest_sign_in
+      member = Member.guest
+      sign_in member
+      redirect_to member_path(member), notice: 'ゲストメンバーでログインしました。'
     end
 
   private
