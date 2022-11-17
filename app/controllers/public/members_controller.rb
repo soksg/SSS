@@ -1,6 +1,23 @@
 class Public::MembersController < ApplicationController
     # before_action :authenticate_current_member!
 
+    def show
+      @member=Member.find(params[:id])
+      @posts=@member.posts
+    end
+
+    def edit
+      @member=Member.find(params[:id])
+    end
+
+    def update
+      @member=Member.find
+      @member.update
+
+    end
+
+    end
+
     def bookmarks
       @member=Member.find(params[:id])
       bookmarks=Bookmark.where(member_id: @member.id).pluck(:post_id)
