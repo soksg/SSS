@@ -24,12 +24,9 @@ Rails.application.routes.draw do
     end
   end
   # ここからmembersのルーティング
-  # get "members/my_page" => "members#show", as: "my_page"
-  # get "members/my_page/edit" => "members#edit", as: "edit"
-  # patch "members/members" => "members#update", as: "update"
    # 退会確認画面
   get 'members/unsubscribe' => 'members#unsubscribe', as: 'unsubscribe'
-  # 論理削除用のルーティング
+   # 論理削除用のルーティング
   patch 'members/withdraw' => 'members#withdraw', as: 'withdraw'
 
 
