@@ -6,10 +6,10 @@
         </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <div>
-        ここに検索フォームを実装
+        <!--検索フォーム-->
+        <%= render 'public/posts/search' %>
       </div>
         <ul class="navbar-nav">
-  <!--リンクを実装-->
           <% if member_signed_in? %>
             <li class="mx-3 btn">
               <%= link_to "投稿フォーム", new_post_path, class: "btn btn-dark" %>

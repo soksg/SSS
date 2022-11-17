@@ -19,9 +19,14 @@ class Post < ApplicationRecord
   def bookmarked_by?(member)
     bookmarks.exists?(member_id: member.id)
   end
-  # posts/index.html.erb 30行目で使用
+  #ブックマーク条件分岐で使用
   def bookmarked(member)
     bookmarks.find_by(member_id: member.id)
   end
+
+  # 検索機能
+  # def self.looks(word)
+  #   Post.where("name LIKE?","%#{word}%")
+  # end
 
 end
