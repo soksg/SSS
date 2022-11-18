@@ -59,14 +59,6 @@ ActiveRecord::Schema.define(version: 2022_11_16_071109) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text "comment"
-    t.integer "member_id"
-    t.integer "post_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -108,20 +100,6 @@ ActiveRecord::Schema.define(version: 2022_11_16_071109) do
     t.integer "post_id", null: false
     t.integer "star", null: false
     t.text "comment"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "spots", force: :cascade do |t|
-    t.integer "post", null: false
-    t.string "name", null: false
-    t.string "address", null: false
-    t.float "longitude", null: false
-    t.float "latitude", null: false
-    t.string "url", null: false
-    t.string "phone_number", null: false
-    t.string "opening_hour"
-    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
