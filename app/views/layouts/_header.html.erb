@@ -15,7 +15,7 @@
               <%= link_to "投稿フォーム", new_post_path, class: "btn btn-dark" %>
             </li>
             <li class="nav-item mx-3 btn">
-              <%= link_to "マイページ", my_page_path(current_member), class: "btn btn-dark" %>
+              <%= link_to "マイページ", member_path(current_member), class: "btn btn-dark" %>
             </li>
             <li class="mx-3 btn">
               <%= link_to "ブックマーク一覧", bookmarks_member_path(current_member), class: "btn btn-dark" %>
