@@ -24,3 +24,22 @@
   height: 280px;
   width: 480px;
 }
+
+.search_form-word {
+  width: 270px;
+}
+
+
+/*ヘッダーやフッターを含むすべての要素の高さ＝min-height:100vhになるように指定*/
+.footerFixed{
+  min-height: 100vh;
+/*相対位置*/
+  position: relative;
+/*フッターの高さを指定 */
+  padding-bottom: 60px;
+}
+.footer{
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+}

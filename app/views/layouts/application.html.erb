@@ -11,10 +11,12 @@
   </head>
 
   <body class="mb-auto">
-    <header class="shadow-sm"  style="background-color: #87cefa;"><%= render 'layouts/header' %></header>
-      <div class="container m-5">
-        <%= yield %>
-      </div>
+    <div class="footerFixed">
+      <header class="shadow-sm"  style="background-color: #87cefa;"><%= render 'layouts/header' %></header>
+        <div class="container m-5">
+          <%= yield %>
+        </div>
     <footer class="bg-dark pt-5 pb-4" style="color: white;"><%= render 'layouts/footer' %></footer>
+    </div>
   </body>
 </html>
