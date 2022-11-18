@@ -27,20 +27,12 @@
                   <% end %>
                 </b>
               </td>
-              <!--左から判断される-->
-              <% if member_signed_in? && post.bookmarked_by?(current_member) %>
-                <td>
-                  <%= link_to post_bookmark_path(post, post.bookmarked(current_member).id), method: :delete do %>
-                    ★
-                  <% end %>
-                </td>
-              <% else %>
-                <td>
-                  <%= link_to post_bookmark_path(post), method: :post do %>
-                    ☆
-                  <% end %>
-                </td>
-              <% end %>
+            
+              <!--ブックマークボタン-->
+              <td id="bookmark_buttons_<%= post.id %>">
+                <%= render 'public/bookmarks/bookmark', post: post %>
+              <td>
+
             </tr>
             <tr>
               <td><%= post.address %></td>

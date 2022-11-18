@@ -1,0 +1,17 @@
+<!--左から判断される-->
+<% if member_signed_in? %>
+
+  <% if post.bookmarked_by?(current_member) %>
+      <%= link_to post_bookmark_path(post), method: :delete, remote: true do %>
+        ★
+      <% end %>
+  <% else %>
+      <%= link_to post_bookmark_path(post), method: :post, remote: true do %>
+        ☆
+      <% end %>
+  <% end %>
+<% else %>
+  <%= link_to new_member_session_path do %>
+    ☆
+  <% end %>
+<% end %>
