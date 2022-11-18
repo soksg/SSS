@@ -12,6 +12,11 @@ Rails.application.routes.draw do
 #   sessions: "admin/sessions"
 # }
 
+# ゲストメンバー
+   devise_scope :member do
+    post 'members/guest_sign_in', to: 'members/sessions#guest_sign_in'
+  end
+
   scope module: :public do
     resources :posts, only: [:new,:index,:show,:create,:edit,:update,:destroy] do
       resource :bookmark, only: [:destroy,:create]
