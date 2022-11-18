@@ -1,4 +1,6 @@
 class PostComment < ApplicationRecord
-  has_many :members
-  has_many :posts
+  belongs_to :member
+  belongs_to :post
+
+  validates :comment, presence: true
 end

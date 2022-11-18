@@ -31,7 +31,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-rails'
 end
+
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -60,6 +62,7 @@ gem 'gmaps4rails'
 gem 'geocoder'
 gem 'dotenv-rails'
 gem 'image_processing', '~> 1.2'
+gem 'jquery-rails'
 group :production do
   gem 'mysql2'
 end

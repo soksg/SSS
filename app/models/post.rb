@@ -17,14 +17,16 @@ class Post < ApplicationRecord
   end
 
   def bookmarked_by?(member)
-    bookmarks.exists?(member_id: member.id)
+    if member.present?
+       bookmarks.exists?(member_id: member.id)
+    end
   end
   #ブックマーク条件分岐で使用
   def bookmarked(member)
     bookmarks.find_by(member_id: member.id)
   end
 
-  # 検索機能
+  # 検索機能で使用→posts_controller.erbのindexアクションに記載
   # def self.looks(word)
   #   Post.where("name LIKE?","%#{word}%")
   # end
