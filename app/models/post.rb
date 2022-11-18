@@ -3,9 +3,20 @@ class Post < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   belongs_to :member
+
+  # validates :name, presence: true
+  # validates :address, presence: true
+  # validates :longitude, presence: true
+  # validates :latitude, presence: true
+  # validates :url, presence: true
+  # validates :phone_number, presence: true
+  # validates :opening_hour, presence: true
+
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
   has_one_attached :image
+
+
 
 
   def get_image(width,height)
