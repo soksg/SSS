@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  root to: "posts#index"
   get "/home/about" => "homes#about"
 
   devise_for :members, skip: [:passwords], controllers: {
