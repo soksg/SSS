@@ -1,27 +1,27 @@
 <h2><%= @member.name %>さんのマイページ</h2>
   <% @posts.each do |post| %>
     <div class="mt-5 mr-5 pr-3 mb-0">
-     <% @posts.each do |post| %>
-      <table>
-        <tr>
-          <td class="lead">
-            <b>
-              <%= link_to post_path(post) do %>
-                <%= post.name %>
-              <% end %>
-            </b>
-          </td>
-        </tr>
-        <tr>
-          <td><%= post.address %></td>
-        </tr>
-        <tr>
-          <td><%= image_tag post.get_image(100,100) %></td>
-        </tr>
-        <div class="border-bottom border-5">
-          ここにタグを実装
-        </div>
-      </table>
-     <% end %>
+         <% @posts.each do |post| %>
+          <table>
+            <tr>
+              <td class="lead">
+                <b>
+                  <%= link_to post_path(post) do %>
+                    <%= post.name %>
+                  <% end %>
+                </b>
+              </td>
+            </tr>
+            <tr>
+              <td><%= post.address %></td>
+            </tr>
+            <tr>
+              <td><%= image_tag post.get_image(100,100) %></td>
+            </tr>
+            <div class="border-bottom border-5">
+              ここにタグを実装
+            </div>
+          </table>
+        <% end %>
     </div>
   <% end %>
