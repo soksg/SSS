@@ -10,10 +10,12 @@
             <tr>
               <td>ここにレビュー（評価）表示</td>
               <!--レビュー実装後、colspan予定-->
+
               <!--ブックマークボタン-->
               <td id="bookmark_buttons_<%= @post.id %>">
                 <%= render 'public/bookmarks/bookmark', post: @post %>
               </td>
+
             </tr>
             <tr>
               <td><b>住所・地図</b></td>
