@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :posts, only: [:new,:index,:show,:create,:edit,:update,:destroy] do
-      resource :bookmarks, only: [:destroy,:create]
+      resource :bookmark, only: [:destroy,:create]
       resources :reviews, only: [:index,:create,:update,:destroy]
       resources :post_comments, only: [:create,:destroy]
     end
