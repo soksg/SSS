@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: "public/sessions"
 }
-  devise_for :admins, skip: [:passwords, :registrations] ,controllers: {
-  sessions: "admin/sessions"
-}
+#   devise_for :admins, skip: [:passwords, :registrations] ,controllers: {
+#   sessions: "admin/sessions"
+# }
 
   scope module: :public do
     resources :posts, only: [:new,:index,:show,:create,:edit,:update,:destroy] do

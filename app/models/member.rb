@@ -9,5 +9,11 @@ class Member < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
 
+  def self.guest
+    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |member|
+      member.password = SecureRandom.urlsafe_base64
+      member.name = "guestmember"
+    end
+  end
 
 end

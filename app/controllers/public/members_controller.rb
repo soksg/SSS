@@ -21,6 +21,12 @@ class Public::MembersController < ApplicationController
       @bookmark_posts=Post.find(bookmarks)
     end
 
+    def guest_sign_in
+      member = Member.guest
+      sign_in member
+      redirect_to member_path(member), notice: 'ゲストメンバーでログインしました。'
+    end
+
   private
   def member_params
     params.require(member).permit(:email, :encrypted_password, :name, :is_active)
