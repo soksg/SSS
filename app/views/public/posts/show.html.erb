@@ -64,13 +64,20 @@
           </p>
 
           <!--コメント一覧-->
-          <table class="table">
-            <%= render 'comments', post: @post %>
+          <table class="table", id="comments_<%= @post.id %>">
+            <%= render 'public/post_comments/comments', post: @post %>
           </table>
 
-          <!--コメント投稿フォーム-->
+
+          <!--フラッシュメッセージ-->
           <div>
-            <%= render 'post_comment', post: @post, post_comment: @post_comment %>
+              <p class="notice"><%= notice %></p>
+              <p class="alert"><%= alert %></p>
+          </div>
+
+          <!--コメント投稿フォーム-->
+          <div id="comment_form_<%= @post.id %>">
+            <%= render 'public/comment_forms/comment_form', post: @post, post_comment: @post_comment %>
           </div>
 
         </div>
