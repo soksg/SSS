@@ -2,5 +2,5 @@
   <!--エラーメッセージ-->
   <%= render 'layouts/error_messages', model: f.object %>
   <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", :size => "70" %>
-  <p style="text-align: end;"><%= f.submit "送信する", local: false, class: "btn btn-success" %></p>
+  <p style="text-align: end;"><%= f.submit "送信する", class: "btn btn-success" %></p>
 <% end %>

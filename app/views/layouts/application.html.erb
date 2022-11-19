@@ -14,7 +14,10 @@
     <div class="footerFixed">
       <header class="shadow-sm"  style="background-color: #87cefa;"><%= render 'layouts/header' %></header>
         <div class="container m-5">
-          <%= yield %>
+          <!--フラッシュメッセージ-->
+          <!--<p class="notice"><%#= notice %></p>-->
+            <%= yield %>
+          <!--<p class="alert"><%#= alert %></p>-->
         </div>
     <footer class="bg-dark pt-5 pb-4" style="color: white;"><%= render 'layouts/footer' %></footer>
     </div>

@@ -1,2 +1,4 @@
-$('#"comment_form_<%= @post.id %>"').html("<%= j(render "comment_form", post: @post, post_comment: @post_comment) %>");
-$("textarea").val('');
+$("#comment_form_<%= @post.id %>").html("<%= j(render "comment_form", post: @post, post_comment: @post_comment) %>");
+
+<!--下記を追加-->
+$('#flash-message').html("<%= j(render 'layouts/flash') %>");
