@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
   root to: "public/posts#index"
+
   get "/home/about" => "homes#about"
 
   devise_for :members, skip: [:passwords], controllers: {
