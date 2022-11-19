@@ -15,7 +15,7 @@
               </tr>
             </tbody>
           </table>
-          <% if member.name != "guestmember" %>
+          <% if @member.name != "guestmember" %>
             <div class="mt-2">
               <p style="text-align: end;">
                 <%= link_to "プロフィール編集", edit_member_path(current_member), class: "btn btn-success" %>
