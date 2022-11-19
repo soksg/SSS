@@ -12,26 +12,28 @@
         <ul class="navbar-nav">
           <% if member_signed_in? %>
             <li class="mx-3 btn">
-              <%= link_to "投稿フォーム", new_post_path, class: "btn btn-dark" %>
+              <%= link_to "投稿フォーム", new_post_path, class: "btn btn-secondary" %>
             </li>
             <li class="nav-item mx-3 btn">
-              <%= link_to "マイページ", member_path(current_member), class: "btn btn-dark" %>
+              <%= link_to "マイページ", member_path(current_member), class: "btn btn-secondary" %>
             </li>
             <li class="mx-3 btn">
-              <%= link_to "ブックマーク一覧", bookmarks_member_path(current_member), class: "btn btn-dark" %>
+              <%= link_to "ブックマーク一覧", bookmarks_member_path(current_member), class: "btn btn-secondary" %>
             </li>
             <li class="mx-3 btn">
-              <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-dark" %>
+
+              <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-secondary" %>
             </li>
           <%# elsif admin_signed_in? %>
             <!--<li class="mx-3 btn">-->
-            <!--  <%#= link_to "会員一覧", admin_members_path, class: "btn btn-dark" %>-->
+            <!--  <%#= link_to "会員一覧", admin_members_path, class: "btn btn-secondary" %>-->
             <!--</li>-->
             <!--<li class="mx-3 btn">-->
-            <!--  <%#= link_to "タグ一覧", admin_tags_path, class: "btn btn-dark"%>-->
+            <!--  <%#= link_to "タグ一覧", admin_tags_path, class: "btn btn-secondary"%>-->
             <!--</li>-->
             <!--<li class="mx-3 btn">-->
-            <!--  <%#= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-dark" %>-->
+            <!--  <%#= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary" %>-->
+
             <!--</li>-->
           <% else %>
 
@@ -47,5 +49,58 @@
           <% end %>
         </ul>
       </div>
+    <a class="navbar-brand ml-5" href="/">SSS<a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div>
+      <!--検索フォーム-->
+      <%= render 'public/posts/search' %>
     </div>
+    <div class="row offset-4">
+      <% if member_signed_in? %>
+        <p><b>ようこそ、<%= current_member.name %>さん</b></p>
+        <ul class="navbar-nav">
+          <li class="btn">
+            <%= link_to "投稿フォーム", new_post_path, class: "btn btn-secondary" %>
+          </li>
+          <li class="btn">
+            <%= link_to "マイページ", member_path(current_member), class: "btn btn-secondary" %>
+          </li>
+          <li class="btn">
+            <%= link_to "ブックマーク一覧", bookmarks_member_path(current_member), class: "btn btn-secondary" %>
+          </li>
+          <li class="btn">
+            <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-secondary" %>
+          </li>
+        </ul>
+      <%# elsif admin_signed_in? %>
+        <!--<p><b>ようこそ管理者さん</b><p>-->
+        <!--<ul class="navbar-nav">-->
+          <!--<li class="btn">-->
+          <!--  <%#= link_to "会員一覧", admin_members_path, class: "btn btn-secondary" %>-->
+          <!--</li>-->
+          <!--<li class="btn">-->
+          <!--  <%#= link_to "タグ一覧", admin_tags_path, class: "btn btn-secondary"%>-->
+          <!--</li>-->
+          <!--<li class="btn">-->
+          <!--  <%#= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary" %>-->
+          <!--</li>-->
+        <!--</ul>-->
+      <% else %>
+        <ul class="navbar-nav">
+           <li class="btn">
+            <%= link_to "About", home_about_path, class: "btn btn-secondary" %>
+          </li>
+          <li class="btn">
+            <%= link_to "新規登録", new_member_registration_path, class: "btn btn-secondary" %>
+          </li>
+          <li class="btn">
+            <%= link_to "ログイン", new_member_session_path, class: "btn btn-secondary" %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
 </nav>
