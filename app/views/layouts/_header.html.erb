@@ -23,17 +23,18 @@
             <li class="mx-3 btn">
               <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-dark" %>
             </li>
-          <% elsif admin_signed_in? %>
-            <li class="mx-3 btn">
-              <%= link_to "会員一覧", admin_members_path, class: "btn btn-dark" %>
-            </li>
-            <li class="mx-3 btn">
-              <%= link_to "タグ一覧", admin_tags_path, class: "btn btn-dark"%>
-            </li>
-            <li class="mx-3 btn">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-dark" %>
-            </li>
+          <%# elsif admin_signed_in? %>
+            <!--<li class="mx-3 btn">-->
+            <!--  <%#= link_to "会員一覧", admin_members_path, class: "btn btn-dark" %>-->
+            <!--</li>-->
+            <!--<li class="mx-3 btn">-->
+            <!--  <%#= link_to "タグ一覧", admin_tags_path, class: "btn btn-dark"%>-->
+            <!--</li>-->
+            <!--<li class="mx-3 btn">-->
+            <!--  <%#= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-dark" %>-->
+            <!--</li>-->
           <% else %>
+
              <li class="mx-3 btn">
               <%= link_to "About", home_about_path, class: "btn btn-dark" %>
             </li>
