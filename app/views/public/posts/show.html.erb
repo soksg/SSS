@@ -6,15 +6,16 @@
             <tr>
               <td><b>施設名</b></td>
               <td><%= @post.name %></td>
-            </tr>
-            <tr>
-              <td>ここにレビュー（評価）表示</td>
-              <!--レビュー実装後、colspan予定-->
-
               <!--ブックマークボタン-->
               <td id="bookmark_buttons_<%= @post.id %>">
                 <%= render 'public/bookmarks/bookmark', post: @post %>
               </td>
+            </tr>
+            <tr>
+              <td>ここにレビュー（評価）表示</td>
+              <!--レビュー実装後、colspan予定-->
+              <td></td>
+              <td></td>
 
             </tr>
             <tr>
@@ -24,34 +25,42 @@
                 <!--googlemap-->
                 <%= render 'map', post: @post %>
               </td>
+              <td></td>
             </tr>
             <tr>
               <td><b>画像</b></td>
               <td><%= image_tag @post.get_image(100,100) %></td>
+              <td></td>
             </tr>
             <tr>
               <td><b>電話番号</b></td>
               <td><%=  @post.phone_number %></td>
+              <td></td>
             </tr>
             <tr>
               <td><b>営業時間</b></td>
               <td><%= @post.opening_hour %></td>
+              <td></td>
             </tr>
             <tr>
               <td><b>URL</b></td>
               <td><%= @post.url %></td>
+              <td></td>
             </tr>
             <tr>
               <td><b>説明</b></td>
               <td><%= @post.description %></td>
+              <td></td>
             </tr>
             <tr>
               <td><b>タグ</b></td>
               <td>tag_name</td>
+              <td></td>
             </tr>
             <tr>
               <td><b>投稿日</b></td>
               <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+              <td></td>
             </tr>
         </table>
         <% if member_signed_in? && current_member.id == @post.member_id %>
