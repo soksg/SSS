@@ -19,4 +19,9 @@ class Member < ApplicationRecord
     end
   end
 
+  # is_activeがtrueならfalseを返す
+  def active_for_authentication?
+    super && (is_active == true)
+  end
+
 end
