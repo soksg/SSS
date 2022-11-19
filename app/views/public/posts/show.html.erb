@@ -95,24 +95,6 @@
 
 
 
-            <!--レビュー（星）あとで部分テンプレート化-->
-            <%= form_with model:@review, url:post_reviews_path(@post), local: true do |f| %>
-              <div class="main-rating">
-                <div class="ratings">
-                  <span class="far fa-star" id="star"></span>
-                  <span class="far fa-star" id="star"></span>
-                  <span class="far fa-star" id="star"></span>
-                  <span class="far fa-star" id="star"></span>
-                  <span class="far fa-star" id="star"></span>
-                </div>
-            　  <div class="rating-value-display"><span id="rating-value-display">0</span>/5</div>
-            　</div>
-              <%= f.hidden_field :score, id:"rating_value" %>
-              <%= f.text_area :content %>
-              <%= f.submit "評価"%>
-              <% end %>
-              <%= javascript_pack_tag 'review_stars' %>
-
 
 >>>>>>> 800b609 ([Start]レビュー（星）実装開始)
 
