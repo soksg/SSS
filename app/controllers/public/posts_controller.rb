@@ -24,6 +24,7 @@ class Public::PostsController < ApplicationController
   def show
     @post=Post.find(params[:id])
     @post_comment=PostComment.new
+    @reviews_avg_score = @post.reviews.sum(:star) / @post.reviews.count
   end
 
   def edit
