@@ -81,6 +81,40 @@
           <div id="comment_form_<%= @post.id %>">
             <%= render 'public/comment_forms/comment_form', post: @post, post_comment: @post_comment %>
           </div>
+        <div class="ml-5">
+          <p>コメント件数:<%= @post.post_comments.count %></p>
+            <% @post.post_comments.each do |post_comment| %>
+              <%= post_comment.member.name %>
+              <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+              <%= post_comment.comment %>
+            <% end %>
+            <%= form_with model: [@post, @post_comment] do |f| %>
+              <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", :size => "70" %>
+              <p style="text-align: end;"><%= f.submit "送信する", class: "btn btn-success" %></p>
+            <% end %>
+
+
+
+            <!--レビュー（星）あとで部分テンプレート化-->
+            <%= form_with model:@review, url:post_reviews_path(@post), local: true do |f| %>
+              <div class="main-rating">
+                <div class="ratings">
+                  <span class="far fa-star" id="star"></span>
+                  <span class="far fa-star" id="star"></span>
+                  <span class="far fa-star" id="star"></span>
+                  <span class="far fa-star" id="star"></span>
+                  <span class="far fa-star" id="star"></span>
+                </div>
+            　  <div class="rating-value-display"><span id="rating-value-display">0</span>/5</div>
+            　</div>
+              <%= f.hidden_field :score, id:"rating_value" %>
+              <%= f.text_area :content %>
+              <%= f.submit "評価"%>
+              <% end %>
+              <%= javascript_pack_tag 'review_stars' %>
+
+
+>>>>>>> 800b609 ([Start]レビュー（星）実装開始)
 
         </div>
       </div>
