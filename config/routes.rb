@@ -26,15 +26,13 @@ Rails.application.routes.draw do
     resources :members, only: [:show, :edit, :update] do
       member do
         get :bookmarks
+        # 退会確認画面
+        get 'members/unsubscribe' => 'members#unsubscribe', as: 'unsubscribe'
+        # 論理削除用のルーティング
+        patch 'members/withdraw' => 'members#withdraw', as: 'withdraw'
       end
     end
   end
-  # ここからmembersのルーティング
-   # 退会確認画面
-  get 'members/unsubscribe' => 'members#unsubscribe', as: 'unsubscribe'
-   # 論理削除用のルーティング
-  patch 'members/withdraw' => 'members#withdraw', as: 'withdraw'
-
 
   namespace :admin do
     resources :members, only: [:index,:show,:edit,:update]

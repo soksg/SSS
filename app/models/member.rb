@@ -10,7 +10,7 @@ class Member < ApplicationRecord
   has_many :post_comments, dependent: :destroy
 
   validates :email, presence: true
-  # validates :name, presence: true
+  validates :name, presence: true
 
   def self.guest
     find_or_create_by!(name: 'guestmember' ,email: 'guest@example.com') do |member|

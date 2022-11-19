@@ -1,16 +1,19 @@
-<div class="container text-center mt-5">
-  <h3><strong>本当に退会しますか？</strong></h3>
-    <p class="my-5">退会すると、投稿やブックマーク、<br>
-          これまでのブックマークした投稿の一覧が閲覧できなくなります。<br>
-
-    <div class="row">
-      <div class="col-4">
+<div class="row mt-5 ml-5">
+  <div class="offset-5">
+    <h3 class="ml-4"><strong>本当に退会しますか？</strong></h3>
+        <p class="my-5 mr-5 pr-5">退会すると、投稿やブックマークができなくなります。<br>
+                        また、これまでのブックマークした投稿の一覧が閲覧も<br>
+                        できなくなります。
+        </p>
+      <div class="row">
+        <div class="col-1">
+          </div>
+        <div>
+          <%= link_to "退会しない", member_path(current_member), class: "btn btn-primary mr-5" %>
         </div>
-      <div class="col-2">
-        <%= link_to "退会しない", member_path(current_member), class: "btn btn-primary" %>
+        <div>
+          <%= link_to "退会する", withdraw_member_path(current_member) ,method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" %>
+        </div>
       </div>
-      <div class="col-2">
-        <%= link_to "退会する", withdraw_path ,method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" %>
-      </div>
-    </div>
+  </div>
 </div>
