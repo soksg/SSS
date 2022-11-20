@@ -2,10 +2,8 @@
   <!--エラーメッセージ-->
   <%= render 'layouts/error_messages', model: f.object %>
   <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", :size => "70" %>
-  <div class="form-group row" id="star">
-    <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :star, id: :review_star %>
-  </div>
+  <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
+  <div class="form-group row" id="star"></div>
   <p style="text-align: end;"><%= f.submit "送信する", class: "btn btn-success" %></p>
 <% end %>
 <!-- 評価javascript -->
@@ -15,9 +13,8 @@
     size     : 36,
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
-
-    scoreName: 'review[star]',
-    half: false,
+    scoreName: 'post_comment[star]',
+    half: false
   };
   raty(elem, opt)
   </script>

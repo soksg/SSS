@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 2022_11_20_042637) do
 
   create_table "post_comments", force: :cascade do |t|
     t.text "comment"
-    t.integer "member_id"
-    t.integer "post_id"
+    t.integer "member_id", null: false
+    t.integer "post_id", null: false
     t.integer "star"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -92,15 +92,6 @@ ActiveRecord::Schema.define(version: 2022_11_20_042637) do
     t.string "phone_number", null: false
     t.string "opening_hour", null: false
     t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.integer "member_id", null: false
-    t.integer "post_id", null: false
-    t.integer "star", null: false
-    t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

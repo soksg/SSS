@@ -42,8 +42,8 @@
             </tr>
           </table>
             <div id="star-rate-<%= post.id %>"></div>
-            <% count = post.reviews.count %>
-            <% score = count != 0 ? (post.reviews.sum(:star) / post.reviews.count) : 0 %>
+            <% count = post.post_comments.size %>
+            <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
             <script>
                 var elem = document.getElementById("star-rate-<%= post.id %>");
                 var opt = {
