@@ -17,19 +17,11 @@
   width: 270px;
 }
 
-
-// フッターを下に固定
-// .footerFixed{
-// min-height: 100vh;
- /*コンテンツの高さの最小値＝ブラウザの高さに指定*/
-// position: relative;
- /* 相対位置 */
-// padding-bottom: 60px;
- /* ←フッターの高さを指定 */
-//   }
-
-// footer{
-//   position: absolute;
-//   bottom: 0;
-//   height: 60px;
-//   }
+footer{
+bottom: 0;
+height: 60px;
+width: 100%;
+padding-bottom: 20px;
+color: white;
+box-sizing: content-box;
+}

@@ -13,7 +13,7 @@
             </tr>
             <tr>
               <td id="avg">
-                <b>評価 :<%= @reviews_avg_score %>点</b>
+                <b><%= @post.post_comments.count %>件の評価</b>
               </td>
               <td id="star-rate" colspan="2"></td>
             </tr>
@@ -96,5 +96,8 @@
     readOnly: true,
     score: <%= @reviews_avg_score %>,
   }
+  // 再読み込みする際、星が増えないようにする
+  // （再読み込み前の星の空文字にする）
+  elem.innerHTML=""
   raty(elem, opt);
 </script>
