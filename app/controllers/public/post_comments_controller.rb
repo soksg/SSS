@@ -6,8 +6,9 @@ class Public::PostCommentsController < ApplicationController
     @review = Review.new(post_review_params)
     @review.member_id = current_member.id
     @review.post_id = @post.id
-
-    if  @post_comment.save && @review.save
+    #byebug
+    if  @post_comment.save!
+      @review.save!
       flash.now[:notice] = 'コメントを投稿しました'
       #render :create
 
@@ -19,7 +20,7 @@ class Public::PostCommentsController < ApplicationController
 
   def destroy
     PostComment.find(params[:id]).destroy
-    flash.now[:alert] = '投稿を削除しました'
+    flash.now[:alert] = 'コメントを削除しました'
     @post = Post.find(params[:post_id])
   end
 
