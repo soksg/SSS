@@ -2,6 +2,31 @@
   <tr>
     <td><%= post_comment.member.name %></td>
     <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+
+
+
+    <td id="star-rate-<%= post.id %>"></td>
+            <%# count = post.review.count %>
+            <script>
+                var elem = document.getElementById("star-rate-<%= post.id %>");
+                var opt = {
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  half      : false,
+                  readOnly: true,
+                  // score: <%#= score %>,
+                }
+                raty(elem, opt);
+              </script>
+
+
+
+
+
+
+
+
     <td><%= post_comment.comment %></td>
     <% if post_comment.member == current_member %>
       <td>

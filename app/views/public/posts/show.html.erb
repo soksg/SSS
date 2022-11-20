@@ -16,7 +16,7 @@
                 評価 :<%= @reviews_avg_score %>点
               </td>
               <!--レビュー実装後、colspan予定-->
-              <td id="star-rate-<%= @post.id %>" colspan="2"></td>
+              <td id="star-rate" colspan="2"></td>
             </tr>
             <tr>
               <td><b>住所・地図</b></td>
@@ -95,7 +95,7 @@
     starOn    : '<%= asset_path('star-on.png') %>',
     half      : false,
     readOnly: true,
-    score: <%= @post.reviews.sum(:star) / @post.reviews.count %>,
+    score: <%= @reviews_avg_score %>,
   }
   raty(elem, opt);
 </script>
