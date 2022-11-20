@@ -9,18 +9,14 @@
       <tr>
         <td>メールアドレス</td>
         <td><%= f.email_field :email, autocomplete: "email" %></td>
-      </tr>
+       </tr>
       <tr>
         <td>パスワード</td>
-        <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-      </tr>
+        <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+       </tr>
       <tr>
         <td></td>
         <td><%= f.submit "ログイン", class: "btn btn-success" %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><%= render "admin/shared/links" %></td>
       </tr>
     </table>
   <% end %>
