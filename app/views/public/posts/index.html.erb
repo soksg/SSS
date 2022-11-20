@@ -27,7 +27,7 @@
                   <% end %>
                 </b>
               </td>
-            
+
               <!--ブックマークボタン-->
               <td id="bookmark_buttons_<%= post.id %>">
                 <%= render 'public/bookmarks/bookmark', post: post %>
@@ -41,9 +41,21 @@
               <td><%= image_tag post.get_image(100,100) %></td>
             </tr>
           </table>
-            <div>
-              ここにレビューを実装（星）
-            </div>
+            <div id="star-rate-<%= post.id %>"></div>
+            <% count = post.reviews.count %>
+            <% score = count != 0 ? (post.reviews.sum(:star) / post.reviews.count) : 0 %>
+            <script>
+                var elem = document.getElementById("star-rate-<%= post.id %>");
+                var opt = {
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  half      : false,
+                  readOnly: true,
+                  score: <%= score %>,
+                }
+                raty(elem, opt);
+              </script>
             <div class="border-bottom border-5">
               ここにタグを実装
             </div>

@@ -12,11 +12,11 @@
               </td>
             </tr>
             <tr>
-              <td>ここにレビュー（評価）表示</td>
+              <td>
+                評価 :<%= @reviews_avg_score %>点
+              </td>
               <!--レビュー実装後、colspan予定-->
-              <td></td>
-              <td></td>
-
+              <td id="star-rate" colspan="2"></td>
             </tr>
             <tr>
               <td><b>住所・地図</b></td>
@@ -87,3 +87,15 @@
     </div>
   </div>
 </div>
+<script>
+  var elem = document.getElementById("star-rate");
+  var opt = {
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    half      : false,
+    readOnly: true,
+    score: <%= @reviews_avg_score %>,
+  }
+  raty(elem, opt);
+</script>
