@@ -41,7 +41,7 @@
               <td><%= image_tag post.get_image(100,100) %></td>
             </tr>
           </table>
-            <div id="star-rate-<%= post.id %>"></div>
+            <p class="mb-0"><%= post.post_comments.count %>件の評価</p><div id="star-rate-<%= post.id %>"></div>
             <% count = post.post_comments.size %>
             <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
             <script>
@@ -54,6 +54,9 @@
                   readOnly: true,
                   score: <%= score %>,
                 }
+                // 再読み込みする際、星が増えないようにする
+                // （再読み込み前の星の空文字にする）
+                elem.innerHTML=""
                 raty(elem, opt);
               </script>
             <div class="border-bottom border-5">
