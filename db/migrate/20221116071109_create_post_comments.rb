@@ -4,6 +4,7 @@ class CreatePostComments < ActiveRecord::Migration[6.1]
       t.text :comment
       t.integer :member_id
       t.integer :post_id
+      t.integer :star
 
       t.timestamps
     end

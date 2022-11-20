@@ -1,5 +1,35 @@
 @import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#map{
+  height: 280px;
+  width: 480px;
+}
 
 .search_form-word {
   width: 270px;
 }
+
+
+// フッターを下に固定
+// .footerFixed{
+// min-height: 100vh;
+ /*コンテンツの高さの最小値＝ブラウザの高さに指定*/
+// position: relative;
+ /* 相対位置 */
+// padding-bottom: 60px;
+ /* ←フッターの高さを指定 */
+//   }
+
+// footer{
+//   position: absolute;
+//   bottom: 0;
+//   height: 60px;
+//   }

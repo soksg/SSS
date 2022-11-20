@@ -12,28 +12,30 @@
         <ul class="navbar-nav">
           <% if member_signed_in? %>
             <li class="mx-3 btn">
-              <%= link_to "投稿フォーム", new_post_path, class: "btn btn-dark" %>
+              <%= link_to "投稿フォーム", new_post_path, class: "btn btn-secondary" %>
             </li>
             <li class="nav-item mx-3 btn">
-              <%= link_to "マイページ", member_path(current_member), class: "btn btn-dark" %>
+              <%= link_to "マイページ", member_path(current_member), class: "btn btn-secondary" %>
             </li>
             <li class="mx-3 btn">
-              <%= link_to "ブックマーク一覧", bookmarks_member_path(current_member), class: "btn btn-dark" %>
+              <%= link_to "ブックマーク一覧", bookmarks_member_path(current_member), class: "btn btn-secondary" %>
             </li>
             <li class="mx-3 btn">
-              <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-dark" %>
+              <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-secondary" %>
             </li>
-          <% elsif admin_signed_in? %>
-            <li class="mx-3 btn">
-              <%= link_to "会員一覧", admin_members_path, class: "btn btn-dark" %>
-            </li>
-            <li class="mx-3 btn">
-              <%= link_to "タグ一覧", admin_tags_path, class: "btn btn-dark"%>
-            </li>
-            <li class="mx-3 btn">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-dark" %>
-            </li>
+          <%# elsif admin_signed_in? %>
+            <!--<li class="mx-3 btn">-->
+            <!--  <%#= link_to "会員一覧", admin_members_path, class: "btn btn-secondary" %>-->
+            <!--</li>-->
+            <!--<li class="mx-3 btn">-->
+            <!--  <%#= link_to "タグ一覧", admin_tags_path, class: "btn btn-secondary"%>-->
+            <!--</li>-->
+            <!--<li class="mx-3 btn">-->
+            <!--  <%#= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary" %>-->
+
+            <!--</li>-->
           <% else %>
+
              <li class="mx-3 btn">
               <%= link_to "About", home_about_path, class: "btn btn-dark" %>
             </li>
@@ -46,5 +48,5 @@
           <% end %>
         </ul>
       </div>
-    </div>
+  </div>
 </nav>

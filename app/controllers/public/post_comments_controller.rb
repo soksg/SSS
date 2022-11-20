@@ -6,30 +6,18 @@ class Public::PostCommentsController < ApplicationController
 
     if  @post_comment.save
       flash.now[:notice] = 'コメントを投稿しました'
+      #render :create
+
     else
-      render post_path(@post)
-      flash.now[:alert] = 'コメントの投稿に失敗しました'
+      # render post_path(@post)
+      # flash.now[:alert] = 'コメントの投稿に失敗しました'
     end
   end
 
   def destroy
-    Comment.find_by(id: params[:id], post_id: params[:post_id]).destroy
-    flash.now[:alert] = '投稿を削除しました'
-  end
-
-
-
-
-
-
-
-
-
-
-
-
-  def destroy
     PostComment.find(params[:id]).destroy
+    flash.now[:alert] = '投稿を削除しました'
+    @post = Post.find(params[:post_id])
   end
 
   private

@@ -37,9 +37,9 @@ class Public::SessionsController < Devise::SessionsController
 
   # 会員の論理削除のための記述。退会後のログインを阻止。
   def reject_user
-    @member=Member.find_by(name: params[:customer][:name])
-    if @customer
-      if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == false)
+    @member=Member.find_by(name: params[:member][:name])
+    if @member
+      if @member.valid_password?(params[:member][:password]) && (@member.is_deleted == false)
         flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
         redirect_to root_path
       else
