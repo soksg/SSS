@@ -17,12 +17,8 @@
       raty(elem, opt);
     </script>
     <td><%= post_comment.comment %></td>
-    <% if post_comment.member == current_member %>
-      <td>
-        <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, class: "btn btn-danger" %>
-      </td>
-    <% else %>
-      <td></td>
-    <% end %>
+    <td>
+      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, class: "btn btn-danger" %>
+    </td>
   </tr>
 <% end %>

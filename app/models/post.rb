@@ -1,6 +1,5 @@
 class Post < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
-  has_many :reviews, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   belongs_to :member
 

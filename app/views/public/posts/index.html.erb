@@ -27,7 +27,7 @@
                   <% end %>
                 </b>
               </td>
-            
+
               <!--ブックマークボタン-->
               <td id="bookmark_buttons_<%= post.id %>">
                 <%= render 'public/bookmarks/bookmark', post: post %>
@@ -41,9 +41,24 @@
               <td><%= image_tag post.get_image(100,100) %></td>
             </tr>
           </table>
-            <div>
-              ここにレビューを実装（星）
-            </div>
+            <p class="mb-0"><%= post.post_comments.count %>件の評価</p><div id="star-rate-<%= post.id %>"></div>
+            <% count = post.post_comments.size %>
+            <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
+            <script>
+                var elem = document.getElementById("star-rate-<%= post.id %>");
+                var opt = {
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  half      : false,
+                  readOnly: true,
+                  score: <%= score %>,
+                }
+                // 再読み込みする際、星が増えないようにする
+                // （再読み込み前の星の空文字にする）
+                elem.innerHTML=""
+                raty(elem, opt);
+              </script>
             <div class="border-bottom border-5">
               ここにタグを実装
             </div>

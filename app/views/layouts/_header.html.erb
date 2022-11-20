@@ -18,17 +18,17 @@
             <li class="mx-3">
               <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-secondary" %>
             </li>
-          <%# elsif admin_signed_in? %>
-            <!--<li class="mx-3">-->
-            <!--  <%#= link_to "会員一覧", admin_members_path, class: "btn btn-secondary" %>-->
-            <!--</li>-->
-            <!--<li class="mx-3">-->
-            <!--  <%#= link_to "タグ一覧", admin_tags_path, class: "btn btn-secondary"%>-->
-            <!--</li>-->
-            <!--<li class="mx-3">-->
-            <!--  <%#= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary" %>-->
+          <% elsif admin_signed_in? %>
+            <li class="mx-3">
+              <%= link_to "会員一覧", admin_members_path, class: "btn btn-secondary" %>
+            </li>
+            <li class="mx-3">
+              <%= link_to "タグ一覧", admin_tags_path, class: "btn btn-secondary"%>
+            </li>
+            <li class="mx-3">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary" %>
 
-            <!--</li>-->
+            </li>
           <% else %>
              <li class="mx-3">
               <%= link_to "About", home_about_path, class: "btn btn-secondary" %>
@@ -41,9 +41,9 @@
             </li>
           <% end %>
           <!--検索フォーム-->
-          <form class="form-inline my-2 my-lg-0">
+          <div class="form-inline my-2 my-lg-0 search_form">
             <%= render 'public/posts/search' %>
-          </form>
+          </div>
         </ul>
       </div>
   </div>

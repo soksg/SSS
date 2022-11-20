@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_16_071109) do
+ActiveRecord::Schema.define(version: 2022_11_20_042637) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 2022_11_16_071109) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "admins", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
   create_table "bookmarks", force: :cascade do |t|
     t.integer "member_id", null: false
     t.integer "post_id", null: false
@@ -63,9 +75,10 @@ ActiveRecord::Schema.define(version: 2022_11_16_071109) do
 
   create_table "post_comments", force: :cascade do |t|
     t.text "comment"
-    t.integer "member_id"
-    t.integer "post_id"
-    t.integer "star"
+    t.integer "member_id", null: false
+    t.integer "post_id", null: false
+    t.integer "star", default: 0
+    t.integer "integer", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -80,15 +93,6 @@ ActiveRecord::Schema.define(version: 2022_11_16_071109) do
     t.string "phone_number", null: false
     t.string "opening_hour", null: false
     t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.integer "member_id", null: false
-    t.integer "post_id", null: false
-    t.integer "star", null: false
-    t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
