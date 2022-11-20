@@ -3,15 +3,9 @@ class Public::PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_comment = current_member.post_comments.new(post_comment_params)
     @post_comment.post_id = @post.id
-    @review = Review.new(post_review_params)
-    @review.member_id = current_member.id
-    @review.post_id = @post.id
-    #byebug
-    if  @post_comment.save!
-      @review.save!
+    if @post_comment.save!
       flash.now[:notice] = 'コメントを投稿しました'
       #render :create
-
     else
       # render post_path(@post)
       # flash.now[:alert] = 'コメントの投稿に失敗しました'
@@ -26,9 +20,6 @@ class Public::PostCommentsController < ApplicationController
 
   private
   def post_comment_params
-    params.require(:post_comment).permit(:comment)
-  end
-  def post_review_params
-    params.require(:review).permit(:star)
+    params.require(:post_comment).permit(:comment, :star)
   end
 end

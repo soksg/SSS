@@ -12,7 +12,7 @@
               </td>
             </tr>
             <tr>
-              <td>
+              <td id="avg">
                 評価 :<%= @reviews_avg_score %>点
               </td>
               <!--レビュー実装後、colspan予定-->
@@ -70,7 +70,7 @@
           </p>
         <% end %>
         <div class="ml-5 mt-5">
-          <p>
+          <p id="commentsCount">
             <b>コメント件数:<%= @post.post_comments.count %></b>
           </p>
 

@@ -11,8 +11,8 @@
         starOn  : '<%= asset_path('star-on.png') %>',
         starOff : '<%= asset_path('star-off.png') %>',
         //half      : false,
-        //readOnly: true
-        score: <%= post_comment.post_comment_review.star %>,
+        readOnly: true,
+        score: <%= post_comment.star %>
       }
       raty(elem, opt);
     </script>
