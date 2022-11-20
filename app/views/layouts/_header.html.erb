@@ -6,26 +6,26 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto mr-5 mt-2 mt-lg-0">
           <% if member_signed_in? %>
-            <li class="nav-item">
+            <li class="mx-3">
               <%= link_to "投稿フォーム", new_post_path, class: "btn btn-secondary" %>
             </li>
-            <li class="nav-item mx-3">
+            <li class="mx-3">
               <%= link_to "マイページ", member_path(current_member), class: "btn btn-secondary" %>
             </li>
-            <li class="nav-item">
+            <li class="mx-3">
               <%= link_to "ブックマーク一覧", bookmarks_member_path(current_member), class: "btn btn-secondary" %>
             </li>
-            <li class="nav-item">
+            <li class="mx-3">
               <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-secondary" %>
             </li>
           <%# elsif admin_signed_in? %>
-            <!--<li class="mx-3 btn">-->
+            <!--<li class="mx-3">-->
             <!--  <%#= link_to "会員一覧", admin_members_path, class: "btn btn-secondary" %>-->
             <!--</li>-->
-            <!--<li class="mx-3 btn">-->
+            <!--<li class="mx-3">-->
             <!--  <%#= link_to "タグ一覧", admin_tags_path, class: "btn btn-secondary"%>-->
             <!--</li>-->
-            <!--<li class="mx-3 btn">-->
+            <!--<li class="mx-3">-->
             <!--  <%#= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary" %>-->
 
             <!--</li>-->
