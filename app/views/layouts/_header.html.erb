@@ -18,6 +18,10 @@
             <li class="mx-3">
               <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-secondary" %>
             </li>
+            <!--検索フォーム-->
+          <div class="form-inline my-2 my-lg-0 search_form">
+            <%= render 'public/posts/search' %>
+          </div>
           <% elsif admin_signed_in? %>
             <li class="mx-3">
               <%= link_to "会員一覧", admin_members_path, class: "btn btn-secondary" %>
@@ -27,8 +31,11 @@
             </li>
             <li class="mx-3">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary" %>
-
             </li>
+            <!--検索フォーム-->
+          <div class="form-inline my-2 my-lg-0 search_form">
+            <%= render 'admin/posts/search' %>
+          </div>
           <% else %>
              <li class="mx-3">
               <%= link_to "About", home_about_path, class: "btn btn-secondary" %>
@@ -39,11 +46,11 @@
             <li class="mx-3">
               <%= link_to "ログイン", new_member_session_path, class: "btn btn-secondary" %>
             </li>
-          <% end %>
-          <!--検索フォーム-->
+            <!--検索フォーム-->
           <div class="form-inline my-2 my-lg-0 search_form">
             <%= render 'public/posts/search' %>
           </div>
+          <% end %>
         </ul>
       </div>
   </div>
