@@ -3,6 +3,17 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   belongs_to :member
 
+  # タグのリレーションのみ記載
+  has_many :tag_posts, dependent: :destroy
+  has_many :tags, through: :tag_posts
+
+  scope :is_active, -> { includes(:member).where(members: {is_active: true}) }
+  # 上記は、以下と同義
+  # def self.is_active
+  #   self.includes(:member).where(members: {is_active: true})
+  # end
+
+
   # validates :name, presence: true
   # validates :address, presence: true
   # validates :longitude, presence: true
@@ -35,6 +46,28 @@ class Post < ApplicationRecord
   def bookmarked(member)
     bookmarks.find_by(member_id: member.id)
   end
+
+  def save_tag(sent_tags)
+    # タグが存在していれば、タグの名前を配列として全て取得
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    # 現在取得したタグから送られてきたタグを除いてoldtagとする
+    old_tags = current_tags - sent_tags
+    # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
+    new_tags = sent_tags - current_tags
+
+    # 古いタグを消す
+    old_tags.each do |old|
+      self.tags.delete　Tag.find_by(name: old)
+    end
+
+    # 新しいタグを保存
+    new_tags.each do |new|
+      new_post_tag = Tag.find_or_create_by(name: new)
+      self.tags << new_post_tag
+    end
+  end
+
+
 
   # 検索機能で使用→posts_controller.erbのindexアクションに記載
   # def self.looks(word)
