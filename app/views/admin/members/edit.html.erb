@@ -1,0 +1,39 @@
+<div class="col-9 px-4 ml-5 my-4">
+  <h2 class="px-3"><%= @member.name %>さんの会員情報編集</h2>
+　　　　　　　　　　　　<!--情報更新するのでupdate_path-->
+    <%= form_with model: @member, url: admin_member_path(@member), method: :patch do |f| %>
+      <table class="table table-borderless ml-5">
+        <tr>
+          <td>ユーザーネーム</td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= f.text_field :email %></td>
+        </tr>
+        <tr>
+          <td>会員ステータス</td>
+            <td>
+              <% if @member.is_active == true %>
+                <%= f.radio_button :is_active, true, checked: true %>
+                <%= f.label :is_active, "有効" %>
+                <%= f.radio_button :is_active, false %>
+                <%= f.label :is_active, "退会" %>
+              <% else %>
+                <%= f.radio_button :is_active, true %>
+                <%= f.label :is_active, "有効" %>
+                <%= f.radio_button :is_active, false, checked: true %>
+                <%= f.label :is_active, "退会" %>
+              <% end %>
+            </td>
+        </tr>
+      </table>
+      <div class="my-5 col-11">
+          <p style="text-align: end;">
+            <%= f.submit "編集内容を保存", class: "btn btn-success mr-3" %>
+          </p>
+      </div>
+    <% end %>
+</div>
+
+

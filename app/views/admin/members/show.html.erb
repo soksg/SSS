@@ -13,12 +13,22 @@
                 <td style="background-color: #e5e5e5;">メールアドレス</td>
                 <td><%= @member.email %></td>
               </tr>
+              <tr>
+                <td style="background-color: #e5e5e5;">会員ステータス</td>
+                <td>
+                  <% if @member.is_active == true %>
+                    有効
+                  <% else %>
+                    退会
+                  <% end %>
+                </td>
+              </tr>
             </tbody>
           </table>
           <% if @member.name != "guestmember" %>
             <div class="mt-2">
               <p style="text-align: end;">
-                <%= link_to "プロフィール編集", edit_member_path(current_member), class: "btn btn-success" %>
+                <%= link_to "ユーザー情報編集", edit_admin_member_path(@member), class: "btn btn-success" %>
               </p>
             </div>
           <% end %>
@@ -27,12 +37,12 @@
     <div class="ml-5 px-5">
         <div class="mt-5 mx-5 pr-3 mb-0">
           <h4 class="my-4"><b><%= @member.name %>さんの投稿一覧</b></h4>
-             <% @posts.each do |post| %>
+             <% @member.posts.each do |post| %>
               <table>
                 <tr>
                   <td class="lead">
                     <b>
-                      <%= link_to post_path(post) do %>
+                      <%= link_to admin_post_path(post) do %>
                         <%= post.name %>
                       <% end %>
                     </b>
