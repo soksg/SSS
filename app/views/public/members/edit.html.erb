@@ -1,5 +1,7 @@
 <div class="col-9 px-4 ml-5 my-4">
-  <h2 class="px-3">会員情報編集</h2>
+  <div class="row">
+    <h2 class="px-3">会員情報編集</h2>
+  </div>
 　　　　　　　　　　　　<!--情報更新するのでupdate_path-->
     <%= form_with model: @member, url: member_path, method: :patch do |f| %>
       <table class="table table-borderless ml-5">
