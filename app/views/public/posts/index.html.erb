@@ -60,9 +60,9 @@
               </script>
             <div class="border-bottom border-5">
               <!--タグリスト-->
-              <% @tag_list.each do |list| %>
-                <%= link_to list.name, search_tag_member_path(list) %>
-                <%= "(#{list.posts.count})" %>
+              <% post.tags.each do |tag| %>
+                <%= link_to tag.name, tag_path(tag) %>
+                <%= "(#{tag.posts.count})" %>
               <% end %>
             </div>
        　 <% end %>

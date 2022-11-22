@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   has_many :tags, through: :tag_posts, dependent: :destroy
 
   scope :is_active, -> { includes(:member).where(members: {is_active: true}) }
+  # includes　postsテーブルとmembersのmembers: {is_active: true}をつなげる
   # 上記は、以下と同義。->はdef〜endの役割
   # def self.is_active
   #   self.includes(:member).where(members: {is_active: true})

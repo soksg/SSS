@@ -10,6 +10,7 @@ class Public::PostsController < ApplicationController
     @post.member_id=current_member.id
     # 受け取った値を,で区切って配列にする
     tag_list=params[:tags].split(',')
+
     if  @post.save
         @post.save_tag(tag_list)
         redirect_to post_path(@post), notice: "投稿しました"
@@ -20,8 +21,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.is_active
-    @posts = @posts.where("name LIKE?","%#{params[:word]}%") if params[:word].present?
+    @posts = Post.is_active 
+    @posts = @posts.where("posts.name LIKE ?","%#{params[:word]}%") if params[:word].present?
     @tag_list=Tag.all
   end
 
@@ -53,15 +54,6 @@ class Public::PostsController < ApplicationController
     end
   end
 
-   def search_tag
-    #検索結果画面でもタグ一覧表示
-    @tag_list=Tag.all
-    #検索されたタグを受け取る
-    @tag=Tag.find(params[:tag_id])
-    @tag.posts
-    #検索されたタグに紐づく投稿を表示
-    @posts=@tag.posts
-  end
 
   def destroy
     @post=Post.find(params[:id])

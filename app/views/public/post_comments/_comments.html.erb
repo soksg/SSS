@@ -1,11 +1,13 @@
  <!--フラッシュメッセージ-->
-<div class="col-5" style="text-align: center;">
-  <% if flash[:notice] %>
-    <p class="alert alert-success"><%= notice %></p>
-  <% elsif flash[:alert] %>
-    <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
-</div>
+<% if controller_name == "post_comments" %>
+  <div class="col-5" style="text-align: center;">
+    <% if flash[:notice] %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% elsif flash[:alert] %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+  </div>
+<% end %>
 
 <% post.post_comments.each_with_index do |post_comment, idx| %>
   <tr>
@@ -23,6 +25,7 @@
         readOnly: true,
         score: <%= post_comment.star %>
       }
+      elem.innerHTML=""
       raty(elem, opt);
     </script>
     <td><%= post_comment.comment %></td>

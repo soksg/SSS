@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     post 'members/guest_sign_in', to: 'members/sessions#guest_sign_in'
   end
 
+
   scope module: :public do
     resources :posts, only: [:new,:index,:show,:create,:edit,:update,:destroy] do
       resource :bookmark, only: [:destroy,:create]
@@ -27,14 +28,14 @@ Rails.application.routes.draw do
     resources :members, only: [:show, :edit, :update] do
       member do
         get :bookmarks
-        # タグ検索
-        get "search_tag"=>"posts#search_tag"
         # 退会確認画面
         get 'members/unsubscribe' => 'members#unsubscribe', as: 'unsubscribe'
         # 論理削除用のルーティング
         patch 'members/withdraw' => 'members#withdraw', as: 'withdraw'
       end
     end
+      # タグ検索
+      resources :tags, only: [:show]
   end
 
   namespace :admin do
