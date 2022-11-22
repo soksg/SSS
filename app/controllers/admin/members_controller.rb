@@ -4,7 +4,7 @@ class Admin::MembersController < ApplicationController
   def index
     @member = Member.all
     # ページネーションをつけたいデータに.page(params[:page])を追加
-    @members = Member.all.page(params[:page]).per(10)
+    # @members = Member.all.page(params[:page]).per(10)
   end
 
   def show

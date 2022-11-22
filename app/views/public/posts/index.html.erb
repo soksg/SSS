@@ -27,12 +27,10 @@
                   <% end %>
                 </b>
               </td>
-
               <!--ブックマークボタン-->
               <td id="bookmark_buttons_<%= post.id %>">
                 <%= render 'public/bookmarks/bookmark', post: post %>
               <td>
-
             </tr>
             <tr>
               <td><%= post.address %></td>
@@ -61,22 +59,10 @@
               </script>
             <div class="border-bottom border-5">
               <!--タグリスト-->
-              <% @tag_list.each do |list|%>
-              <%=list.name %>
-              <%="(#{list.posts.count})" %><% end %>
-
-              <!--投稿に紐づくタグを表示-->
-              <%# @posts.each do |post| %>
-              <!--<i class="fas fa-tag"><%#= post.tags.map(&:name).join(', ') %></i>-->
-
-              <!--タグリスト-->
               <% @tag_list.each do |list| %>
-                <%= link_to list.name,search_tag_path(tag_id: list.id) %>
-                <%="(#{list.posts.count})" %>
+                <%= link_to list.name, search_tag_member_path(list) %>
+                <%= "(#{list.posts.count})" %>
               <% end %>
-
-
-
             </div>
        　 <% end %>
        　</div>
