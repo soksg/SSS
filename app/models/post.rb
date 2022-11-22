@@ -5,22 +5,20 @@ class Post < ApplicationRecord
 
   # タグのリレーションのみ記載
   has_many :tag_posts, dependent: :destroy
-  has_many :tags, through: :tag_posts
+  has_many :tags, through: :tag_posts, dependent: :destroy
 
   scope :is_active, -> { includes(:member).where(members: {is_active: true}) }
-  # 上記は、以下と同義
+  # 上記は、以下と同義。->はdef〜endの役割
   # def self.is_active
   #   self.includes(:member).where(members: {is_active: true})
   # end
 
 
-  # validates :name, presence: true
-  # validates :address, presence: true
-  # validates :longitude, presence: true
-  # validates :latitude, presence: true
-  # validates :url, presence: true
-  # validates :phone_number, presence: true
-  # validates :opening_hour, presence: true
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :url, presence: true
+  validates :phone_number, presence: true
+  validates :opening_hour, presence: true
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?

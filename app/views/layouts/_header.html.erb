@@ -4,6 +4,15 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="ml-5">
+          <% if member_signed_in? %>
+            <b>ようこそ！
+              <br><%= current_member.name %>さん
+            </b>
+          <% elsif admin_signed_in? %>
+            <b>管理者ログイン中</b>
+          <% end %>
+        </div>
         <ul class="navbar-nav ml-auto mr-5 mt-2 mt-lg-0">
           <% if member_signed_in? %>
             <li class="mx-3">

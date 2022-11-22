@@ -46,17 +46,8 @@ class Public::PostsController < ApplicationController
     @post=Post.find(params[:id])
     tag_list=params[:post][:name].split(',')
     if  @post.update(post_params)
-        if params[:post][:status]== "公開"
-           # このpost_idに紐づいていたタグを@oldに入れる
-         　 @old_relations=PostTag.where(post_id: @post.id)
-           # それらを取り出し、消す。消し終わる
-         　 @old_relations.each do |relation|
-         　  relation.delete
-         　 end
-        　  @post.save_tag(tag_list)
-           redirect_to post_path(@post), notice: "投稿内容を更新しました"
-      　else redirect_to posts_path, notice: '下書きに登録しました。'
-        end
+    　　  @post.save_tag(tag_list)
+     　  redirect_to post_path(@post), notice: "投稿内容を更新しました"
     else
         render "edit", notice: "項目を入力してください"
     end
@@ -75,7 +66,8 @@ class Public::PostsController < ApplicationController
   def destroy
     @post=Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path, notice: "投稿を削除しました"
+    redirect_to posts_path
+    flash[:notice] = '投稿を削除しました'
   end
 
   private

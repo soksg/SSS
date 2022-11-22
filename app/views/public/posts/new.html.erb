@@ -1,3 +1,20 @@
+<% if @post.errors.any? %>
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h2 class="my-4 ml-5 px-5">新規投稿フォーム</h2>
   <div class="ml-5 px-5">
     <%= form_with model: @post, url: posts_path, method: :post do |f| %>
