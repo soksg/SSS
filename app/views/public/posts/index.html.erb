@@ -27,12 +27,10 @@
                   <% end %>
                 </b>
               </td>
-
               <!--ブックマークボタン-->
               <td id="bookmark_buttons_<%= post.id %>">
                 <%= render 'public/bookmarks/bookmark', post: post %>
               <td>
-
             </tr>
             <tr>
               <td><%= post.address %></td>
@@ -60,7 +58,11 @@
                 raty(elem, opt);
               </script>
             <div class="border-bottom border-5">
-              ここにタグを実装
+              <!--タグリスト-->
+              <% @tag_list.each do |list| %>
+                <%= link_to list.name, search_tag_member_path(list) %>
+                <%= "(#{list.posts.count})" %>
+              <% end %>
             </div>
        　 <% end %>
        　</div>

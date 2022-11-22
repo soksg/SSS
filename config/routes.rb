@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     resources :members, only: [:show, :edit, :update] do
       member do
         get :bookmarks
+        # タグ検索
+        get "search_tag"=>"posts#search_tag"
         # 退会確認画面
         get 'members/unsubscribe' => 'members#unsubscribe', as: 'unsubscribe'
         # 論理削除用のルーティング
@@ -41,7 +43,8 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index,:destroy]
       resources :comments, only: [:destroy]
     end
-    resources :tags, only: [:new, :create, :index, :edit, :destroy]
+    get "search_tag"=>"posts#search_tag"
+    # resources :tags, only: [:new, :create, :index, :edit, :destroy]
   end
 
 end
