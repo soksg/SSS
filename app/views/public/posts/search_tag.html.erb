@@ -1,25 +1,71 @@
-<div class="container">
-  <h5>タグが<%=@tag.name%>の投稿一覧</h5>
-
-
-
+<h1>タグが<%= @tag.name %>の投稿一覧</h1>
   <div class="row">
-    <% @posts.each do |post| %>
-      <div class="col-md-4">
-        <div class="card shadow">
-          <div class="card-body">
-            <h5 class="card-title"><%= post.name %></h5>
-            <div class="card-text">
-              <%# 長さ微調整お願いします %>
-              <%= simple_format(post.description.truncate(15)) %>
-            </div>
-            <div class="text-right">
-              <small><%= post.created_at.in_time_zone('Tokyo').strftime("%Y年%m月%d日 %H:%m") %></small>
-            </div>
-          </div>
-        </div>
+<!--部分テンプレート化するか-->
+    <div class="col-3">
+      <div>
+        <h5>カテゴリ</h5>
       </div>
-    <% end %>
+      <div>
+        <h5>地域</h5>
+      </div>
+    </div>
+<!--検索結果-->
+    <div class="col-9">
+       <% if @posts.empty? %>
+          <div class="mt-5 mr-5 pr-3 mb-0">
+             <h3 class="text-center"><b>投稿が見つかりませんでした</b></h3>
+          </div>
+       <% else %>
+       <div class="mt-5 mr-5 pr-3 mb-0">
+       <% @posts.each do |post| %>
+        <table>
+          <tr>
+            <td class="lead">
+              <b>
+                <%= link_to post_path(post) do %>
+                  <%= post.name %>
+                <% end %>
+              </b>
+            </td>
+            <!--ブックマークボタン-->
+            <td id="bookmark_buttons_<%= post.id %>">
+              <%= render 'public/bookmarks/bookmark', post: post %>
+            <td>
+          </tr>
+          <tr>
+            <td><%= post.address %></td>
+          </tr>
+          <tr>
+            <td><%= image_tag post.get_image(100,100) %></td>
+          </tr>
+        </table>
+          <p class="mb-0"><%= post.post_comments.count %>件の評価</p><div id="star-rate-<%= post.id %>"></div>
+          <% count = post.post_comments.size %>
+          <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
+          <script>
+              var elem = document.getElementById("star-rate-<%= post.id %>");
+              var opt = {
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                half      : false,
+                readOnly: true,
+                score: <%= score %>,
+              }
+              // 再読み込みする際、星が増えないようにする
+              // （再読み込み前の星の空文字にする）
+              elem.innerHTML=""
+              raty(elem, opt);
+            </script>
+          <div class="border-bottom border-5">
+            <!--タグリスト-->
+            <% @tag_list.each do |list| %>
+              <%= link_to list.name, search_tag_member_path(list) %>
+              <%= "(#{list.posts.count})" %>
+            <% end %>
+          </div>
+     　 <% end %>
+     　</div>
+     <% end %>
+    </div>
   </div>
-
-</div>

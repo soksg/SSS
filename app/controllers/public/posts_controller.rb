@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_member!, except: [:index, :show]
+  before_action :authenticate_member!, except: [:index, :show, :search_tag]
 
   def new
     @post=Post.new
