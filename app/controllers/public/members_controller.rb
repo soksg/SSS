@@ -5,6 +5,7 @@ class Public::MembersController < ApplicationController
     def show
       @member=Member.find(params[:id])
       @posts=@member.posts
+      @tag_list=Tag.all
     end
 
     def edit
@@ -25,6 +26,7 @@ class Public::MembersController < ApplicationController
       @member=Member.find(params[:id])
       bookmarks=Bookmark.where(member_id: @member.id).pluck(:post_id)
       @bookmark_posts=Post.find(bookmarks)
+      @tag_list=Tag.all
     end
 
     def guest_sign_in

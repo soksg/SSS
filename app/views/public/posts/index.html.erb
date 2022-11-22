@@ -1,7 +1,9 @@
-<h1>投稿一覧</h1>
+<div class="row my-4 ml-5 px-5">
+  <h2 class="px-3">投稿一覧</h2>
+</div>
   <div class="row">
-<!--部分テンプレート化するか-->
-    <div class="col-3">
+    <!--部分テンプレート化するか-->
+    <div class="col-2 my-4 ml-5">
       <div>
         <h5>カテゴリ</h5>
       </div>
@@ -9,7 +11,6 @@
         <h5>地域</h5>
       </div>
     </div>
-<!--検索結果-->
     <div class="col-9">
        <% if @posts.empty? %>
           <div class="mt-5 mr-5 pr-3 mb-0">
