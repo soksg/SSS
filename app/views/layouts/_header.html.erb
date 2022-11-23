@@ -33,10 +33,10 @@
           </div>
           <% elsif admin_signed_in? %>
             <li class="mx-3">
-              <%= link_to "会員一覧", admin_members_path, class: "btn btn-secondary" %>
+              <%= link_to "About", home_about_path, class: "btn btn-secondary" %>
             </li>
             <li class="mx-3">
-              <%= link_to "About", home_about_path, class: "btn btn-secondary" %>
+              <%= link_to "会員一覧", admin_members_path, class: "btn btn-secondary" %>
             </li>
             <li class="mx-3">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary" %>
