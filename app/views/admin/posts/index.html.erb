@@ -1,10 +1,10 @@
-<div class="container my-5">
-  <div class="row">
+<div class="container my-5" style="box-sizing: content-box; min-height: 60vh;">
+  <div class="row my-4 px-5">
     <h2 class="px-3">投稿一覧</h2>
   </div>
     <div class="row">
-  <!--部分テンプレート化するか-->
-      <div class="col-3">
+      <!--部分テンプレート化するか-->
+      <div class="col-2 my-4">
         <div>
           <h5>カテゴリ</h5>
         </div>
@@ -12,7 +12,6 @@
           <h5>地域</h5>
         </div>
       </div>
-  <!--検索結果-->
       <div class="col-9">
          <% if @posts.empty? %>
             <div class="mt-5 mr-5 pr-3 mb-0">
@@ -30,6 +29,11 @@
                     <% end %>
                   </b>
                 </td>
+                <!--ブックマークボタン-->
+                <!--<td id="bookmark_buttons_<%#= post.id %>">-->
+                <!--  <%#= render 'admin/bookmarks/bookmark', post: post %>-->
+                <!--<td>-->
+                <td></td>
               </tr>
               <tr>
                 <td><%= post.address %></td>
@@ -57,7 +61,11 @@
                   raty(elem, opt);
                 </script>
               <div class="border-bottom border-5">
-                ここにタグを実装
+                <!--タグリスト-->
+                <% post.tags.each do |tag| %>
+                  <%= link_to tag.name, admin_tag_path(tag) %>
+                  <%= "(#{tag.posts.count})" %>
+                <% end %>
               </div>
          　 <% end %>
          　</div>
@@ -65,3 +73,4 @@
       </div>
     </div>
 </div>
+

@@ -13,21 +13,22 @@
         </div>
       </div>
       <div class="col-9">
-        <div class="mt-5 mr-5 pr-3 mb-0">
+       <div class="mt-5 mr-5 pr-3 mb-0">
          <% @posts.each do |post| %>
           <table>
             <tr>
               <td class="lead">
                 <b>
-                  <%= link_to post_path(post) do %>
+                  <%= link_to admin_post_path(post) do %>
                     <%= post.name %>
                   <% end %>
                 </b>
               </td>
               <!--ブックマークボタン-->
-              <td id="bookmark_buttons_<%= post.id %>">
-                <%= render 'public/bookmarks/bookmark', post: post %>
-              <td>
+              <!--<td id="bookmark_buttons_<%#= post.id %>">-->
+              <!--  <%#= render 'public/bookmarks/bookmark', post: post %>-->
+              <!--<td>-->
+              <td></td>
             </tr>
             <tr>
               <td><%= post.address %></td>
@@ -57,7 +58,7 @@
             <div class="border-bottom border-5">
               <!--タグリスト-->
               <% post.tags.each do |tag| %>
-                <%= link_to tag.name, tag_path(tag) %>
+                <%= link_to tag.name, admin_tag_path(tag) %>
                 <%= "(#{tag.posts.count})" %>
               <% end %>
             </div>

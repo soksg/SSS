@@ -34,7 +34,7 @@ Rails.application.routes.draw do
         patch 'members/withdraw' => 'members#withdraw', as: 'withdraw'
       end
     end
-      # タグ検索
+      # タグに紐づいた投稿一覧を表示（タグの詳細ページ）
       resources :tags, only: [:show]
   end
 
@@ -44,8 +44,7 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index,:destroy]
       resources :comments, only: [:destroy]
     end
-    get "search_tag"=>"posts#search_tag"
-    # resources :tags, only: [:new, :create, :index, :edit, :destroy]
+     resources :tags, only: [:show]
   end
 
 end

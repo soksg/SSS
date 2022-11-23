@@ -2,15 +2,15 @@
 
   <% if post.bookmarked_by?(current_member) %>
       <%= link_to post_bookmark_path(post), method: :delete, remote: true do %>
-        ★
+        <i class="fas fa-star"></i>
       <% end %>
   <% else %>
       <%= link_to post_bookmark_path(post), method: :post, remote: true do %>
-        ☆
+        <i class="far fa-star"></i>
       <% end %>
   <% end %>
 <% else %>
   <%= link_to new_member_session_path do %>
-    ☆
+    <i class="far fa-star"></i>
   <% end %>
 <% end %>

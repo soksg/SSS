@@ -3,7 +3,7 @@
     <h2 class="px-3">投稿詳細</h2>
   </div>
     <div class="row ml-2">
-      <div class="col-9">
+      <div class="col-10">
         <div class="ml-5 px-5">
           <table class="table ml-5">
               <tr>
@@ -59,7 +59,7 @@
                 <td>
                   <!--タグ-->
                   <% @post_tags.each do |tag| %>
-                    <%= link_to tag.name, search_tag_member_path(tag_id: tag.id) %>
+                    <%= link_to tag.name, tag_path(tag) %>
                     <%= "(#{tag.posts.count})" %>
                   <% end %>
                 </td>
@@ -68,6 +68,7 @@
               <tr>
                 <td><b>投稿ユーザー</b></td>
                 <td><%= @post.member.name %></td>
+                <td></td>
               </tr>
               <tr>
                 <td><b>投稿日</b></td>

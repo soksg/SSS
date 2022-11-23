@@ -1,0 +1,44 @@
+<div class="ml-5 mt-5">
+  <p id="commentsCount">
+    <b>コメント件数:<%= post.post_comments.count %></b>
+  </p>
+</div>
+<!--コメント一覧-->
+<table class="table">
+   <!--フラッシュメッセージ-->
+  <% if controller_name == "post_comments" %>
+    <div class="col-5" style="text-align: center;">
+      <% if flash[:notice] %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% elsif flash[:alert] %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% post.post_comments.each_with_index do |post_comment, idx| %>
+    <tr>
+      <td><%= post_comment.member.name %></td>
+      <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+      <td id="star-rate-<%= idx + 1 %>"></td>
+      <%# count = post.review.count %>
+      <script>
+        var elem = document.getElementById("star-rate-<%= idx + 1 %>");
+        var opt = {
+          size      : 36,
+          starOn  : '<%= asset_path('star-on.png') %>',
+          starOff : '<%= asset_path('star-off.png') %>',
+          //half      : false,
+          readOnly: true,
+          score: <%= post_comment.star %>
+        }
+        elem.innerHTML=""
+        raty(elem, opt);
+      </script>
+      <td><%= post_comment.comment %></td>
+        <td>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, class: "btn btn-danger" %>
+        </td>
+    </tr>
+  <% end %>
+</table>
