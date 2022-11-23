@@ -1,4 +1,4 @@
-$("#comments_<%= @post.id %>").html("<%= j(render "comments", post: @post) %>");
+$("#comment_<%= @post.id %>").html("<%= j(render "comment", post: @post) %>");
 $('#commentsCount').html('<b>コメント件数:<%= j(@post.post_comments.count) %></b>');
 var score = <%= j(@post.post_comments.present? ? @post.post_comments.sum(:star) / @post.post_comments.count : 0) %>
 $('#star-rate').empty();
@@ -13,3 +13,4 @@ $('#avg').html(`評価 : ${score}点`);
     score: score,
   }
   raty(elem, opt);
+$("textarea").val('');

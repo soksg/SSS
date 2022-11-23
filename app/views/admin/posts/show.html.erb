@@ -3,12 +3,17 @@
     <h2 class="px-3">投稿詳細</h2>
   </div>
     <div class="row ml-2">
-      <div class="col-9">
+      <div class="col-10">
         <div class="ml-5 px-5">
           <table class="table ml-5">
               <tr>
                 <td><b>施設名</b></td>
                 <td><%= @post.name %></td>
+                <!--ブックマークボタン-->
+                <!--<td id="bookmark_buttons_<%#= @post.id %>">-->
+                <!--  <%#= render 'public/bookmarks/bookmark', post: @post %>-->
+                <!--</td>-->
+                <td></td>
               </tr>
               <tr>
                 <td id="avg">
@@ -32,7 +37,7 @@
               </tr>
               <tr>
                 <td><b>電話番号</b></td>
-                <td><%= @post.phone_number %></td>
+                <td><%=  @post.phone_number %></td>
                 <td></td>
               </tr>
               <tr>
@@ -52,12 +57,19 @@
               </tr>
               <tr>
                 <td><b>タグ</b></td>
-                <td>tag_name</td>
+                <td>
+                  <!--タグ-->
+                  <% @post.tags.each do |tag| %>
+                    <%= link_to tag.name, tag_path(tag_id: tag.id) %>
+                    <%= "(#{tag.posts.count})" %>
+                  <% end %>
+                </td>
                 <td></td>
               </tr>
               <tr>
                 <td><b>投稿ユーザー</b></td>
                 <td><%= @post.member.name %></td>
+                <td></td>
               </tr>
               <tr>
                 <td><b>投稿日</b></td>
@@ -65,37 +77,36 @@
                 <td></td>
               </tr>
           </table>
-            <p style="text-align: end;">
-              <%= link_to "投稿削除", admin_post_path(@post), method: :delete, class: "btn btn-danger" %>
+          <% if member_signed_in? && current_member.id == @post.member_id %>
+            <p class="mt-2" style="text-align: end;">
+              <%= link_to "投稿編集", edit_post_path(@post), class: "btn btn-success mr-4" %>
+              <%= link_to "投稿削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
             </p>
-            
-            
-          <div class="ml-5 mt-5">
-            <p id="commentsCount">
-              <b>コメント件数:<%= @post.post_comments.count %></b>
-            </p>
+          <% end %>
 
-            <!--コメント一覧-->
-            <table class="table", id="comments_<%= @post.id %>">
-              <%= render 'admin/post_comments/comments', post: @post %>
-            </table>
-        </div>
+
+          <!--レビュー・コメント部分-->
+          <div class="ml-5" id="comment_<%= @post.id %>">
+            <%= render 'admin/comments/comment', post: @post, post_comment: @post_comment %>
+          </div>
+
+
       </div>
     </div>
   </div>
 </div>
-  <script>
-    var elem = document.getElementById("star-rate");
-    var opt = {
-      size      : 36,
-      starOff   : '<%= asset_path('star-off.png') %>',
-      starOn    : '<%= asset_path('star-on.png') %>',
-      half      : false,
-      readOnly: true,
-      score: <%= @reviews_avg_score %>,
-    }
-    // 再読み込みする際、星が増えないようにする
-    // （再読み込み前の星の空文字にする）
-    elem.innerHTML=""
-    raty(elem, opt);
-  </script>
+<script>
+  var elem = document.getElementById("star-rate");
+  var opt = {
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    half      : false,
+    readOnly  : true,
+    score: <%= @reviews_avg_score %>,
+  }
+  // 再読み込みする際、星が増えないようにする
+  // （再読み込み前の星の空文字にする）
+  elem.innerHTML=""
+  raty(elem, opt);
+</script>

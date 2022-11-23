@@ -24,15 +24,16 @@
               <tr>
                 <td class="lead">
                   <b>
-                    <%= link_to post_path(post) do %>
+                    <%= link_to admin_post_path(post) do %>
                       <%= post.name %>
                     <% end %>
                   </b>
                 </td>
                 <!--ブックマークボタン-->
-                <td id="bookmark_buttons_<%= post.id %>">
-                  <%= render 'admin/bookmarks/bookmark', post: post %>
-                <td>
+                <!--<td id="bookmark_buttons_<%#= post.id %>">-->
+                <!--  <%#= render 'admin/bookmarks/bookmark', post: post %>-->
+                <!--<td>-->
+                <td></td>
               </tr>
               <tr>
                 <td><%= post.address %></td>

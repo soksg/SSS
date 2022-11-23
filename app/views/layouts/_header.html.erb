@@ -1,5 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light">　　<!--ロゴ-->
-  <a class="navbar-brand ml-5" href="/"><%= image_tag 'logo.png', class: "logo", height: 65 %><a>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <% if admin_signed_in? %>
+    <a class="navbar-brand ml-5" href="/admin/posts"><%= image_tag 'logo.png', class: "logo", height: 65 %><a>
+  <% else %>
+    <a class="navbar-brand ml-5" href="/"><%= image_tag 'logo.png', class: "logo", height: 65 %><a>
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -56,9 +60,9 @@
           <%= link_to "ログイン", new_member_session_path, class: "btn btn-secondary" %>
         </li>
         <!--検索フォーム-->
-      <div class="form-inline my-2 my-lg-0 search_form">
-        <%= render 'public/posts/search' %>
-      </div>
+        <div class="form-inline my-2 my-lg-0 search_form">
+          <%= render 'public/posts/search' %>
+        </div>
       <% end %>
     </ul>
   </div>
