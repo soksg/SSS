@@ -8,14 +8,14 @@
 <% end %>
 <!-- 評価javascript -->
   <script>
-  var elem = document.getElementById("star");
-  var opt = {
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    scoreName: 'post_comment[star]',
-    half: false
-  };
-  elem.innerHTML=""
-  raty(elem, opt)
+    var elem = document.getElementById("star");
+    var opt = {
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      scoreName: 'post_comment[star]',
+      half: false
+    };
+    elem.innerHTML=""
+    raty(elem, opt)
   </script>
