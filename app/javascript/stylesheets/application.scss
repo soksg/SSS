@@ -17,15 +17,6 @@
   width: 270px;
 }
 
-.card{
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-
-h6 {
-  border-bottom: solid 3px black;
-}
 
 footer{
 bottom: 0;
@@ -42,4 +33,39 @@ h2 {
 
 h4 {
   background-color: #eaeaea;
+}
+
+
+// 以下、検索ボックス用
+.search_container {
+  position: relative;
+  box-sizing: border-box;
+  border: 2px solid #000;
+  display: block;
+  height: 2.2em;
+  width: 242px;
+  overflow: hidden;
+}
+
+.search_container input[type="text"] {
+  border: none;
+  height: 2.0em;
+  padding: 0 10px;
+}
+
+.search_container input[type="text"]:focus {
+  outline: 0;
+}
+
+.search_container button {
+  cursor: pointer;
+  border: none;
+  background: #4169e1;
+  color: #eee;
+  position: absolute;
+  width: 3rem;
+  height: 3.0rem;
+  right: 0;
+  top: -7px;
+  outline: none;
 }

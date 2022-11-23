@@ -81,22 +81,14 @@
               <%= link_to "投稿削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
             </p>
           <% end %>
-          <div class="ml-5 mt-5">
-            <p id="commentsCount">
-              <b>コメント件数:<%= @post.post_comments.count %></b>
-            </p>
 
-    
-            <!--コメント一覧-->
-            <table class="table", id="comments_<%= @post.id %>">
-              <%= render 'public/post_comments/comments', post: @post %>
-            </table>
 
-            <!--コメント投稿フォーム-->
-            <div id="comment_form_<%= @post.id %>">
-              <%= render 'public/comment_forms/comment_form', post: @post, post_comment: @post_comment %>
-            </div>
-        </div>
+          <!--レビュー・コメント部分-->
+          <div class="ml-5" id="comment_<%= @post.id %>">
+            <%= render 'public/comments/comment', post: @post, post_comment: @post_comment %>
+          </div>
+
+
       </div>
     </div>
   </div>
