@@ -1,4 +1,17 @@
-<%= form_with url: root_path, method: :get do |f| %>
-  <%= f.text_field :word, value: params[:word], class: "form-control search_form-word" %>
-  <%= f.submit "投稿検索", class: "btn btn-primary" %>
-<% end %>
+<%#= form_with url: root_path, method: :get do |f| %>
+  <%#= f.text_field :word, value: params[:word], class: "form-control search_form-word", placeholder: "投稿検索" %>
+  <%#= f.submit "投稿検索", class: "fas fa-search" %>
+<%# end %>
+
+<form method="get" action="@posts" class="search_container">
+    <input type="text" placeholder="投稿検索">
+    <button type="submit">
+        <i class="fas fa-search"></i>
+    </button>
+</form>
+
+<!--バックアップ-->
+<%#= form_with url: root_path, method: :get do |f| %>
+  <%#= f.text_field :word, value: params[:word], class: "form-control search_form-word" %>
+  <%#= f.submit "投稿検索", class: "btn btn-primary" %>
+<%# end %>
