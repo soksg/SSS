@@ -87,7 +87,7 @@
                       <div class="border-bottom border-5">
                         <!--タグリスト-->
                         <% post.tags.each do |tag| %>
-                          <%= link_to tag.name, tag_path(tag) %>
+                          <%= link_to tag.name, admin_tag_path(tag) %>
                           <%= "(#{tag.posts.count})" %>
                         <% end %>
                       </div>
