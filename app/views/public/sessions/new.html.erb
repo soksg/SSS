@@ -1,4 +1,4 @@
-<div class="container my-5">
+<div class="container my-5" style="box-sizing: content-box; min-height: 60vh;">
   <div class="row my-4 ml-5 px-5">
     <h2 class="px-3">ログイン</h2>
   </div>
@@ -8,26 +8,25 @@
 
       <table class="table table-borderless ml-5">
         <tr>
-          <td>メールアドレス</td>
+          <td style="width: 270px;">メールアドレス</td>
           <td><%= f.email_field :email, autocomplete: "email" %></td>
          </tr>
         <tr>
-          <td>パスワード</td>
+          <td style="width: 270px;">パスワード</td>
           <td><%= f.password_field :password, autocomplete: "new-password" %></td>
          </tr>
         <tr>
-          <td></td>
+          <td style="width: 270px;"></td>
           <td><%= f.submit "ログイン", class: "btn btn-success" %></td>
         </tr>
         <tr>
           <td></td>
           <td><%= render "public/shared/links" %></td>
         </tr>
-        <tr>
-          <td></td>
-          <td><%= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, class: "btn btn-secondary", method: :post %></td>
-        </tr>
       </table>
+        <div class="row justify-content-center mr-4">
+          <%= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, class: "btn btn-secondary", method: :post %>
+        </div>
     <% end %>
   </div>
 </div>

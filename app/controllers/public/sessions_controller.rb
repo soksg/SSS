@@ -31,6 +31,10 @@ class Public::SessionsController < Devise::SessionsController
     end
   end
 
+  def after_sigin_in_path_for(resource)
+    posts_path
+  end
+
   def after_sigin_out_path_for(resource)
     posts_path
   end
