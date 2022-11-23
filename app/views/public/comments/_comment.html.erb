@@ -6,15 +6,9 @@
 <!--コメント一覧-->
 <table class="table">
    <!--フラッシュメッセージ-->
-  <% if controller_name == "post_comments" %>
-    <div class="col-5" style="text-align: center;">
-      <% if flash[:notice] %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% elsif flash[:alert] %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
-    </div>
-  <% end %>
+  <div id="flash-message">
+    <%= render 'layouts/flash' %>
+  </div>
 
   <% post.post_comments.each_with_index do |post_comment, idx| %>
     <tr>
