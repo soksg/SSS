@@ -16,7 +16,7 @@ class Public::PostsController < ApplicationController
         redirect_to post_path(@post), notice: "投稿しました"
     else
         @post=Post.new
-        render "new", notice: "項目を入力してください"
+        render "new", alert: "項目を入力してください"
     end
   end
 
@@ -50,7 +50,7 @@ class Public::PostsController < ApplicationController
     　　  @post.save_tag(tag_list)
      　  redirect_to post_path(@post), notice: "投稿内容を更新しました"
     else
-        render "edit", notice: "項目を入力してください"
+        render "edit", alert: "項目を入力してください"
     end
   end
 
@@ -59,7 +59,7 @@ class Public::PostsController < ApplicationController
     @post=Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
-    flash[:notice] = '投稿を削除しました'
+    flash[:alert] = '投稿を削除しました'
   end
 
   private

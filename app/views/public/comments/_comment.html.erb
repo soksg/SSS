@@ -5,11 +5,6 @@
 </div>
 <!--コメント一覧-->
 <table class="table">
-   <!--フラッシュメッセージ-->
-  <div id="flash-message">
-    <%= render 'layouts/flash' %>
-  </div>
-
   <% post.post_comments.each_with_index do |post_comment, idx| %>
     <tr>
       <td><%= post_comment.member.name %></td>
@@ -41,27 +36,30 @@
   <% end %>
 </table>
 
+<!--フラッシュメッセージ-->
+<div id="flash-message">
+  <%= render 'layouts/flash' %>
+</div>
+
 <!--コメントフォーム-->
 <div>
   <%= form_with model: [post, post_comment], local: false do |f| %>
-    <!--エラーメッセージ-->
-    <%#= render 'layouts/error_messages', model: f.object %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", :size => "70" %>
     <%= f.label :star,'評価 ', class:'col-md-3 col-form-label ml-1' %>
     <div class="form-group row ml-1" id="star"></div>
     <p style="text-align: end;"><%= f.submit "送信する", class: "btn btn-success" %></p>
   <% end %>
   <!-- 評価javascript -->
-    <script>
-      var elem = document.getElementById("star");
-      var opt = {
-        size     : 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        scoreName: 'post_comment[star]',
-        half: false
-      };
-      elem.innerHTML=""
-      raty(elem, opt)
-    </script>
+  <script>
+    var elem = document.getElementById("star");
+    var opt = {
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      scoreName: 'post_comment[star]',
+      half: false
+    };
+    elem.innerHTML=""
+    raty(elem, opt)
+  </script>
 </div>

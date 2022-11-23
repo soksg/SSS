@@ -1,4 +1,4 @@
-$("#comment_<%= @post.id %>").html("<%= j(render "comment", post: @post) %>");
+$("#comment_<%= @post.id %>").html("<%= j(render "admin/comments/comment", post: @post, post_comment: @post_comment) %>");
 $('#commentsCount').html('<b>コメント件数:<%= j(@post.post_comments.count) %></b>');
 var score = <%= j(@post.post_comments.present? ? @post.post_comments.sum(:star) / @post.post_comments.count : 0) %>
 $('#star-rate').empty();

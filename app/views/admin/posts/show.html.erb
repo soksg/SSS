@@ -83,14 +83,10 @@
               <%= link_to "投稿削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
             </p>
           <% end %>
-
-
           <!--レビュー・コメント部分-->
           <div class="ml-5" id="comment_<%= @post.id %>">
             <%= render 'admin/comments/comment', post: @post, post_comment: @post_comment %>
           </div>
-
-
       </div>
     </div>
   </div>
