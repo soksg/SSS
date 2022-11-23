@@ -1,113 +1,117 @@
-<h2 class="my-4 ml-5 px-5">投稿詳細</h2>
-  <div class="row ml-2">
-    <div class="col-9">
-      <div class="ml-5 px-5">
-        <table class="table ml-5">
-            <tr>
-              <td><b>施設名</b></td>
-              <td><%= @post.name %></td>
-              <!--ブックマークボタン-->
-              <td id="bookmark_buttons_<%= @post.id %>">
-                <%= render 'public/bookmarks/bookmark', post: @post %>
-              </td>
-            </tr>
-            <tr>
-              <td id="avg">
-                <b><%= @post.post_comments.count %>件の評価</b>
-              </td>
-              <td id="star-rate" colspan="2"></td>
-            </tr>
-            <tr>
-              <td><b>住所・地図</b></td>
-              <td>
-                <%= @post.address %>
-                <!--googlemap-->
-                <%= render 'map', post: @post %>
-              </td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><b>画像</b></td>
-              <td><%= image_tag @post.get_image(100,100) %></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><b>電話番号</b></td>
-              <td><%=  @post.phone_number %></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><b>営業時間</b></td>
-              <td><%= @post.opening_hour %></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><b>URL</b></td>
-              <td><%= @post.url %></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><b>説明</b></td>
-              <td><%= @post.description %></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><b>タグ</b></td>
-              <td>
-                <!--タグ-->
-                <% @post_tags.each do |tag| %>
-                  <%= link_to tag.name, search_tag_member_path(tag_id: tag.id) %>
-                  <%= "(#{tag.posts.count})" %>
-                <% end %>
-              </td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><b>投稿ユーザー</b></td>
-              <td><%= @post.member.name %></td>
-            </tr>
-            <tr>
-              <td><b>投稿日</b></td>
-              <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
-              <td></td>
-            </tr>
-        </table>
-        <% if member_signed_in? && current_member.id == @post.member_id %>
-          <p class="mt-2" style="text-align: end;">
-            <%= link_to "投稿編集", edit_post_path(@post), class: "btn btn-success mr-4" %>
-            <%= link_to "投稿削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
-          </p>
-        <% end %>
-        <div class="ml-5 mt-5">
-          <p id="commentsCount">
-            <b>コメント件数:<%= @post.post_comments.count %></b>
-          </p>
-
-          <!--コメント一覧-->
-          <table class="table", id="comments_<%= @post.id %>">
-            <%= render 'public/post_comments/comments', post: @post %>
+<div class="container my-5">
+  <div class="row my-4 ml-5 px-5">
+    <h2 class="px-3">投稿詳細</h2>
+  </div>
+    <div class="row ml-2">
+      <div class="col-9">
+        <div class="ml-5 px-5">
+          <table class="table ml-5">
+              <tr>
+                <td><b>施設名</b></td>
+                <td><%= @post.name %></td>
+                <!--ブックマークボタン-->
+                <td id="bookmark_buttons_<%= @post.id %>">
+                  <%= render 'public/bookmarks/bookmark', post: @post %>
+                </td>
+              </tr>
+              <tr>
+                <td id="avg">
+                  <b><%= @post.post_comments.count %>件の評価</b>
+                </td>
+                <td id="star-rate" colspan="2"></td>
+              </tr>
+              <tr>
+                <td><b>住所・地図</b></td>
+                <td>
+                  <%= @post.address %>
+                  <!--googlemap-->
+                  <%= render 'map', post: @post %>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><b>画像</b></td>
+                <td><%= image_tag @post.get_image(100,100) %></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><b>電話番号</b></td>
+                <td><%=  @post.phone_number %></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><b>営業時間</b></td>
+                <td><%= @post.opening_hour %></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><b>URL</b></td>
+                <td><%= @post.url %></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><b>説明</b></td>
+                <td><%= @post.description %></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><b>タグ</b></td>
+                <td>
+                  <!--タグ-->
+                  <% @post_tags.each do |tag| %>
+                    <%= link_to tag.name, search_tag_member_path(tag_id: tag.id) %>
+                    <%= "(#{tag.posts.count})" %>
+                  <% end %>
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><b>投稿ユーザー</b></td>
+                <td><%= @post.member.name %></td>
+              </tr>
+              <tr>
+                <td><b>投稿日</b></td>
+                <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+                <td></td>
+              </tr>
           </table>
+          <% if member_signed_in? && current_member.id == @post.member_id %>
+            <p class="mt-2" style="text-align: end;">
+              <%= link_to "投稿編集", edit_post_path(@post), class: "btn btn-success mr-4" %>
+              <%= link_to "投稿削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
+            </p>
+          <% end %>
+          <div class="ml-5 mt-5">
+            <p id="commentsCount">
+              <b>コメント件数:<%= @post.post_comments.count %></b>
+            </p>
 
-          <!--コメント投稿フォーム-->
-          <div id="comment_form_<%= @post.id %>">
-            <%= render 'public/comment_forms/comment_form', post: @post, post_comment: @post_comment %>
-          </div>
+            <!--コメント一覧-->
+            <table class="table", id="comments_<%= @post.id %>">
+              <%= render 'public/post_comments/comments', post: @post %>
+            </table>
+
+            <!--コメント投稿フォーム-->
+            <div id="comment_form_<%= @post.id %>">
+              <%= render 'public/comment_forms/comment_form', post: @post, post_comment: @post_comment %>
+            </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<script>
-  var elem = document.getElementById("star-rate");
-  var opt = {
-    size      : 36,
-    starOff   : '<%= asset_path('star-off.png') %>',
-    starOn    : '<%= asset_path('star-on.png') %>',
-    half      : false,
-    readOnly: true,
-    score: <%= @reviews_avg_score %>,
-  }
-  // 再読み込みする際、星が増えないようにする
-  // （再読み込み前の星の空文字にする）
-  elem.innerHTML=""
-  raty(elem, opt);
-</script>
+  <script>
+    var elem = document.getElementById("star-rate");
+    var opt = {
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      half      : false,
+      readOnly  : true,
+      score: <%= @reviews_avg_score %>,
+    }
+    // 再読み込みする際、星が増えないようにする
+    // （再読み込み前の星の空文字にする）
+    elem.innerHTML=""
+    raty(elem, opt);
+  </script>

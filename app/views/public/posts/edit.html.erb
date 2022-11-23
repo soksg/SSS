@@ -1,39 +1,43 @@
-<h2 class="my-4 ml-5 px-5">投稿編集</h2>
-  <div class="col-9 ml-5 px-5">
-    <%= form_with model: @post, url: post_path, method: :patch do |f| %>
-      <table class="table table-borderless ml-5">
-        <tr>
-          <td><b>施設名</b></td>
-          <td><%= f.text_field :name %></td>
-        </tr>
-        <td><b>住所</b></td>
-          <td><%= f.text_field :address, class: 'form-control' %></td>
-        <tr>
-          <td><b>画像選択</b></td>
-          <td><%= f.file_field :image, accept: "image/*" %></td>
-        </tr>
-        <tr>
-          <td><b>電話番号</b></td>
-          <td><%= f.text_field :phone_number %></td>
-        </tr>
-        <tr>
-          <td><b>営業時間</b></td>
-          <td><%= f.text_area :opening_hour %></td>
-        </tr>
-        <tr>
-          <td><b>URL</b></td>
-          <td><%= f.text_field :url %></td>
-        </tr>
-        <tr>
-          <td><b>説明</b></td>
-          <td><%= f.text_area :description %></td>
-        </tr>
-        <tr>
-          <td><b>タグ</b></td>
-          <td>tag_name一覧</td>
-        </tr>
-      </table>
-      <p class="mr-5" style="text-align: end;"><%= f.submit " 変更を保存 ", class: "btn btn-success" %></p>
-    <% end %>
+<div class="container my-5">
+  <div class="row my-4 px-5">
+    <h2 class="px-3">投稿編集</h2>
+  </div>
+    <div class="col-9 ml-5 px-5">
+      <%= form_with model: @post, url: post_path, method: :patch do |f| %>
+        <table class="table table-borderless ml-5">
+          <tr>
+            <td><b>施設名</b></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <td><b>住所</b></td>
+            <td><%= f.text_field :address, class: 'form-control' %></td>
+          <tr>
+            <td><b>画像選択</b></td>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><b>電話番号</b></td>
+            <td><%= f.text_field :phone_number %></td>
+          </tr>
+          <tr>
+            <td><b>営業時間</b></td>
+            <td><%= f.text_area :opening_hour %></td>
+          </tr>
+          <tr>
+            <td><b>URL</b></td>
+            <td><%= f.text_field :url %></td>
+          </tr>
+          <tr>
+            <td><b>説明</b></td>
+            <td><%= f.text_area :description %></td>
+          </tr>
+          <tr>
+            <td><b>タグ</b></td>
+            <td>tag_name一覧</td>
+          </tr>
+        </table>
+        <p class="mr-5" style="text-align: end;"><%= f.submit " 変更を保存 ", class: "btn btn-success" %></p>
+      <% end %>
+    </div>
   </div>
 </div>
