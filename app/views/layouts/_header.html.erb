@@ -1,66 +1,65 @@
-      <nav class="navbar navbar-expand-lg navbar-light">　　<!--ロゴ-->
-        <a class="navbar-brand ml-5" href="/"><%= image_tag 'logo.png', class: "logo", height: 65 %><a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <div class="ml-5">
-          <% if member_signed_in? %>
-            <b>ようこそ！
-              <br><%= current_member.name %>さん
-            </b>
-          <% elsif admin_signed_in? %>
-            <b>管理者ログイン中</b>
-          <% end %>
-        </div>
-        <ul class="navbar-nav ml-auto mr-5 mt-2 mt-lg-0">
-          <% if member_signed_in? %>
-            <li class="mx-3">
-              <%= link_to "投稿フォーム", new_post_path, class: "btn btn-secondary" %>
-            </li>
-            <li class="mx-3">
-              <%= link_to "マイページ", member_path(current_member), class: "btn btn-secondary" %>
-            </li>
-            <li class="mx-3">
-              <%= link_to "ブックマーク一覧", bookmarks_member_path(current_member), class: "btn btn-secondary" %>
-            </li>
-            <li class="mx-3">
-              <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-secondary" %>
-            </li>
-            <!--検索フォーム-->
-          <div class="form-inline my-2 my-lg-0 search_form">
-            <%= render 'public/posts/search' %>
-          </div>
-          <% elsif admin_signed_in? %>
-            <li class="mx-3">
-              <%= link_to "About", home_about_path, class: "btn btn-secondary" %>
-            </li>
-            <li class="mx-3">
-              <%= link_to "会員一覧", admin_members_path, class: "btn btn-secondary" %>
-            </li>
-            <li class="mx-3">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary" %>
-            </li>
-            <!--検索フォーム-->
-          <div class="form-inline my-2 my-lg-0 search_form">
-            <%= render 'admin/posts/search' %>
-          </div>
-          <% else %>
-             <li class="mx-3">
-              <%= link_to "About", home_about_path, class: "btn btn-secondary" %>
-            </li>
-            <li class="mx-3">
-              <%= link_to "新規登録", new_member_registration_path, class: "btn btn-secondary" %>
-            </li>
-            <li class="mx-3">
-              <%= link_to "ログイン", new_member_session_path, class: "btn btn-secondary" %>
-            </li>
-            <!--検索フォーム-->
-          <div class="form-inline my-2 my-lg-0 search_form">
-            <%= render 'public/posts/search' %>
-          </div>
-          <% end %>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-light">　　<!--ロゴ-->
+  <a class="navbar-brand ml-5" href="/"><%= image_tag 'logo.png', class: "logo", height: 65 %><a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="ml-5">
+      <% if member_signed_in? %>
+        <b>ようこそ！
+          <br><%= current_member.name %>さん
+        </b>
+      <% elsif admin_signed_in? %>
+        <b>管理者ログイン中</b>
+      <% end %>
+    </div>
+    <ul class="navbar-nav ml-auto mr-5 mt-2 mt-lg-0">
+      <% if member_signed_in? %>
+        <li class="mx-3">
+          <%= link_to "投稿フォーム", new_post_path, class: "btn btn-secondary" %>
+        </li>
+        <li class="mx-3">
+          <%= link_to "マイページ", member_path(current_member), class: "btn btn-secondary" %>
+        </li>
+        <li class="mx-3">
+          <%= link_to "ブックマーク一覧", bookmarks_member_path(current_member), class: "btn btn-secondary" %>
+        </li>
+        <li class="mx-3">
+          <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-secondary" %>
+        </li>
+        <!--検索フォーム-->
+      <div class="form-inline my-2 my-lg-0 search_form">
+        <%= render 'public/posts/search' %>
       </div>
+      <% elsif admin_signed_in? %>
+        <li class="mx-3">
+          <%= link_to "About", home_about_path, class: "btn btn-secondary" %>
+        </li>
+        <li class="mx-3">
+          <%= link_to "会員一覧", admin_members_path, class: "btn btn-secondary" %>
+        </li>
+        <li class="mx-3">
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-secondary" %>
+        </li>
+        <!--検索フォーム-->
+      <div class="form-inline my-2 my-lg-0 search_form">
+        <%= render 'admin/posts/search' %>
+      </div>
+      <% else %>
+         <li class="mx-3">
+          <%= link_to "About", home_about_path, class: "btn btn-secondary" %>
+        </li>
+        <li class="mx-3">
+          <%= link_to "新規登録", new_member_registration_path, class: "btn btn-secondary" %>
+        </li>
+        <li class="mx-3">
+          <%= link_to "ログイン", new_member_session_path, class: "btn btn-secondary" %>
+        </li>
+        <!--検索フォーム-->
+      <div class="form-inline my-2 my-lg-0 search_form">
+        <%= render 'public/posts/search' %>
+      </div>
+      <% end %>
+    </ul>
   </div>
 </nav>
