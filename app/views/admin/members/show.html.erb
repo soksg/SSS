@@ -1,64 +1,68 @@
-<h2 class="my-4 ml-5 px-5"><%= @member.name %>さんのマイページ</h2>
-  <div class="col-9">
-    <div class="ml-5 mx-5 pl-5">
-      <div class="ml-1 px-5">
-        <h4 class="my-4"><b>登録情報</b></h4>
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <td class="col-3" style="background-color: #e5e5e5;">ユーザーネーム</td>
-                <td><%= @member.name %></td>
-              </tr>
-              <tr>
-                <td style="background-color: #e5e5e5;">メールアドレス</td>
-                <td><%= @member.email %></td>
-              </tr>
-              <tr>
-                <td style="background-color: #e5e5e5;">会員ステータス</td>
-                <td>
-                  <% if @member.is_active == true %>
-                    有効
-                  <% else %>
-                    退会
-                  <% end %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <% if @member.name != "guestmember" %>
-            <div class="mt-2">
-              <p style="text-align: end;">
-                <%= link_to "ユーザー情報編集", edit_admin_member_path(@member), class: "btn btn-success" %>
-              </p>
-            </div>
-          <% end %>
-      </div>
-    </div>
-    <div class="ml-5 px-5">
-        <div class="mt-5 mx-5 pr-3 mb-0">
-          <h4 class="my-4"><b><%= @member.name %>さんの投稿一覧</b></h4>
-             <% @member.posts.each do |post| %>
-              <table>
+<div class="container my-5">
+  <div class="row my-4 ml-5 px-5">
+    <h2 class="px-3"><%= @member.name %>さんのマイページ</h2>
+  </div>
+    <div class="col-9">
+      <div class="ml-5 mx-5 pl-5">
+        <div class="ml-1 px-5">
+          <h4 class="my-4"><b>登録情報</b></h4>
+            <table class="table table-bordered">
+              <tbody>
                 <tr>
-                  <td class="lead">
-                    <b>
-                      <%= link_to admin_post_path(post) do %>
-                        <%= post.name %>
-                      <% end %>
-                    </b>
+                  <td class="col-3" style="background-color: #e5e5e5;">ユーザーネーム</td>
+                  <td><%= @member.name %></td>
+                </tr>
+                <tr>
+                  <td style="background-color: #e5e5e5;">メールアドレス</td>
+                  <td><%= @member.email %></td>
+                </tr>
+                <tr>
+                  <td style="background-color: #e5e5e5;">会員ステータス</td>
+                  <td>
+                    <% if @member.is_active == true %>
+                      有効
+                    <% else %>
+                      退会
+                    <% end %>
                   </td>
                 </tr>
-                <tr>
-                  <td><%= post.address %></td>
-                </tr>
-                <tr>
-                  <td><%= image_tag post.get_image(100,100) %></td>
-                </tr>
-                <div class="border-bottom border-5">
-                  タグを実装
-                </div>
-              </table>
+              </tbody>
+            </table>
+            <% if @member.name != "guestmember" %>
+              <div class="mt-2">
+                <p style="text-align: end;">
+                  <%= link_to "ユーザー情報編集", edit_admin_member_path(@member), class: "btn btn-success" %>
+                </p>
+              </div>
             <% end %>
         </div>
-     </div>
-  </div>
+      </div>
+      <div class="ml-5 px-5">
+          <div class="mt-5 mx-5 pr-3 mb-0">
+            <h4 class="my-4"><b><%= @member.name %>さんの投稿一覧</b></h4>
+               <% @member.posts.each do |post| %>
+                <table>
+                  <tr>
+                    <td class="lead">
+                      <b>
+                        <%= link_to admin_post_path(post) do %>
+                          <%= post.name %>
+                        <% end %>
+                      </b>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><%= post.address %></td>
+                  </tr>
+                  <tr>
+                    <td><%= image_tag post.get_image(100,100) %></td>
+                  </tr>
+                  <div class="border-bottom border-5">
+                    タグを実装
+                  </div>
+                </table>
+              <% end %>
+          </div>
+       </div>
+    </div>
+</div>

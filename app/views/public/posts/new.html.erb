@@ -1,178 +1,181 @@
-<% if @post.errors.any? %>
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="container my-5">
+  <% if @post.errors.any? %>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<div class="row my-4 ml-5 px-5">
-  <h2 class="px-3">新規投稿フォーム</h2>
-</div>
-  <div class="ml-5 px-5">
-    <%= form_with model: @post, url: posts_path, method: :post do |f| %>
-      <table class="table table-borderless ml-5">
-        <tr>
-          <td><b>施設名</b></td>
-          <td><%= f.text_field :name %></td>
-        </tr>
-        <tr>
-          <td><b>住所</b></td>
-          <td><%= f.text_field :address, class: 'form-control', readonly: true, placeholder: 'ページ下部のマップで、施設名で検索してください' %></td>
-        </tr>
-        <tr>
-          <td><b>画像選択</b></td>
-          <td><%= f.file_field :image, accept: "image/*" %></td>
-        </tr>
-        <tr>
-          <td><b>電話番号</b></td>
-          <td><%= f.text_field :phone_number %></td>
-        </tr>
-        <tr>
-          <td><b>営業時間</b></td>
-          <td><%= f.text_area :opening_hour %></td>
-        </tr>
-        <tr>
-          <td><b>URL</b></td>
-          <td><%= f.text_field :url %></td>
-        </tr>
-        <tr>
-          <td><b>説明</b></td>
-          <td><%= f.text_area :description %></td>
-        </tr>
-        <tr>
-          <td><b>タグを選択</b></td>
-          <td><%= f.text_field :tags, value: "", size: "30", placeholder: ',区切りで複数設定できます' %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= f.submit " 投稿 ", class: "btn btn-success"  %></td>
-        </tr>
-      </table>
-    <% end %>
+  <div class="row my-4 ml-5 px-5">
+    <h2 class="px-3">新規投稿フォーム</h2>
   </div>
+    <div class="ml-5 px-5">
+      <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+        <table class="table table-borderless ml-5">
+          <tr>
+            <td><b>施設名</b></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <td><b>住所</b></td>
+            <td><%= f.text_field :address, class: 'form-control', readonly: true, placeholder: 'ページ下部のマップで、施設名で検索してください' %></td>
+          </tr>
+          <tr>
+            <td><b>画像選択</b></td>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><b>電話番号</b></td>
+            <td><%= f.text_field :phone_number %></td>
+          </tr>
+          <tr>
+            <td><b>営業時間</b></td>
+            <td><%= f.text_area :opening_hour %></td>
+          </tr>
+          <tr>
+            <td><b>URL</b></td>
+            <td><%= f.text_field :url %></td>
+          </tr>
+          <tr>
+            <td><b>説明</b></td>
+            <td><%= f.text_area :description %></td>
+          </tr>
+          <tr>
+            <td><b>タグを選択</b></td>
+            <td><%= f.text_field :tags, value: "", size: "23", placeholder: ',区切りで複数設定できます' %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit " 投稿 ", class: "btn btn-success"  %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="container mb-5">
+    <input type="text" id="keyword"><button id="search" class="mx-2 mb-2">検索実行</button>
+    <button id="clear">結果クリア</button>
+    <div id="target" style="width: 100%; height: 550px;" class="mb-4"></div>
+  </div>
+
 </div>
 
-<div class="container mb-5">
-  <input type="text" id="keyword"><button id="search" class="mx-2 mb-2">検索実行</button>
-  <button id="clear">結果クリア</button>
-  <div id="target" style="width: 100%; height: 550px;" class="mb-4"></div>
-</div>
+  <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+      <script>
+        var map;
+        var marker;
+        var infoWindow;
 
-    <script>
-      var map;
-      var marker;
-      var infoWindow;
+        function initMap() {
 
-      function initMap() {
+          //マップ初期表示の位置設定
+          var target = document.getElementById('target');
+          var centerp = {lat: 35.6713275, lng: 139.7583772};
 
-        //マップ初期表示の位置設定
-        var target = document.getElementById('target');
-        var centerp = {lat: 35.6713275, lng: 139.7583772};
+          //マップ表示
+          map = new google.maps.Map(target, {
+            center: centerp,
+            zoom: 15,
+          });
 
-        //マップ表示
-        map = new google.maps.Map(target, {
-          center: centerp,
-          zoom: 15,
-        });
+          // 検索実行ボタンが押下されたとき
+          document.getElementById('search').addEventListener('click', function() {
 
-        // 検索実行ボタンが押下されたとき
-        document.getElementById('search').addEventListener('click', function() {
+            var place = document.getElementById('keyword').value;
+            var geocoder = new google.maps.Geocoder();      // geocoderのコンストラクタ
 
-          var place = document.getElementById('keyword').value;
-          var geocoder = new google.maps.Geocoder();      // geocoderのコンストラクタ
+            geocoder.geocode({
+              address: place
+            }, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
 
-          geocoder.geocode({
-            address: place
-          }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
+                var bounds = new google.maps.LatLngBounds();
 
-              var bounds = new google.maps.LatLngBounds();
-
-              for (var i in results) {
-                if (results[0].geometry) {
-                  // 緯度経度を取得
-                  var latlng = results[0].geometry.location;
-                  // 住所を取得
-                  var address = results[0].formatted_address;
-                  // 検索結果地が含まれるように範囲を拡大
-                  // bounds.extend(latlng);
-                  map.panTo(latlng)
-                  // マーカーのセット
-                  setMarker(latlng);
-                  // マーカーへの吹き出しの追加
-                  setInfoW(place, latlng, address);
-                  // マーカーにクリックイベントを追加
-                  markerEvent();
-                  // 住所欄に検索した結果を入れる
-                  // 検索結果を入れるフォームのIDを指定する。
-                  $('#post_address').val(
-                      address.split(' ').slice(1, post_address.length).join(' ')
-                    )
+                for (var i in results) {
+                  if (results[0].geometry) {
+                    // 緯度経度を取得
+                    var latlng = results[0].geometry.location;
+                    // 住所を取得
+                    var address = results[0].formatted_address;
+                    // 検索結果地が含まれるように範囲を拡大
+                    // bounds.extend(latlng);
+                    map.panTo(latlng)
+                    // マーカーのセット
+                    setMarker(latlng);
+                    // マーカーへの吹き出しの追加
+                    setInfoW(place, latlng, address);
+                    // マーカーにクリックイベントを追加
+                    markerEvent();
+                    // 住所欄に検索した結果を入れる
+                    // 検索結果を入れるフォームのIDを指定する。
+                    $('#post_address').val(
+                        address.split(' ').slice(1, post_address.length).join(' ')
+                      )
+                  }
                 }
+              } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+                alert("見つかりません");
+              } else {
+                console.log(status);
+                alert("エラー発生");
               }
-            } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-              alert("見つかりません");
-            } else {
-              console.log(status);
-              alert("エラー発生");
-            }
+            });
+
           });
 
-        });
+          // 結果クリアーボタン押下時
+          document.getElementById('clear').addEventListener('click', function() {
+            document.getElementById("keyword").value=""
+            deleteMakers();
+          });
 
-        // 結果クリアーボタン押下時
-        document.getElementById('clear').addEventListener('click', function() {
-          document.getElementById("keyword").value=""
+        }
+
+        // マーカーのセットを実施する
+        function setMarker(setplace) {
+          // 既にあるマーカーを削除
           deleteMakers();
-        });
 
-      }
+          // var iconUrl = 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+            marker = new google.maps.Marker({
+              position: setplace,
+              map: map,
+              // icon: iconUrl
+            });
+          }
 
-      // マーカーのセットを実施する
-      function setMarker(setplace) {
-        // 既にあるマーカーを削除
-        deleteMakers();
+          //マーカーを削除する
+          function deleteMakers() {
+            if(marker != null){
+              marker.setMap(null);
+            }
+            marker = null;
+          }
 
-        // var iconUrl = 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png';
-          marker = new google.maps.Marker({
-            position: setplace,
-            map: map,
-            // icon: iconUrl
+          // マーカーへの吹き出しの追加
+          function setInfoW(place, latlng, address) {
+            infoWindow = new google.maps.InfoWindow({
+            content: "<a href='https://www.google.com/search?q=" + place + "' target='_blank'>" + place + "</a><br><br>" + latlng + "<br><br>" + address + "<br><br><a href='https://www.google.com/search?q=" + place + "&tbm=isch' target='_blank'>画像検索 by google</a>"
           });
         }
 
-        //マーカーを削除する
-        function deleteMakers() {
-          if(marker != null){
-            marker.setMap(null);
-          }
-          marker = null;
+        // クリックイベント
+        function markerEvent() {
+          marker.addListener('click', function() {
+            infoWindow.open(map, marker);
+          });
         }
 
-        // マーカーへの吹き出しの追加
-        function setInfoW(place, latlng, address) {
-          infoWindow = new google.maps.InfoWindow({
-          content: "<a href='https://www.google.com/search?q=" + place + "' target='_blank'>" + place + "</a><br><br>" + latlng + "<br><br>" + address + "<br><br><a href='https://www.google.com/search?q=" + place + "&tbm=isch' target='_blank'>画像検索 by google</a>"
-        });
-      }
-
-      // クリックイベント
-      function markerEvent() {
-        marker.addListener('click', function() {
-          infoWindow.open(map, marker);
-        });
-      }
-
-    </script>
+      </script>
