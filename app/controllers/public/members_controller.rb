@@ -24,7 +24,7 @@ class Public::MembersController < ApplicationController
 
   def bookmarks
     @member=Member.find(params[:id])
-    bookmarks=Bookmark.where(member_id: @member.id).pluck(:post_id)
+    @bookmarks=Bookmark.where(member_id: @member.id).pluck(:post_id)
     @bookmark_posts=Post.find(bookmarks)
     @tag_list=Tag.all
   end
