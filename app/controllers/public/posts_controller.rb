@@ -9,7 +9,9 @@ class Public::PostsController < ApplicationController
     @post=Post.new(post_params)
     @post.member_id=current_member.id
     # 受け取った値を,で区切って配列にする
-    tag_list=params[:tags].split(',')
+    byebug
+    tag_list=params[:tags].split
+    # tag_list=params[:tags].split
 
     if  @post.save
         @post.save_tag(tag_list)
