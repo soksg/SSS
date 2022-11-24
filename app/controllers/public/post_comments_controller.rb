@@ -23,7 +23,7 @@ class Public::PostCommentsController < ApplicationController
 
   def destroy
     PostComment.find(params[:id]).destroy
-    flash.now[:alert] = 'レビューを削除しました'
+    flash.now[:notice] = 'レビューを削除しました'
     @post = Post.find(params[:post_id])
     #destroy.jsで使う変数を定義する
     @post_comment=PostComment.new

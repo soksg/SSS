@@ -1,12 +1,10 @@
 <div style="text-align: center;">
-
-
-  <% flash.each do |message_type, message| %>
-    <% case message_type %>
-      <% when 'notice' then %>
-        <p class="alert alert-success"><%= message %></p>
-      <% when 'alert' then %>
-        <p class="alert alert-danger"><%= message %></p>
-    <% end %>
+<% flash.each do |message_type, message| %>
+  <% case message_type %>
+    <% when 'notice' then %>
+      <p class="alert alert-success"><%= message %></p>
+    <% when 'alert' then %>
+      <p class="alert alert-danger"><%= message %></p>
   <% end %>
+<% end %>
 </div>
