@@ -136,10 +136,19 @@
           });
 
           // 結果クリアーボタン押下時
-          document.getElementById('clear').addEventListener('click', function() {
-            document.getElementById("keyword").value=""
+          // jQueryを用いない版
+          // document.getElementById('clear').addEventListener('click', function() {
+          //   document.getElementById("keyword").value=""
+          //   $('#post_address').val("");
+          //   deleteMakers();
+          // });
+
+          // jQuery版
+          $("#clear").click(function() {
+            $("#keyword").val("");
+            $('#post_address').val("");
             deleteMakers();
-          });
+          })
 
         }
 

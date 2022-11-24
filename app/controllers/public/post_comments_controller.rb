@@ -6,6 +6,7 @@ class Public::PostCommentsController < ApplicationController
     @post_comment = PostComment.new(post_comment_params)
     @post_comment.post_id = @post.id
     if member_signed_in?
+      @post_comment.member_id = current_member.id
       if @post_comment.save
         flash.now[:notice] = 'レビューを投稿しました'
         #非同期化のため、追記

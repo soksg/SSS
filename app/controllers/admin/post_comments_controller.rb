@@ -15,7 +15,3 @@ class Admin::PostCommentsController < ApplicationController
     params.require(:post_comment).permit(:comment, :star)
   end
 end
-
-
-
-end

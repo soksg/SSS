@@ -10,10 +10,7 @@ class Public::PostsController < ApplicationController
     @post=Post.new(post_params)
     @post.member_id=current_member.id
     # 受け取った値を,で区切って配列にする
-    byebug
-    tag_list=params[:tags].split
-    # tag_list=params[:tags].split
-
+    tag_list=params[:post][:tags].split(',') # unless params[:post][:tags].blank?
     if  @post.save
         @post.save_tag(tag_list)
         redirect_to post_path(@post), notice: "投稿しました"
@@ -48,10 +45,10 @@ class Public::PostsController < ApplicationController
 
   def update
     @post=Post.find(params[:id])
-    tag_list=params[:post][:name].split(',')
+    tag_list=params[:post][:tags].split(',')
     if  @post.update(post_params)
-    　　  @post.save_tag(tag_list)
-     　  redirect_to post_path(@post), notice: "投稿内容を更新しました"
+        @post.save_tag(tag_list)
+        redirect_to post_path(@post), notice: "投稿内容を更新しました"
     else
         render "edit", alert: "項目を入力してください"
     end

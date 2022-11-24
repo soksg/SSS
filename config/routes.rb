@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     resources :members, only: [:index,:show,:edit,:update]
     resources :posts, only: [:index,:show,:destroy] do
       resources :reviews, only: [:index,:destroy]
-      resources :comments, only: [:destroy]
+      resources :post_comments, only: [:destroy]
     end
      resources :tags, only: [:show]
   end

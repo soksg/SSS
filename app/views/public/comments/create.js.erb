@@ -2,7 +2,7 @@ $('#comment_<%= @post.id %>').html("<%= j(render "public/comments/comment", post
 $('#commentsCount').html('<b>コメント件数:<%= j(@post.post_comments.count) %></b>');
 
 
-$('flash-message').html("<%= j(render 'layouts/flash') %>");
+$('#flash-message').html("<%= j(render 'layouts/flash') %>");
 
 var score = <%= j(@post.post_comments.present? ? @post.post_comments.sum(:star) / @post.post_comments.count : 0) %>
 $('#star-rate').empty();
