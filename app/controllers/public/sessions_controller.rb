@@ -23,11 +23,11 @@ class Public::SessionsController < Devise::SessionsController
   def member_state
     @member=Member.find_by(email: params[:member][:email])
     return if !@member
-      flash[:notice] = "該当するアカウントが見つかりません"
+      flash[:alert] = "該当するアカウントが見つかりません"
     if @member.valid_password?(params[:member][:password]) && (@member.is_active == false)
       redirect_to new_member_registration_path
     else
-      flash[:notice] = "項目を入力してください"
+      flash[:alert] = "項目を入力してください"
     end
   end
 
@@ -47,7 +47,7 @@ class Public::SessionsController < Devise::SessionsController
         flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
         redirect_to root_path
       else
-        flash[:notice] = "項目を入力してください"
+        flash[:alert] = "項目を入力してください"
       end
     end
   end
