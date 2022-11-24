@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_member!, except: [:index, :show, :search_tag]
+  before_action :correct_post, only: [:edit]
 
   def new
     @post=Post.new
@@ -67,6 +68,13 @@ class Public::PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:member_id, :name, :address, :longitude, :latitude, :url, :phone_number, :opening_hour, :description, :image)
+  end
+
+  def correct_post
+    @post=Post.find(params[:id])
+    unless @post.member.id==current_member.id
+      redirect_to posts_path, alert: '他ユーザーの投稿は編集できません'
+    end
   end
 end
 

@@ -1,6 +1,7 @@
 class Public::MembersController < ApplicationController
-    before_action :authenticate_member!
-    before_action :ensure_guest_member, only: [:edit]
+  before_action :authenticate_member!
+  before_action :correct_member, only: [:show, :edit, :bookmarks]
+  before_action :ensure_guest_member, only: [:edit, :withdraw]
 
     def show
       @member=Member.find(params[:id])
@@ -17,7 +18,7 @@ class Public::MembersController < ApplicationController
       if @member.update(member_params)
          redirect_to member_path(@member), notice: "プロフィールを更新しました"
       else
-         render 'edit', notice: "項目を入力してください"
+         render 'edit', alert: "項目を入力してください"
       end
 
     end
@@ -56,6 +57,13 @@ class Public::MembersController < ApplicationController
   @member = Member.find(params[:id])
     if @member.name == "guestuser"
       redirect_to member_path(current_member) , notice: 'ゲストメンバーはプロフィール編集画面へ遷移できません。'
+    end
+  end
+
+  def correnct_member
+    @member=Member.find(params[:id])
+    unless @member.id == current_member.id
+       redirect_to posts_path, alert: '他ユーザーのページは見れません'
     end
   end
 
