@@ -21,7 +21,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.is_active
+    @posts = Post.is_active.page(params[:page]).per(7)
     @posts = @posts.where("posts.name LIKE ?","%#{params[:word]}%") if params[:word].present?
     @tag_list=Tag.all
   end

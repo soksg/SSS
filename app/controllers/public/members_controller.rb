@@ -5,7 +5,7 @@ class Public::MembersController < ApplicationController
 
   def show
     @member=Member.find(params[:id])
-    @posts=@member.posts
+    @posts=@member.posts.page(params[:page]).per(7)
     @tag_list=Tag.all
   end
 
@@ -25,7 +25,7 @@ class Public::MembersController < ApplicationController
   def bookmarks
     @member=Member.find(params[:id])
     @bookmarks=Bookmark.where(member_id: @member.id).pluck(:post_id)
-    @bookmark_posts=Post.find(bookmarks)
+    @bookmark_posts=Post.find(bookmarks).page(params[:page]).per(5)
     @tag_list=Tag.all
   end
 

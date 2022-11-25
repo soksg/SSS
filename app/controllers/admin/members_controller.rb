@@ -2,13 +2,12 @@ class Admin::MembersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @member = Member.all
-    # ページネーションをつけたいデータに.page(params[:page])を追加
-    # @members = Member.all.page(params[:page]).per(10)
+    @members = Member.page(params[:page]).per(10)
   end
 
   def show
     @member = Member.find(params[:id])
+    @posts=@member.posts.page(params[:page]).per(7)
   end
 
   def edit

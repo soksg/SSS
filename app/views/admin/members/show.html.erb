@@ -42,13 +42,13 @@
             <div class="row my-4">
               <h4 class="px-3"><b><%= @member.name %>さんの投稿一覧</b></h4>
             </div>
-               <% if @member.posts.empty? %>
+               <% if @posts.empty? %>
                   <div class="mt-5 mr-5 pr-3 mb-0">
                      <h3 class="text-center"><b>投稿はありません</b></h3>
                   </div>
                <% else %>
                  <div class="mt-5 mr-5 pr-3 mb-0">
-                   <% @member.posts.each do |post| %>
+                   <% @posts.each do |post| %>
                     <table>
                       <tr>
                         <td class="lead">
@@ -63,7 +63,7 @@
                         <td><%= post.address %></td>
                       </tr>
                       <tr>
-                        <td><%= image_tag post.get_image(100,100) %></td>
+                        <td><%= image_tag post.get_image(300,300) %></td>
                       </tr>
                     </table>
                       <p class="mb-0"><%= post.post_comments.count %>件の評価</p><div id="star-rate-<%= post.id %>"></div>
@@ -92,6 +92,7 @@
                         <% end %>
                       </div>
                  　 <% end %>
+                 　<%= paginate @posts %>
                  　</div>
                 <% end %>
          </div>
