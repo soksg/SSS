@@ -9,26 +9,24 @@
             <h4 class="px-3"><b>登録情報</b></h4>
           </div>
             <table class="table table-bordered">
-              <tbody>
-                <tr>
-                  <td class="col-3" style="background-color: #e5e5e5;">ユーザーネーム</td>
-                  <td><%= @member.name %></td>
-                </tr>
-                <tr>
-                  <td style="background-color: #e5e5e5;">メールアドレス</td>
-                  <td><%= @member.email %></td>
-                </tr>
-                <tr>
-                  <td style="background-color: #e5e5e5;">会員ステータス</td>
-                  <td>
-                    <% if @member.is_active == true %>
-                      有効
-                    <% else %>
-                      退会
-                    <% end %>
-                  </td>
-                </tr>
-              </tbody>
+              <tr>
+                <td class="col-3" style="background-color: #e5e5e5;">ユーザーネーム</td>
+                <td><%= @member.name %></td>
+              </tr>
+              <tr>
+                <td style="background-color: #e5e5e5;">メールアドレス</td>
+                <td><%= @member.email %></td>
+              </tr>
+              <tr>
+                <td style="background-color: #e5e5e5;">会員ステータス</td>
+                <td>
+                  <% if @member.is_active == true %>
+                    有効
+                  <% else %>
+                    退会
+                  <% end %>
+                </td>
+              </tr>
             </table>
             <div class="mt-2">
               <p style="text-align: end;">
@@ -49,7 +47,7 @@
                <% else %>
                  <div class="mt-5 mr-5 pr-3 mb-0">
                    <% @posts.each do |post| %>
-                    <table>
+                    <table class="table table-bordered bg-light shadow">
                       <tr>
                         <td class="lead">
                           <b>
@@ -65,11 +63,15 @@
                       <tr>
                         <td><%= image_tag post.get_image(300,300) %></td>
                       </tr>
-                    </table>
-                      <p class="mb-0"><%= post.post_comments.count %>件の評価</p><div id="star-rate-<%= post.id %>"></div>
-                      <% count = post.post_comments.size %>
-                      <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
-                      <script>
+                      <tr>
+                        <td>
+                          <p class="mb-0"><%= post.post_comments.count %>件の評価</p>
+                          <p id="star-rate-<%= post.id %>"></p>
+                          <% count = post.post_comments.size %>
+                          <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
+                        </td>
+                      </tr>
+                        <script>
                           var elem = document.getElementById("star-rate-<%= post.id %>");
                           var opt = {
                             size      : 36,
@@ -84,17 +86,20 @@
                           elem.innerHTML=""
                           raty(elem, opt);
                         </script>
-                      <div class="border-bottom border-5">
-                        <!--タグリスト-->
+                    <!--タグリスト-->
+                    <tr style="height: 3rem;">
+                      <td>
                         <% post.tags.each do |tag| %>
                           <%= link_to tag.name, admin_tag_path(tag) %>
                           <%= "(#{tag.posts.count})" %>
                         <% end %>
-                      </div>
-                 　 <% end %>
-                 　<%= paginate @posts %>
-                 　</div>
-                <% end %>
+                      </td>
+                    </tr>
+                  </table>
+               　 <% end %>
+               　<%= paginate @posts %>
+               </div>
+            <% end %>
          </div>
        </div>
      </div>
