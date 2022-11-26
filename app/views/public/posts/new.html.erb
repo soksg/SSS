@@ -1,20 +1,14 @@
 <div class="container my-5">
+<div class="ml-5">
   <% if @post.errors.any? %>
+    <h5><%= @post.errors.count %>件のエラーが発生しました</h5>
     <ul>
       <% @post.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   <% end %>
-
-  <% if @post.errors.any? %>
-    <%= @post.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
+</div>
 
   <div class="row my-4 ml-5 px-5">
     <h2 class="px-3">新規投稿フォーム</h2>
@@ -52,7 +46,7 @@
           </tr>
           <tr>
             <td><b>タグを選択</b></td>
-            <td><%= f.text_area :tags, value: "", size: "23", placeholder: ',区切りで複数設定できます' %></td>
+            <td><%= f.text_area :tags, value: @tags, size: "23", placeholder: ',区切りで複数設定できます' %></td>
           </tr>
           <tr>
             <td></td>

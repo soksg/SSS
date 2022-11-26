@@ -18,7 +18,8 @@ class Public::MembersController < ApplicationController
     if @member.update(member_params)
        redirect_to member_path(@member), notice: "プロフィールを更新しました"
     else
-       render 'edit', alert: "項目を入力してください"
+       flash.now[:alert] = "項目を入力してください"
+       render 'edit'
     end
   end
 

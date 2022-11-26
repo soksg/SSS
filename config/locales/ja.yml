@@ -7,7 +7,11 @@ ja:
         password_confirmation: パスワード（確認用）
         password: パスワード
       post:
+        name: 施設名
         address: 住所
         phone_number: 電話番号
         opening_hour: 営業時間
+        url: URL
         comment: コメント
+      admin:
+        email: メールアドレス
