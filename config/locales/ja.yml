@@ -1,12 +1,17 @@
 ja:
-  activemodel:   # Formオブジェクトを用いた場合
-     attributes:
-       order_object:
-         name: ユーザーネーム
-         address: 住所
-         phone_number: 電話番号
-         opening_hour: 営業時間
-         comment: コメント
-         Email: メールアドレス
-         Password_confirmation: パスワード（確認用）
-         Password: パスワード
+  activerecord:
+    attributes:
+      member:
+        name: ユーザーネーム
+        email: メールアドレス
+        password_confirmation: パスワード（確認用）
+        password: パスワード
+      post:
+        name: 施設名
+        address: 住所
+        phone_number: 電話番号
+        opening_hour: 営業時間
+        url: URL
+        comment: コメント
+      admin:
+        email: メールアドレス

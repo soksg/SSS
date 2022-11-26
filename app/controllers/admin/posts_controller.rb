@@ -2,7 +2,7 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(7)
     @posts = @posts.where("name LIKE?","%#{params[:word]}%") if params[:word].present?
   end
 

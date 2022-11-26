@@ -32,7 +32,7 @@
               </tr>
               <tr>
                 <td><b>画像</b></td>
-                <td><%= image_tag @post.get_image(100,100) %></td>
+                <td><%= image_tag @post.get_image(300,300), style: "border-radius: 10px"; %></td>
                 <td></td>
               </tr>
               <tr>
@@ -77,12 +77,9 @@
                 <td></td>
               </tr>
           </table>
-          <% if member_signed_in? && current_member.id == @post.member_id %>
-            <p class="mt-2" style="text-align: end;">
-              <%= link_to "投稿編集", edit_post_path(@post), class: "btn btn-success mr-4" %>
-              <%= link_to "投稿削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
-            </p>
-          <% end %>
+          <p class="mt-2" style="text-align: end;">
+            <%= link_to "投稿削除", admin_post_path(@post), method: :delete, class: "btn btn-danger" %>
+          </p>
           <!--レビュー・コメント部分-->
           <div class="ml-5" id="comment_<%= @post.id %>">
             <%= render 'admin/comments/comment', post: @post, post_comment: @post_comment %>

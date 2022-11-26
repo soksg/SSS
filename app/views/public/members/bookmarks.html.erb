@@ -2,7 +2,7 @@
   <div class="row my-4 px-5">
     <h2 class="px-3">ブックマーク一覧</h2>
   </div>
-    <div class="row ml-2">
+ <div class="row ml-2">
       <% if @bookmark_posts.empty? %>
         <div class="col-10 offset-2">
           <div class="mt-5 ">
@@ -13,7 +13,7 @@
       <div class="col-9">
         <div class="ml-5 px-5">
            <% @bookmark_posts.each do |post| %>
-            <table>
+            <table class="table table-bordered bg-light shadow">
               <tr>
                 <td class="lead">
                   <b>
@@ -22,18 +22,26 @@
                     <% end %>
                   </b>
                 </td>
+                 <!--ブックマークボタン-->
+                <td style="width: 70px;" align="center" id="bookmark_buttons_<%= post.id %>">
+                  <%= render 'public/bookmarks/bookmark', post: post %>
+                </td>
               </tr>
               <tr>
-                <td><%= post.address %></td>
+                <td colspan="2"><%= post.address %></td>
               </tr>
               <tr>
-                <td><%= image_tag post.get_image(100,100) %></td>
+                <td colspan="2"><%= image_tag post.get_image(300,300), style: "border-radius: 10px"; %></td>
               </tr>
-            </table>
-              <p class="mb-0"><%= post.post_comments.count %>件の評価</p><div id="star-rate-<%= post.id %>"></div>
-              <% count = post.post_comments.size %>
-              <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
-              <script>
+              <tr>
+                <td colspan="2" class="pb-0">
+                 <p class="mb-0"><%= post.post_comments.count %>件の評価</p>
+                 <p id="star-rate-<%= post.id %>"></p>
+                 <% count = post.post_comments.size %>
+                 <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
+                </td>
+              </tr>
+                <script>
                   var elem = document.getElementById("star-rate-<%= post.id %>");
                   var opt = {
                     size      : 36,
@@ -48,16 +56,20 @@
                   elem.innerHTML=""
                   raty(elem, opt);
                 </script>
-              <div class="border-bottom border-5">
-                <!--タグリスト-->
-                <% post.tags.each do |tag| %>
-                  <%= link_to tag.name, tag_path(tag) %>
-                  <%= "(#{tag.posts.count})" %>
-                <% end %>
-              </div>
+              タグリスト
+              <tr style="height: 3rem;">
+                <td colspan="2">
+                  <% post.tags.each do |tag| %>
+                    <%= link_to tag.name, tag_path(tag) %>
+                    <%= "(#{tag.posts.count})" %>
+                  <% end %>
+                </td>
+              </tr>
+            </table>
          　 <% end %>
+           <%= paginate @bookmark_posts %>
          　</div>
-         </div>
         <% end %>
-      </div>
+    </div>
+  </div>
 </div>

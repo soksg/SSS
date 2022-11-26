@@ -3,35 +3,33 @@ class Public::PostsController < ApplicationController
   before_action :correct_post, only: [:edit]
 
   def new
-    @post=Post.new
+    @post = Post.new
   end
 
   def create
     @post=Post.new(post_params)
-    @post.member_id=current_member.id
+    @post.member_id = current_member.id
     # 受け取った値を,で区切って配列にする
-    byebug
-    tag_list=params[:tags].split
-    # tag_list=params[:tags].split
-
+    tag_list=params[:post][:tags].split(',') # unless params[:post][:tags].blank?
     if  @post.save
         @post.save_tag(tag_list)
         redirect_to post_path(@post), notice: "投稿しました"
     else
-        @post=Post.new
-        render "new", alert: "項目を入力してください"
+        @tags = params[:post][:tags]
+        flash[:alert] = "項目を入力してください"
+        render "new"
     end
   end
 
   def index
-    @posts = Post.is_active
+    @posts = Post.is_active.page(params[:page]).per(7)
     @posts = @posts.where("posts.name LIKE ?","%#{params[:word]}%") if params[:word].present?
-    @tag_list=Tag.all
+    @tag_list = Tag.all
   end
 
   def show
-    @post=Post.find(params[:id])
-    @post_comment=PostComment.new
+    @post = Post.find(params[:id])
+    @post_comment = PostComment.new
     @post_tags = @post.tags
     if @post.post_comments.present?
       @reviews_avg_score = @post.post_comments.sum(:star) / @post.post_comments.count
@@ -43,17 +41,20 @@ class Public::PostsController < ApplicationController
   def edit
     @post=Post.find(params[:id])
     # pluckはmapと同じ意味
-    @tag_list=@post.tags.pluck(:name).join(',')
+    @tags = @post.tags.pluck(:name).join(',')
   end
 
   def update
-    @post=Post.find(params[:id])
-    tag_list=params[:post][:name].split(',')
+    @post = Post.find(params[:id])
+    tag_list = params[:post][:tags].split(',')
     if  @post.update(post_params)
-    　　  @post.save_tag(tag_list)
-     　  redirect_to post_path(@post), notice: "投稿内容を更新しました"
+        @post.save_tag(tag_list)
+        redirect_to post_path(@post), notice: "投稿内容を更新しました"
     else
-        render "edit", alert: "項目を入力してください"
+      # すでに保存されている内容が消えないようにする
+       @tags = params[:post][:tags]
+       flash[:alert] = "項目を入力してください"
+       render "edit"
     end
   end
 

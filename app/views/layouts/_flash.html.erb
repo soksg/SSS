@@ -1,7 +1,10 @@
 <div style="text-align: center;">
-  <% if flash[:notice] %>
-    <p class="alert alert-success"><%= notice %></p>
-  <% elsif flash[:alert] %>
-    <p class="alert alert-danger"><%= alert %></p>
+<% flash.each do |message_type, message| %>
+  <% case message_type %>
+    <% when 'notice' then %>
+      <p class="alert alert-success"><%= message %></p>
+    <% when 'alert' then %>
+      <p class="alert alert-danger"><%= message %></p>
   <% end %>
+<% end %>
 </div>

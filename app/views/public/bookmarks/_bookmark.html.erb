@@ -1,5 +1,4 @@
 <% if member_signed_in? %>
-
   <% if post.bookmarked_by?(current_member) %>
       <%= link_to post_bookmark_path(post), method: :delete, remote: true do %>
         <i class="fas fa-star"></i>

@@ -5,15 +5,18 @@ class Public::PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_comment = PostComment.new(post_comment_params)
     @post_comment.post_id = @post.id
+    @comment_error = ''
     if member_signed_in?
+      @post_comment.member_id = current_member.id
       if @post_comment.save
+        @post_comment = PostComment.new(post_id: @post, member_id: current_member.id)
         flash.now[:notice] = 'レビューを投稿しました'
         #非同期化のため、追記
-        @post_comment_new=PostComment.new
+        #@post_comment_new = PostComment.new
         render "public/comments/create"
       else
-        render "public/comments/error"
-        flash.now[:alert] = 'レビューの投稿に失敗しました'
+        flash.now[:alert] = 'レビュー内容を入力してください'
+        render "public/comments/create"
       end
     else
         redirect_to member_session_path
@@ -22,7 +25,7 @@ class Public::PostCommentsController < ApplicationController
 
   def destroy
     PostComment.find(params[:id]).destroy
-    flash.now[:alert] = 'レビューを削除しました'
+    flash.now[:notice] = 'レビューを削除しました'
     @post = Post.find(params[:post_id])
     #destroy.jsで使う変数を定義する
     @post_comment=PostComment.new

@@ -1,11 +1,39 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
 
 
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Sawarabi Gothic', sans-serif;
+}
+
+body{
+  // background-color: #f7f7f7;
+  background-image: url("../images/white_00076.jpg");
+  background-size: cover;
+  min-height: 100vh;
+}
+
+
+// 以下二つaboutページ
+.about_visual{
+  width: 100%;
+  height: 700px;
+  background-image: url("../images/hd-wallpaper-g57d0ab0a0_1920.jpg");
+  background-size: cover; /* 縦横比を維持したまま背景領域を埋め尽くす */
+  background-position: center; /* 背景画像を中央に配置 */
+}
+
+.about_visual_content{
+  width: 100%; /* 横幅いっぱい */
+  height: 700px; /* 親の高さに揃える */
+  background-color: rgba(0, 0, 0, 0.3); /* 背景色を半透明の黒にする */
+  text-align: center; /* 文字を中央揃えにする */
+  color: rgba(225,225,225,0.8);
+  padding-top: 10%;
 }
 
 #map{
@@ -28,11 +56,11 @@ box-sizing: content-box;
 }
 
 h2 {
-  background-color: #eaeaea;
+  background-color: #e9e9e9;
 }
 
 h4 {
-  background-color: #eaeaea;
+  background-color: #e9e9e9;
 }
 
 

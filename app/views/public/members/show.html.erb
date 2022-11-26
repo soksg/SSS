@@ -2,95 +2,104 @@
   <div class="row px-5">
    <h2 class="my-4 px-3"><%= @member.name %>さんのマイページ</h2>
   </div>
-  <div class="col-9">
+  <div>
     <div class="ml-5">
       <div class="ml-1 px-5">
         <div class="row my-4">
           <h4 class="px-3"><b>登録情報</b></h4>
         </div>
-          <table class="table table-bordered">
+        <div class="col-9">
+          <table class="table table-bordered shadow">
             <tbody>
-              <tr>
-                <td class="col-3" style="background-color: #e5e5e5;">ユーザーネーム</td>
-                <td><%= @member.name %></td>
-              </tr>
-              <tr>
-                <td style="background-color: #e5e5e5;">メールアドレス</td>
-                <td><%= @member.email %></td>
-              </tr>
-            </tbody>
-          </table>
-          <% if @member.name != "guestmember" %>
-            <div class="mt-2">
-              <p style="text-align: end;">
-                <%= link_to "プロフィール編集", edit_member_path(current_member), class: "btn btn-success" %>
-              </p>
-            </div>
-          <% end %>
+                <tr>
+                  <td class="col-3" style="background-color: #e9e9e9;"><b>ユーザーネー</b>ム</td>
+                  <td style="background-color: #fff;"><%= @member.name %></td>
+                </tr>
+                <tr>
+                  <td style="background-color: #e9e9e9;"><b>メールアドレス</b></td>
+                  <td style="background-color: #fff;"><%= @member.email %></td>
+                </tr>
+              </tbody>
+            </table>
+            <% if @member.name != "guestmember" %>
+              <div class="mt-2">
+                <p style="text-align: end;">
+                  <%= link_to "プロフィール編集", edit_member_path(current_member), class: "btn btn-success" %>
+                </p>
+              </div>
+            <% end %>
+          </div>
           <div>
-              <div class="mt-5">
-                <div class="row my-4">
-                  <h4 class="px-3"><b><%= @member.name %>さんの投稿一覧</b></h4>
-                </div>
+            <div class="mt-5">
+              <div class="row my-4">
+                <h4 class="px-3"><b><%= @member.name %>さんの投稿一覧</b></h4>
+              </div>
 
-                 <% if @posts.empty? %>
-                    <div class="mt-5 mr-5 pr-3 mb-0">
-                       <h3 class="text-center"><b>投稿はありません</b></h3>
-                    </div>
-                 <% else %>
-                   <div class="mt-5 mr-5 pr-3 mb-0">
-                     <% @posts.each do |post| %>
-                      <table>
-                        <tr>
-                          <td class="lead">
-                            <b>
-                              <%= link_to post_path(post) do %>
-                                <%= post.name %>
-                              <% end %>
-                            </b>
-                          </td>
-                          <!--ブックマークボタン-->
-                          <td id="bookmark_buttons_<%= post.id %>">
-                            <%= render 'public/bookmarks/bookmark', post: post %>
-                          <td>
-                        </tr>
-                        <tr>
-                          <td><%= post.address %></td>
-                        </tr>
-                        <tr>
-                          <td><%= image_tag post.get_image(100,100) %></td>
-                        </tr>
-                      </table>
-                        <p class="mb-0"><%= post.post_comments.count %>件の評価</p><div id="star-rate-<%= post.id %>"></div>
+               <% if @posts.empty? %>
+                  <div class="mt-5 mr-5 pr-3 mb-0">
+                     <h3 class="text-center"><b>投稿はありません</b></h3>
+                  </div>
+               <% else %>
+                 <div class="mt-5 mr-5 pr-3 mb-0">
+                   <% @posts.each do |post| %>
+                    <table class="table table-bordered bg-light shadow">
+                      <tr>
+                        <td class="lead">
+                          <b>
+                            <%= link_to post_path(post) do %>
+                              <%= post.name %>
+                            <% end %>
+                          </b>
+                        <!--ブックマークボタン-->
+                        <td style="width: 70px;" align="center" id="bookmark_buttons_<%= post.id %>">
+                          <%= render 'public/bookmarks/bookmark', post: post %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2"><%= post.address %></td>
+                      </tr>
+                      <tr>
+                        <td colspan="2"><%= image_tag post.get_image(300,300), style: "border-radius: 10px"; %></td>
+                      </tr>
+                      <tr>
+                        <td colspan="2" class="pb-0">
+                          <p class="mb-0"><%= post.post_comments.count %>件の評価</p>
+                          <p id="star-rate-<%= post.id %>"></p>
+                        </td>
                         <% count = post.post_comments.size %>
                         <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
+                      </tr>
                         <script>
-                            var elem = document.getElementById("star-rate-<%= post.id %>");
-                            var opt = {
-                              size      : 36,
-                              starOff   : '<%= asset_path('star-off.png') %>',
-                              starOn    : '<%= asset_path('star-on.png') %>',
-                              half      : false,
-                              readOnly: true,
-                              score: <%= score %>,
-                            }
-                            // 再読み込みする際、星が増えないようにする
-                            // （再読み込み前の星の空文字にする）
-                            elem.innerHTML=""
-                            raty(elem, opt);
-                          </script>
-                        <div class="border-bottom border-5">
-                          <!--タグリスト-->
+                          var elem = document.getElementById("star-rate-<%= post.id %>");
+                          var opt = {
+                            size      : 36,
+                            starOff   : '<%= asset_path('star-off.png') %>',
+                            starOn    : '<%= asset_path('star-on.png') %>',
+                            half      : false,
+                            readOnly: true,
+                            score: <%= score %>,
+                          }
+                          // 再読み込みする際、星が増えないようにする
+                          // （再読み込み前の星の空文字にする）
+                          elem.innerHTML=""
+                          raty(elem, opt);
+                        </script>
+                        <!--タグリスト-->
+                      <tr style="height: 3rem;">
+                        <td colspan="2">
                           <% post.tags.each do |tag| %>
                             <%= link_to tag.name, tag_path(tag) %>
                             <%= "(#{tag.posts.count})" %>
                           <% end %>
-                        </div>
-                   　 <% end %>
-                   　</div>
-                   <% end %>
-                </div>
+                        </td>
+                      </tr>
+                    </table>
+                 　 <% end %>
+                 </div>
+                <% end %>
+              <%= paginate @posts %>
             </div>
+          </div>
       </div>
     </div>
   </div>
