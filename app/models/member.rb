@@ -12,6 +12,7 @@ class Member < ApplicationRecord
   validates :email, presence: true
   validates :name, presence: true
 
+  # ゲストメンバー設定
   def self.guest
     find_or_create_by!(name: 'guestmember' ,email: 'guest@example.com') do |member|
       member.password = SecureRandom.urlsafe_base64

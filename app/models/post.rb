@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   has_many :tag_posts, dependent: :destroy
   has_many :tags, through: :tag_posts, dependent: :destroy
 
+  # 退会中のメンバーの投稿が表示されてしまうため、入会中のメンバーの投稿のみ表示されるようにする
   scope :is_active, -> { includes(:member).where(members: {is_active: true}) }
   # includes　postsテーブルとmembersのmembers: {is_active: true}をつなげる
   # 上記は、以下と同義。->はdef〜endの役割
@@ -26,8 +27,6 @@ class Post < ApplicationRecord
   has_one_attached :image
 
 
-
-
   def get_image(width,height)
     unless image.attached?
       file_path=Rails.root.join('app/assets/images/no_image.jpg')
@@ -41,6 +40,7 @@ class Post < ApplicationRecord
        bookmarks.exists?(member_id: member.id)
     end
   end
+
   #ブックマーク条件分岐で使用
   def bookmarked(member)
     bookmarks.find_by(member_id: member.id)
