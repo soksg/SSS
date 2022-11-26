@@ -24,8 +24,10 @@ class Public::MembersController < ApplicationController
 
   def bookmarks
     @member=Member.find(params[:id])
-    @bookmarks=Bookmark.where(member_id: @member.id).pluck(:post_id)
-    @bookmark_posts=Post.find(bookmarks).page(params[:page]).per(5)
+    # メンバーの投稿のブックマークされたもの
+    @bookmark_posts=Post.joins(:bookmarks).where(bookmarks: {member_id: @member.id}).page(params[:page]).per(5)
+    # @bookmarks=Bookmark.where(member_id: @member.id).pluck(:post_id)
+    # @bookmark_posts=Post.find(@bookmarks).page(params[:page]).per(5)
     @tag_list=Tag.all
   end
 

@@ -15,8 +15,8 @@ class Public::PostsController < ApplicationController
         @post.save_tag(tag_list)
         redirect_to post_path(@post), notice: "投稿しました"
     else
-        @post=Post.new
-        render "new", alert: "項目を入力してください"
+        flash[:alert]="項目を入力してください"
+        render "new"
     end
   end
 
@@ -50,7 +50,8 @@ class Public::PostsController < ApplicationController
         @post.save_tag(tag_list)
         redirect_to post_path(@post), notice: "投稿内容を更新しました"
     else
-        render "edit", alert: "項目を入力してください"
+       flash[:alert]="項目を入力してください"
+       render "edit"
     end
   end
 

@@ -2,7 +2,7 @@
   <div class="row my-4 px-5">
     <h2 class="px-3">ブックマーク一覧</h2>
   </div>
-    <div class="row ml-2">
+ <div class="row ml-2">
       <% if @bookmark_posts.empty? %>
         <div class="col-10 offset-2">
           <div class="mt-5 ">
@@ -51,7 +51,7 @@
                   elem.innerHTML=""
                   raty(elem, opt);
                 </script>
-              <!--タグリスト-->
+              タグリスト
               <tr style="height: 3rem;">
                 <td>
                   <% post.tags.each do |tag| %>
@@ -62,9 +62,8 @@
               </tr>
             </table>
          　 <% end %>
-           <%= paginate @bookmark_posts %>
+           <%#= paginate @bookmark_posts %>
          　</div>
         </div>
       <% end %>
-   </div>
 </div>

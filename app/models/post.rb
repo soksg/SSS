@@ -36,9 +36,7 @@ class Post < ApplicationRecord
   end
 
   def bookmarked_by?(member)
-    if member.present?
-       bookmarks.exists?(member_id: member.id)
-    end
+    bookmarks.exists?(member_id: member.id)
   end
 
   #ブックマーク条件分岐で使用

@@ -33,7 +33,7 @@
           </tr>
           <tr>
             <td><b>タグ</b></td>
-            <td><%= f.text_area :tags, value: "", size: "23", placeholder: ',区切りで複数設定できます' %></td>
+            <td><%= f.text_area :tags, value: @tag_list, size: "23", placeholder: ',区切りで複数設定できます' %></td>
           </tr>
         </table>
         <p class="mr-5" style="text-align: end;"><%= f.submit " 変更を保存 ", class: "btn btn-success" %></p>
