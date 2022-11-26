@@ -10,7 +10,7 @@ class Public::PostsController < ApplicationController
     @post=Post.new(post_params)
     @post.member_id = current_member.id
     # 受け取った値を,で区切って配列にする
-    tag_list=params[:post][:tags].split(',') # unless params[:post][:tags].blank?
+    tag_list=params[:post][:tags].split(',')
     if  @post.save
         @post.save_tag(tag_list)
         redirect_to post_path(@post), notice: "投稿しました"
@@ -40,7 +40,7 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post=Post.find(params[:id])
-    # pluckはmapと同じ意味
+    # pluckはmapと同じ意味(指定したカラムの配列だけを取り出す)
     @tags = @post.tags.pluck(:name).join(',')
   end
 
