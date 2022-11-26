@@ -43,7 +43,7 @@ class Public::MembersController < ApplicationController
     # is_activeカラムをfalseに変更することにより削除フラグを立てる
     @member.update(is_active: false)
     reset_session
-    flash[:notice] = "退会処理を実行いたしました"
+    flash[:notice] = "退会処理を実行しました"
     redirect_to root_path
   end
 

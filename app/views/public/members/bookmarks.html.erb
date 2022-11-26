@@ -13,7 +13,7 @@
       <div class="col-9">
         <div class="ml-5 px-5">
            <% @bookmark_posts.each do |post| %>
-            <table>
+            <table class="table table-bordered bg-light shadow">
               <tr>
                 <td class="lead">
                   <b>
@@ -29,11 +29,14 @@
               <tr>
                 <td><%= image_tag post.get_image(300,300) %></td>
               </tr>
-            </table>
-              <p class="mb-0"><%= post.post_comments.count %>件の評価</p><div id="star-rate-<%= post.id %>"></div>
-              <% count = post.post_comments.size %>
-              <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
-              <script>
+              <tr>
+                <td>
+                 <p class="mb-0"><%= post.post_comments.count %>件の評価</p><div id="star-rate-<%= post.id %>"></div>
+                 <% count = post.post_comments.size %>
+                 <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
+                </td>
+              </tr>
+                <script>
                   var elem = document.getElementById("star-rate-<%= post.id %>");
                   var opt = {
                     size      : 36,
@@ -48,17 +51,20 @@
                   elem.innerHTML=""
                   raty(elem, opt);
                 </script>
-              <div class="border-bottom border-5">
-                <!--タグリスト-->
-                <% post.tags.each do |tag| %>
-                  <%= link_to tag.name, tag_path(tag) %>
-                  <%= "(#{tag.posts.count})" %>
-                <% end %>
-              </div>
+              <!--タグリスト-->
+              <tr style="height: 3rem;">
+                <td>
+                  <% post.tags.each do |tag| %>
+                    <%= link_to tag.name, tag_path(tag) %>
+                    <%= "(#{tag.posts.count})" %>
+                  <% end %>
+                </td>
+              </tr>
+            </table>
          　 <% end %>
            <%= paginate @bookmark_posts %>
          　</div>
-         </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
+   </div>
 </div>
