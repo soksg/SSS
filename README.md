@@ -22,6 +22,7 @@
 
 ## 設計書
 
+<img width="1051" alt="スクリーンショット 2022-11-27 16 42 06" src="https://user-images.githubusercontent.com/111361151/204124790-425555f3-b7d3-4c9c-a8c9-6ea9d5918b15.png">
 
 ## 開発環境
 - OS：Linux(CentOS)
