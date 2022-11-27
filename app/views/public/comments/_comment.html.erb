@@ -43,8 +43,9 @@
 
 <!--コメントフォーム-->
 <div>
-  <!--投稿したユーザーとログインユーザーが一致しているかつ、ログイン中のメンバーのコメント投稿がない-->
-  <% unless post.member != current_member &&  current_member.post_comments.where(post_id: post.id).present? %>
+  <!--ログインしてない、コメントしてない時　表示-->
+  <!--ログインしててコメントしてる時　非表示-->
+  <% if !member_signed_in? || (post.member != current_member && current_member.post_comments.where(post_id: post.id).blank?) %>
     <%= form_with model: [post, post_comment], local: false do |f| %>
       <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", :size => "70" %>
       <%= f.label :star,'評価 ', class:'col-md-3 col-form-label ml-1' %>
