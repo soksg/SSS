@@ -10,7 +10,7 @@
           </div>
         </div>
       <% else %>
-      <div class="col-9">
+      <div class="col-10">
         <div class="ml-5 px-5">
            <% @bookmark_posts.each do |post| %>
             <table class="table table-bordered bg-light shadow">
@@ -56,7 +56,6 @@
                   elem.innerHTML=""
                   raty(elem, opt);
                 </script>
-              タグリスト
               <tr style="height: 3rem;">
                 <td colspan="2">
                   <% post.tags.each do |tag| %>

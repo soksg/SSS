@@ -43,7 +43,8 @@
 
 <!--コメントフォーム-->
 <div>
-  <% unless post.member== current_member %>
+  <!--ログイン中のメンバーのコメント投稿がないかつ、投稿したユーザーとログインユーザーが一致している-->
+  <% unless post.member == current_member &&  current_member.post_comments.where(post_id: post.id).present? %>
     <%= form_with model: [post, post_comment], local: false do |f| %>
       <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", :size => "70" %>
       <%= f.label :star,'評価 ', class:'col-md-3 col-form-label ml-1' %>
