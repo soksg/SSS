@@ -30,9 +30,16 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 - Google Maps API
+- kamnari
+- fortawesome 5.15.4
+- bootstrap 4.5
+- raty-js 4.1.0
+   
 
 ## 使用素材
 - Engin Akyurt
-https://pixabay.com/ja/users/engin_akyurt-3656355/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2242213"による、
+https://pixabay.com/ja/users/engin_akyurt-3656355/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2242213"
+による、
 - Pixabay
-https://pixabay.com/ja//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2242213"からの画像
+https://pixabay.com/ja//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2242213"
+からの画像
