@@ -1,6 +1,6 @@
 <div class="ml-5 mt-5">
   <p id="commentsCount">
-    <b>コメント件数:<%= post.post_comments.count %></b>
+    <b>レビュー件数:<%= post.post_comments.count %></b>
   </p>
 </div>
 <!--コメント一覧-->
@@ -43,8 +43,8 @@
 
 <!--コメントフォーム-->
 <div>
-  <!--ログイン中のメンバーのコメント投稿がないかつ、投稿したユーザーとログインユーザーが一致している-->
-  <% unless post.member == current_member &&  current_member.post_comments.where(post_id: post.id).present? %>
+  <!--投稿したユーザーとログインユーザーが一致しているかつ、ログイン中のメンバーのコメント投稿がない-->
+  <% unless post.member != current_member &&  current_member.post_comments.where(post_id: post.id).present? %>
     <%= form_with model: [post, post_comment], local: false do |f| %>
       <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", :size => "70" %>
       <%= f.label :star,'評価 ', class:'col-md-3 col-form-label ml-1' %>
