@@ -32,7 +32,7 @@
 - Google Maps API
 
 ## 使用素材
--Engin Akyurt
+- Engin Akyurt
 https://pixabay.com/ja/users/engin_akyurt-3656355/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2242213"による、
--Pixabay
+- Pixabay
 https://pixabay.com/ja//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2242213"からの画像
