@@ -41,6 +41,9 @@
                 <td colspan="2"><%= image_tag post.get_image(300,300), style: "border-radius: 10px"; %></td>
               </tr>
               <tr>
+                <td colspan="2" class="sentiment-score">本文の感情分析スコア<%= post.score %></td>
+              </tr>
+              <tr>
                 <td colspan="2" class="pb-0">
                   <p class="mb-0"><%= post.post_comments.count %>件の評価</p>
                   <p id="star-rate-<%= post.id %>"><p>
