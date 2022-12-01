@@ -12,9 +12,8 @@ module SSS
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    # lib 以下のファイルが呼ばれるようになる（学習のため、仮作成）。
-    config.paths.add 'lib', eager_load: true
-
+    # cloud Natural Language API導入のため、記述
+    config.paths.add'lib', eager_load: true
     config.i18n.default_locale = :ja
     # Configuration for the application, engines, and railties goes here.
     #

@@ -7,10 +7,12 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    @post=Post.new(post_params)
+    @post = Post.new(post_params)
     @post.member_id = current_member.id
+    # Natural Language API導入
+    @post.score = Language.get_data(post_params[:description])
     # 受け取った値を,で区切って配列にする
-    tag_list=params[:post][:tags].split(',')
+    tag_list = params[:post][:tags].split(',')
     if  @post.save
         @post.save_tag(tag_list)
         # 画像を読み込み、自動でタグを生成する（Google Vision API学習のため、仮作成）。
@@ -44,7 +46,7 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @post=Post.find(params[:id])
+    @post = Post.find(params[:id])
     # pluckはmapと同じ意味(指定したカラムの配列だけを取り出す)
     @tags = @post.tags.pluck(:name).join(',')
   end
@@ -53,6 +55,9 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     tag_list = params[:post][:tags].split(',')
     if  @post.update(post_params)
+        # Natural Language API導入
+        @post.score = Language.get_data(post_params[:description])
+        @post.save
         @post.save_tag(tag_list)
         redirect_to post_path(@post), notice: "投稿内容を更新しました"
     else
