@@ -13,6 +13,11 @@ class Public::PostsController < ApplicationController
     tag_list=params[:post][:tags].split(',')
     if  @post.save
         @post.save_tag(tag_list)
+        # 画像を読み込み、自動でタグを生成する（Google Vision API学習のため、仮作成）。
+        # tags=Vision.get_image_data(@post.image)
+        # tags.each do |tag|
+        #   @post.tags.create(name: tag)
+        # end
         redirect_to post_path(@post), notice: "投稿しました"
     else
         @tags = params[:post][:tags]
