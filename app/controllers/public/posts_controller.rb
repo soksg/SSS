@@ -10,7 +10,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.member_id = current_member.id
     # Natural Language API導入
-    @post.score = Language.get_data(post_params[:body])
+    @post.score = Language.get_data(post_params[:description])
     # 受け取った値を,で区切って配列にする
     tag_list = params[:post][:tags].split(',')
     if  @post.save
@@ -50,6 +50,9 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     tag_list = params[:post][:tags].split(',')
     if  @post.update(post_params)
+        # Natural Language API導入
+        @post.score = Language.get_data(post_params[:description])
+        @post.save
         @post.save_tag(tag_list)
         redirect_to post_path(@post), notice: "投稿内容を更新しました"
     else
