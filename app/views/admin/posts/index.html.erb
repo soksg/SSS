@@ -48,6 +48,9 @@
                   <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
                 </td>
               </tr>
+              <tr>
+                <td class="sentiment-score">説明文の感情分析スコア：<b><%= post.score %></b></td>
+              </tr>
                 <script>
                   var elem = document.getElementById("star-rate-<%= post.id %>");
                   var opt = {

@@ -52,7 +52,10 @@
               </tr>
               <tr>
                 <td><b>説明</b></td>
-                <td><%= @post.description %></td>
+                <td>
+                  <%= @post.description %></br></br>
+                  <span class="sentiment-score">感情分析スコア：<b><%= @post.score %></b></span>
+                </td>
                 <td></td>
               </tr>
               <tr>
