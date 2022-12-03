@@ -49,10 +49,9 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     tag_list = params[:post][:tags].split(',')
+    # Natural Language API導入
+    @post.score = Language.get_data(post_params[:description])
     if  @post.update(post_params)
-        # Natural Language API導入
-        @post.score = Language.get_data(post_params[:description])
-        @post.save
         @post.save_tag(tag_list)
         redirect_to post_path(@post), notice: "投稿内容を更新しました"
     else
