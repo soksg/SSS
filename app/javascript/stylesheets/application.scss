@@ -71,8 +71,13 @@ h4 {
   border: 1px solid #000;
   display: block;
   height: 2.3em;
-  width: 242px;
+  width: 350px;
+  // width: 242px;
   overflow: hidden;
+}
+
+.search_form-word{
+  width: 193px;
 }
 
 .search_container input[type="text"] {
@@ -83,6 +88,14 @@ h4 {
 
 .search_container input[type="text"]:focus {
   outline: 0;
+}
+
+.search_container .custom-select{
+  background-color:  #ced4da;
+  border-right: solid;
+  border-left: solid;
+  margin-bottom: 4px;
+  border-radius: 0px;
 }
 
 .search_container button {

@@ -1,9 +1,8 @@
 <%= form_with url: root_path, method: :get, class: "search_container" do |f| %>
-  <%= f.text_field :word, value: params[:word], class: "form-control search_form-word", placeholder: "投稿検索" %>
+  <%= f.text_field :word, value: params[:word], class: "search_form-word", placeholder: "投稿検索" %><%= f.collection_select :prefecture_eq, JpPrefecture::Prefecture.all, :name, :name, { include_blank: '都道府県' }, { class: 'custom-select' } %>
   <button type="submit">
     <i class="fas fa-search"></i>
   </button>
-  <%= f.collection_select :prefecture_eq, JpPrefecture::Prefecture.all, :name, :name, { include_blank: '都道府県' }, { class: 'custom-select' } %>
 <% end %>
 
 <!--↑下二つを組み合わせ-->
