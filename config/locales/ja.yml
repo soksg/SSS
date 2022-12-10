@@ -13,5 +13,6 @@ ja:
         opening_hour: 営業時間
         url: URL
         comment: コメント
+        prefecture: 都道府県
       admin:
         email: メールアドレス

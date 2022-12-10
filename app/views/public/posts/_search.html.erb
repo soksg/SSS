@@ -3,6 +3,7 @@
   <button type="submit">
     <i class="fas fa-search"></i>
   </button>
+  <%= f.collection_select :prefecture_eq, JpPrefecture::Prefecture.all, :name, :name, { include_blank: '都道府県' }, { class: 'custom-select' } %>
 <% end %>
 
 <!--↑下二つを組み合わせ-->
