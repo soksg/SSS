@@ -7,9 +7,6 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    puts "==========================="
-    puts post_params
-
     @post = Post.new(post_params)
     @post.member_id = current_member.id
     # Natural Language API導入
@@ -21,7 +18,7 @@ class Public::PostsController < ApplicationController
         redirect_to post_path(@post), notice: "投稿しました"
     else
         @tags = params[:post][:tags]
-        flash[:alert] = "項目を入力してください"
+        flash.now[:alert] = "項目を入力してください"
         render "new"
     end
   end
@@ -61,7 +58,7 @@ class Public::PostsController < ApplicationController
     else
       # すでに保存されている内容が消えないようにする
        @tags = params[:post][:tags]
-       flash[:alert] = "項目を入力してください"
+       flash.now[:alert] = "項目を入力してください"
        render "edit"
     end
   end
@@ -71,7 +68,7 @@ class Public::PostsController < ApplicationController
     @post=Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
-    flash[:alert] = '投稿を削除しました'
+    flash.now[:alert] = '投稿を削除しました'
   end
 
   private

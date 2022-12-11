@@ -50,7 +50,7 @@
             <td><%= f.text_area :description %></td>
           </tr>
           <tr>
-            <td><b>タグを選択</b></td>
+            <td><b>タグ</b></td>
             <td><%= f.text_area :tags, value: @tags, size: "23", placeholder: ',区切りで複数設定できます' %></td>
           </tr>
           <tr>
@@ -107,9 +107,11 @@
                     prefName = results[0].address_components[i].long_name;
                   }
                 }
+
                 // 都道府県名（prefectureName）を取得
                 const prefectureName = document.getElementById("prefectureName")
                 prefectureName.value = prefName
+
                 for (var i in results) {
                   if (results[0].geometry) {
                     // 緯度経度を取得
