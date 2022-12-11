@@ -3,6 +3,9 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   belongs_to :member
 
+  # 都道府県コードから県名を変換するgemを読み込む
+  include JpPrefecture
+
   # タグのリレーションのみ記載
   has_many :tag_posts, dependent: :destroy
   has_many :tags, through: :tag_posts, dependent: :destroy
@@ -21,6 +24,7 @@ class Post < ApplicationRecord
   validates :url, presence: true
   validates :phone_number, presence: true
   validates :opening_hour, presence: true
+  validates :prefecture, presence: true
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?

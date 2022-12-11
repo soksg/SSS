@@ -1,12 +1,11 @@
 <%= form_with url: root_path, method: :get, class: "search_container" do |f| %>
-  <%= f.text_field :word, value: params[:word], class: "form-control search_form-word", placeholder: "投稿検索" %>
+  <%= f.text_field :word, value: params[:word], class: "search_form-word", placeholder: "投稿検索" %><%= f.collection_select :prefecture, JpPrefecture::Prefecture.all, :name, :name, { include_blank: '都道府県' }, { class: 'custom-select' } %>
   <button type="submit">
     <i class="fas fa-search"></i>
   </button>
 <% end %>
 
-<!--↑下二つを組み合わせ-->
-
+<!--↑下二つを組み合わせてjp_prefecture（都道府県検索機能）を追加-->
 
 
 <!--記事から-->

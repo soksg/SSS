@@ -20,10 +20,15 @@
             <td><b>施設名</b></td>
             <td><%= f.text_field :name %></td>
           </tr>
+
+          <!--都道府県で検索するための情報を、GoogleMapから取得-->
+          <%= f.hidden_field :prefecture ,id: "prefectureName"%>
+
           <tr>
             <td><b>住所</b></td>
             <td><%= f.text_field :address, class: 'form-control', readonly: true, placeholder: 'ページ下部のマップで、施設名で検索してください' %></td>
           </tr>
+
           <tr>
             <td><b>画像選択</b></td>
             <td><%= f.file_field :image, accept: "image/*" %></td>
@@ -45,7 +50,7 @@
             <td><%= f.text_area :description %></td>
           </tr>
           <tr>
-            <td><b>タグを選択</b></td>
+            <td><b>タグ</b></td>
             <td><%= f.text_area :tags, value: @tags, size: "23", placeholder: ',区切りで複数設定できます' %></td>
           </tr>
           <tr>
@@ -94,8 +99,18 @@
               address: place
             }, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-
                 var bounds = new google.maps.LatLngBounds();
+                var geoCnt = results[0].address_components.length;
+                var prefName = "";
+                for (var i = 0; i < geoCnt; i++) {
+                  if (results[0].address_components[i].types[0] === "administrative_area_level_1") {
+                    prefName = results[0].address_components[i].long_name;
+                  }
+                }
+
+                // 都道府県名（prefectureName）を取得
+                const prefectureName = document.getElementById("prefectureName")
+                prefectureName.value = prefName
 
                 for (var i in results) {
                   if (results[0].geometry) {
@@ -103,6 +118,7 @@
                     var latlng = results[0].geometry.location;
                     // 住所を取得
                     var address = results[0].formatted_address;
+
                     // 検索結果地が含まれるように範囲を拡大
                     // bounds.extend(latlng);
                     map.panTo(latlng)
