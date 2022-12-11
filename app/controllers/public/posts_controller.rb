@@ -7,6 +7,9 @@ class Public::PostsController < ApplicationController
   end
 
   def create
+    puts "==========================="
+    puts post_params
+
     @post = Post.new(post_params)
     @post.member_id = current_member.id
     # Natural Language API導入
