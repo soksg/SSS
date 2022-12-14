@@ -31,9 +31,12 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery, fortawesome 5.15.4, bootstrap 4.5, raty-js 4.1.0
 - IDE：Cloud9
+- devise
 - Google Maps API
-- geocording API
+- Natural Language API
+- ActiveStorage
 - kamnari
+- jp_prefecture
    
 
 ### 使用素材
