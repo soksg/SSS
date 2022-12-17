@@ -29,7 +29,10 @@ class Post < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
   has_one_attached :image
-
+  
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :star_count, -> {order(star: :desc)}
 
   def get_image(width,height)
     unless image.attached?
@@ -67,7 +70,6 @@ class Post < ApplicationRecord
       self.tags << new_post_tag
     end
   end
-
 
 
   # 検索機能で使用→posts_controller.erbのindexアクションに記載
