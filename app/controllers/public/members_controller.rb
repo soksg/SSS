@@ -65,7 +65,7 @@ class Public::MembersController < ApplicationController
   def correct_member
     @member=Member.find(params[:id])
     unless @member.id == current_member.id
-       redirect_to posts_path, alert: '他ユーザーのページは見れません'
+       redirect_to posts_path, alert: '他ユーザーのページは閲覧できません'
     end
   end
 
