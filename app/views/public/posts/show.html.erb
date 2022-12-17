@@ -60,7 +60,7 @@
                   <!--タグ-->
                   <% @post_tags.each do |tag| %>
                     <%= link_to tag.name, tag_path(tag) %>
-                    <%= "(#{tag.posts.count})" %>
+                    <%= "(#{tag.posts.is_active.count})" %>
                   <% end %>
                 </td>
                 <td></td>
