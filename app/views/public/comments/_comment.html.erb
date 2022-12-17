@@ -48,7 +48,7 @@
   <% if !member_signed_in? || (post.member != current_member && current_member.post_comments.where(post_id: post.id).blank?) %>
     <%= form_with model: [post, post_comment], local: false do |f| %>
       <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", :size => "70" %>
-      <%= f.label :star,'評価 ', class:'col-md-3 col-form-label ml-1' %>
+      <%= f.label :star,'評価', class:'col-md-3 col-form-label ml-1' %>
       <div class="form-group row ml-1" id="star"></div>
       <p style="text-align: end;"><%= f.submit "送信する", class: "btn btn-success" %></p>
     <% end %>
