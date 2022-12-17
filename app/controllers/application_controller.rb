@@ -1,3 +1,4 @@
 class ApplicationController < ActionController::Base
-protect_from_forgery
+  # https時セキュリティ対策
+  protect_from_forgery
 end
