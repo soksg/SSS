@@ -28,11 +28,11 @@
                 </td>
               </tr>
             </table>
-              <div class="mt-2">
-                <p style="text-align: end;">
-                  <%= link_to "ユーザー情報編集", edit_admin_member_path(@member), class: "btn btn-success" %>
-                </p>
-              </div>
+            <div class="mt-2">
+              <p style="text-align: end;">
+                <%= link_to "ユーザー情報編集", edit_admin_member_path(@member), class: "btn btn-success" %>
+              </p>
+            </div>
         </div>
       </div>
       <div class="ml-5 px-5">
@@ -47,64 +47,63 @@
                <% else %>
                  <div class="mt-5 mr-5 pr-3 mb-0">
                    <% @posts.each do |post| %>
-                    <table class="table table-bordered bg-light shadow">
-                      <tr>
-                        <td class="lead">
-                          <b>
-                            <%= link_to admin_post_path(post) do %>
-                              <%= post.name %>
-                            <% end %>
-                          </b>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td><%= post.address %></td>
-                      </tr>
-                      <tr>
-                        <td><%= image_tag post.get_image(300,300), style: "border-radius: 10px"; %></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p class="mb-0"><%= post.post_comments.count %>件の評価</p>
-                          <p id="star-rate-<%= post.id %>"></p>
-                          <% count = post.post_comments.size %>
-                          <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
-                        </td>
-                      </tr>
-                        <script>
-                          var elem = document.getElementById("star-rate-<%= post.id %>");
-                          var opt = {
-                            size      : 36,
-                            starOff   : '<%= asset_path('star-off.png') %>',
-                            starOn    : '<%= asset_path('star-on.png') %>',
-                            half      : false,
-                            readOnly: true,
-                            score: <%= score %>,
+                     <table class="table table-bordered bg-light shadow">
+                       <tr>
+                         <td class="lead">
+                           <b>
+                             <%= link_to admin_post_path(post) do %>
+                               <%= post.name %>
+                             <% end %>
+                           </b>
+                         </td>
+                       </tr>
+                       <tr>
+                         <td><%= post.address %></td>
+                       </tr>
+                       <tr>
+                         <td><%= image_tag post.get_image(300,300), style: "border-radius: 10px"; %></td>
+                       </tr>
+                       <tr>
+                         <td>
+                           <p class="mb-0"><%= post.post_comments.count %>件の評価</p>
+                           <p id="star-rate-<%= post.id %>"></p>
+                           <% count = post.post_comments.size %>
+                           <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
+                         </td>
+                       </tr>
+                       <script>
+                         var elem = document.getElementById("star-rate-<%= post.id %>");
+                         var opt = {
+                           size      : 36,
+                           starOff   : '<%= asset_path('star-off.png') %>',
+                           starOn    : '<%= asset_path('star-on.png') %>',
+                           half      : false,
+                           readOnly: true,
+                           score: <%= score %>,
                           }
                           // 再読み込みする際、星が増えないようにする
                           // （再読み込み前の星の空文字にする）
                           elem.innerHTML=""
                           raty(elem, opt);
                         </script>
-                    <tr>
-                      <td class="sentiment-score">説明文の感情分析スコア：<b><%= post.score %></b></td>
-                    </tr>
-                    <!--タグリスト-->
-                    <tr style="height: 3rem;">
-                      <td>
-                        <% post.tags.each do |tag| %>
-                          <%= link_to tag.name, admin_tag_path(tag) %>
-                          <%= "(#{tag.posts.is_active.count})" %>
-                        <% end %>
-                      </td>
-                    </tr>
-                  </table>
-               　 <% end %>
-               　<%= paginate @posts %>
+                       <tr>
+                         <td class="sentiment-score">説明文の感情分析スコア：<b><%= post.score %></b></td>
+                       </tr>
+                       <!--タグリスト-->
+                       <tr style="height: 3rem;">
+                         <td>
+                           <% post.tags.each do |tag| %>
+                             <%= link_to tag.name, admin_tag_path(tag) %>
+                             <%= "(#{tag.posts.is_active.count})" %>
+                           <% end %>
+                         </td>
+                       </tr>
+                    </table>
+                  <% end %>
+               <%= paginate @posts %>
                </div>
             <% end %>
          </div>
        </div>
-     </div>
-  </div>
+    </div>
 </div>

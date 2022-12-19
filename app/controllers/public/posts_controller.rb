@@ -14,12 +14,12 @@ class Public::PostsController < ApplicationController
     # 受け取った値を,で区切って配列にする
     tag_list = params[:post][:tags].split(',')
     if  @post.save
-        @post.save_tag(tag_list)
-        redirect_to post_path(@post), notice: "投稿しました"
+      @post.save_tag(tag_list)
+      redirect_to post_path(@post), notice: "投稿しました"
     else
-        @tags = params[:post][:tags]
-        flash.now[:alert] = "項目を入力してください"
-        render "new"
+      @tags = params[:post][:tags]
+      flash.now[:alert] = "項目を入力してください"
+      render "new"
     end
   end
 
@@ -53,8 +53,8 @@ class Public::PostsController < ApplicationController
     # Natural Language API導入
     @post.score = Language.get_data(post_params[:description])
     if  @post.update(post_params)
-        @post.save_tag(tag_list)
-        redirect_to post_path(@post), notice: "投稿内容を更新しました"
+      @post.save_tag(tag_list)
+      redirect_to post_path(@post), notice: "投稿内容を更新しました"
     else
       # すでに保存されている内容が消えないようにする
        @tags = params[:post][:tags]
@@ -65,7 +65,7 @@ class Public::PostsController < ApplicationController
 
 
   def destroy
-    @post=Post.find(params[:id])
+    @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
     flash.now[:alert] = '投稿を削除しました'
@@ -77,8 +77,8 @@ class Public::PostsController < ApplicationController
   end
 
   def correct_post
-    @post=Post.find(params[:id])
-    unless @post.member.id==current_member.id
+    @post = Post.find(params[:id])
+    unless @post.member.id == current_member.id
       redirect_to posts_path, alert: '他ユーザーの投稿は編集できません'
     end
   end
