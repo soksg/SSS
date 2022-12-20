@@ -10,14 +10,13 @@
       <td><%= post_comment.member.name %></td>
       <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
       <td id="star-rate-<%= idx + 1 %>"></td>
-      <%# count = post.review.count %>
       <script>
         var elem = document.getElementById("star-rate-<%= idx + 1 %>");
         var opt = {
           size      : 36,
           starOn  : '<%= asset_path('star-on.png') %>',
           starOff : '<%= asset_path('star-off.png') %>',
-          //half      : false,
+          //half  : false, (trueだと星半分も表示できる。カラムをfloat型にする必要あり)
           readOnly: true,
           score: <%= post_comment.star %>
         }
