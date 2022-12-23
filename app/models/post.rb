@@ -3,16 +3,20 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   belongs_to :member
 
-  # 都道府県コードから県名を変換するgemを読み込む
+  # 都道府県コードから県名を変換するgem(jp_prefecture)を読み込む
   include JpPrefecture
 
-  # タグのリレーションのみ記載
-  has_many :tag_posts, dependent: :destroy
+  # タグのリレーション
+  has_many :tag_posts, dependent: :destroy  #tagsとの中間テーブル
   has_many :tags, through: :tag_posts, dependent: :destroy
+
 
   # 退会中のメンバーの投稿が表示されてしまうため、入会中のメンバーの投稿のみ表示されるようにする
   scope :is_active, -> { includes(:member).where(members: {is_active: true}) }
-  # includes　postsテーブルとmembersのmembers: {is_active: true}をつなげる
+  # includes　postsテーブルとmembers: {is_active: true}をつなげる
+  # includesメソッドで指定された関連付けが最小限のクエリ回数で読み込まれ、
+  # これによってN+1問題を解決される
+
   # 上記は、以下と同義。->はdef〜endの役割
   # def self.is_active
   #   self.includes(:member).where(members: {is_active: true})
@@ -26,8 +30,10 @@ class Post < ApplicationRecord
   validates :opening_hour, presence: true
   validates :prefecture, presence: true
 
+  # 住所（addressカラム）を入れたときに、自動で緯度、経度をlatitude,longitudeカラムに記述
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+
   has_one_attached :image
 
 
@@ -39,18 +45,19 @@ class Post < ApplicationRecord
     image.variant(resize_to_limit:[width,height]).processed
   end
 
+  # 指定したブックマークが存在するかどうか
   def bookmarked_by?(member)
     bookmarks.exists?(member_id: member.id)
   end
 
-  #ブックマーク条件分岐で使用
+  #ブックマークボタンの条件分岐で使用
   def bookmarked(member)
     bookmarks.find_by(member_id: member.id)
   end
 
   def save_tag(sent_tags)
     # タグが存在していれば、タグの名前を配列として全て取得
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    current_tags = self.tags.pluck(:name) unless self.tags.nil? #pulckで指定したレコードの配列を取得
     # 現在取得したタグから送られてきたタグを除いてoldtagとする
     old_tags = current_tags - sent_tags
     # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
@@ -67,8 +74,6 @@ class Post < ApplicationRecord
       self.tags << new_post_tag
     end
   end
-
-
 
   # 検索機能で使用→posts_controller.erbのindexアクションに記載
   # def self.looks(word)
