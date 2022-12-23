@@ -20,10 +20,13 @@ class Public::SessionsController < Devise::SessionsController
   # end
 
   protected
+  # 退会しているかを判断するメソッド
   def member_state
+    # 入力されたメールアドレスからアカウントを一件取得
     @member=Member.find_by(email: params[:member][:email])
     return if !@member
       flash[:alert] = "該当するアカウントが見つかりません"
+    # valid_password?で、特定のアカウントのパスワードと入力されたパスワードが一致しているかを確認する(deviseのメソッド)
     if @member.valid_password?(params[:member][:password]) && (@member.is_active == false)
       redirect_to new_member_registration_path
     else

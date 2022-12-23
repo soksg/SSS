@@ -27,8 +27,6 @@ class Public::MembersController < ApplicationController
     @member=Member.find(params[:id])
     # メンバーの投稿のブックマークされたもの
     @bookmark_posts=Post.is_active.joins(:bookmarks).where(bookmarks: {member_id: @member.id}).page(params[:page]).per(7)
-    # @bookmarks=Bookmark.where(member_id: @member.id).pluck(:post_id)
-    # @bookmark_posts=Post.find(@bookmarks).page(params[:page]).per(5)
     @tag_list=Tag.all
   end
 
@@ -43,7 +41,7 @@ class Public::MembersController < ApplicationController
 
   def withdraw
     @member = current_member
-    # is_activeカラムをfalseに変更することにより削除フラグを立てる
+    # is_activeカラムをfalseに変更することにより削除フラグ（削除処理が実行される条件）を立てる
     @member.update(is_active: false)
     reset_session
     flash[:notice] = "退会処理を実行しました"
