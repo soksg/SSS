@@ -24,7 +24,7 @@ class Member < ApplicationRecord
 
   # is_activeがtrueならfalseを返す（退会ユーザーはログインできないようにする）
   def active_for_authentication?
-   is_active == true
+    is_active == true
   end
 
 end
