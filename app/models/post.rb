@@ -15,7 +15,7 @@ class Post < ApplicationRecord
   scope :is_active, -> { includes(:member).where(members: {is_active: true}) }
   # includes　postsテーブルとmembers: {is_active: true}をつなげる
   # includesメソッドで指定された関連付けが最小限のクエリ回数で読み込まれ、
-  # これによってN+1問題を解決される
+  # これによってN+1問題(mysql上に多量のデータが保存されてしまう問題)が解決される
 
   # 上記は、以下と同義。->はdef〜endの役割
   # def self.is_active

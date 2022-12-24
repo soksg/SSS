@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>SSS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name = "viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,19 +10,19 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="mb-auto">
-      <header class="shadow-sm" style="background-color: #87cefa;"><%= render 'layouts/header' %></header>
+  <body class = "mb-auto">
+      <header class="shadow-sm" style = "background-color: #87cefa;"><%= render 'layouts/header' %></header>
           <!--フラッシュメッセージ-->
           <% unless controller_name == "post_comments" %>
-            <div style="text-align: center;">
+            <div style = "text-align: center;">
               <% if flash[:notice] %>
-                <p class="alert alert-success"><%= notice %></p>
+                <p class = "alert alert-success"><%= notice %></p>
               <% elsif flash[:alert] %>
-                <p class="alert alert-danger"><%= alert %></p>
+                <p class = "alert alert-danger"><%= alert %></p>
               <% end %>
             </div>
           <% end %>
           <%= yield %>
-    <footer class="bg-dark pt-5 pb-4"><%= render 'layouts/footer' %></footer>
+    <footer class = "bg-dark pt-5 pb-4"><%= render 'layouts/footer' %></footer>
   </body>
 </html>

@@ -16,8 +16,7 @@ body{
   min-height: 100vh;
 }
 
-
-// 以下二つaboutページ
+// 以下二つaboutページで使用
 .about_visual{
   width: 100%;
   height: 700px;
@@ -50,7 +49,7 @@ height: 60px;
 width: 100%;
 padding-bottom: 20px;
 color: white;
-box-sizing: content-box;
+box-sizing: content-box; /*コンテンツ領域の外側でpaddingとborderが算出される。*/
 }
 
 h2 {
@@ -69,7 +68,6 @@ h4 {
   display: block;
   height: 2.3em;
   width: 350px;
-  // width: 242px;
   overflow: hidden;
 }
 
@@ -96,14 +94,14 @@ h4 {
 }
 
 .search_container button {
-  cursor: pointer;
+  cursor: pointer; /*カーソルを合わせた時のカーソルの見た目を変化させる*/
   border: none;
   background: #4169e1;
   color: #eee;
-  position: absolute;
+  position: absolute; /*位置を絶対値として指定。この位置基準に、下記の４つで位置を調整。*/
   width: 3rem;
   height: 3.2rem;
   right: 0;
   top: -7px;
-  outline: none;
+  outline: none; /*輪郭線*/
 }
