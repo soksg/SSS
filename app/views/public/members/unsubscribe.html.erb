@@ -3,23 +3,22 @@
     <div>
       <div>
         <h3 class="ml-4 text-center"><strong>本当に退会しますか？</strong></h3>
-            <p class="my-5 text-center">退会すると、投稿やブックマークができなくなります。<br>
-                            また、これまでのブックマークした投稿の一覧が閲覧も<br>
-                            できなくなります。
-            </p>
-          <div class="row">
-
-              <div class="col-6 d-flex justify-content-end">
-                <div>
-                  <%= link_to "退会しない", member_path(current_member), class: "btn btn-primary text-center" %>
-                </div>
-              </div>
-              <div class="col-6  d-flex justify-content-start">
-                <div>
-                  <%= link_to "退会する", withdraw_member_path(current_member) ,method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" %>
-                </div>
-              </div>
+          <p class="my-5 text-center">退会すると、投稿やブックマークができなくなります。<br>
+                          また、これまでのブックマークした投稿の一覧が閲覧も<br>
+                          できなくなります。
+          </p>
+        <div class="row">
+          <div class="col-6 d-flex justify-content-end">
+            <div>
+              <%= link_to "退会しない", member_path(current_member), class: "btn btn-primary text-center" %>
+            </div>
           </div>
+          <div class="col-6  d-flex justify-content-start">
+            <div>
+              <%= link_to "退会する", withdraw_member_path(current_member) ,method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

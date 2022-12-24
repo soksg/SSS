@@ -10,7 +10,6 @@
       <td><%= post_comment.member.name %></td>
       <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
       <td id="star-rate-<%= idx + 1 %>"></td>
-      <%# count = post.review.count %>
       <script>
         var elem = document.getElementById("star-rate-<%= idx + 1 %>");
         var opt = {
@@ -36,7 +35,7 @@
   <% end %>
 </table>
 
-<!--フラッシュメッセージ-->
+<!--フラッシュ・エラーメッセージ-->
 <div id="flash-message"></div>
 <div id="post-comments-error"></div>
 
