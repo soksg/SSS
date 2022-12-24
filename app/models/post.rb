@@ -79,5 +79,4 @@ class Post < ApplicationRecord
   # def self.looks(word)
   #   Post.where("name LIKE?","%#{word}%")
   # end
-
 end
