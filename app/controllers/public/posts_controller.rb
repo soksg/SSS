@@ -7,8 +7,10 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.member_id = current_member.id
+    # @post = Post.new(post_params)
+    # @post.member_id = current_member.id
+    # 上２行と同じ(親となるデータ.紐づくデータs.new)
+    @post=current_member.posts.new(post_params)
     # Natural Language API導入
     @post.score = Language.get_data(post_params[:description])
     # 受け取った値を,で区切って配列にする

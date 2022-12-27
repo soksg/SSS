@@ -1,14 +1,14 @@
 <div class="container my-5">
-<div class="ml-5">
-  <% if @post.errors.any? %>
-    <h5><%= @post.errors.count %>件のエラーが発生しました</h5>
-    <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-</div>
+  <div class="ml-5">
+    <% if @post.errors.any? %>
+      <h5><%= @post.errors.count %>件のエラーが発生しました</h5>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
 
   <div class="row my-4 ml-5 px-5">
     <h2 class="px-3">新規投稿フォーム</h2>
@@ -20,10 +20,8 @@
             <td><b>施設名</b></td>
             <td><%= f.text_field :name %></td>
           </tr>
-
-          <!--都道府県で検索するための情報を、GoogleMapから取得-->
-          <%= f.hidden_field :prefecture ,id: "prefectureName"%>
-
+            <!--都道府県で検索するための情報を、GoogleMapから取得-->
+            <%= f.hidden_field :prefecture ,id: "prefectureName"%>
           <tr>
             <td><b>住所</b></td>
             <td><%= f.text_field :address, class: 'form-control', readonly: true, placeholder: 'ページ下部のマップで、施設名で検索してください' %></td>
