@@ -13,10 +13,9 @@ class Public::PostsController < ApplicationController
     @post=current_member.posts.new(post_params)
     # Natural Language API導入
     @post.score = Language.get_data(post_params[:description])
-    # 受け取った値を,で区切って配列にする
-    tag_list = params[:post][:tags].split(',')
     if  @post.save
-      @post.save_tag(tag_list)
+      # 受け取った値を,で区切って配列にする
+      @post.save_tag(params[:post][:tags].split(','))
       redirect_to post_path(@post), notice: "投稿しました"
     else
       @tags = params[:post][:tags]
