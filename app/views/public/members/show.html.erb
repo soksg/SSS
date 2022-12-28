@@ -69,22 +69,9 @@
                         <% count = post.post_comments.size %>
                         <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
                       </tr>
-                        <script>
-                          var elem = document.getElementById("star-rate-<%= post.id %>");
-                          var opt = {
-                            size      : 36,
-                            starOff   : '<%= asset_path('star-off.png') %>',
-                            starOn    : '<%= asset_path('star-on.png') %>',
-                            half      : false,
-                            readOnly: true,
-                            score: <%= score %>,
-                          }
-                          // 再読み込みする際、星が増えないようにする
-                          // （再読み込み前の星の空文字にする）
-                          elem.innerHTML=""
-                          raty(elem, opt);
-                        </script>
-                        <!--タグリスト-->
+                      <!--５段階評価のscript-->
+                      <%= render "shared/raty_script", element_id: "star-rate-<%= post.id %>", score: score %>
+                      <!--タグリスト-->
                       <tr style="height: 3rem;">
                         <td colspan="2">
                           <% post.tags.each do |tag| %>

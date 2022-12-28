@@ -41,6 +41,8 @@
                   <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
                 </td>
                </tr>
+               <!--5段階評価script-->
+               <%= render 'shared/raty_script', element_id: "star-rate-<%= post.id %>", score: score %>
                 <script>
                   var elem = document.getElementById("star-rate-<%= post.id %>");
                   var opt = {

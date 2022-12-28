@@ -90,6 +90,8 @@
     </div>
   </div>
 </div>
+<!--５段階評価のscript-->
+<%= render 'shared/raty_script', element_id: 'star-rate', score: @reviews_avg_score %>
   <script>
     var elem = document.getElementById("star-rate");
     var opt = {
