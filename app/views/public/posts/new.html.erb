@@ -118,7 +118,6 @@
                     var address = results[0].formatted_address;
 
                     // 検索結果地が含まれるように範囲を拡大
-                    // bounds.extend(latlng);
                     map.panTo(latlng)
                     // マーカーのセット
                     setMarker(latlng);
@@ -144,7 +143,7 @@
           });
 
           // 結果クリアーボタン押下時
-          // jQueryを用いない版
+          // （jQueryを用いない場合）
           // document.getElementById('clear').addEventListener('click', function() {
           //   document.getElementById("keyword").value=""
           //   $('#post_address').val("");
