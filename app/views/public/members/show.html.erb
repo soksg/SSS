@@ -70,7 +70,7 @@
                         <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
                       </tr>
                       <!--５段階評価のscript-->
-                      <%= render "shared/raty_script", element_id: "star-rate-<%= post.id %>", score: score %>
+                      <%= render "public/shared/raty_script", element_id: "star-rate-#{post.id}", score: score %>
                       <!--タグリスト-->
                       <tr style="height: 3rem;">
                         <td colspan="2">

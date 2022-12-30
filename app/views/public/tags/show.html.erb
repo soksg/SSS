@@ -44,7 +44,7 @@
               </td>
             </td>
             <!--５段階評価のscript-->
-            <%= render "shared/raty_script", element_id: "star-rate-<%= post.id %>", score: score %>
+            <%= render "public/shared/raty_script", element_id: "star-rate-#{post.id}", score: score %>
           <tr style="height: 3rem;">
             <td colspan="2">
               <!--タグリスト-->
