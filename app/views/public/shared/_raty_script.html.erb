@@ -1,0 +1,15 @@
+<script>
+  var elem = document.getElementById(element_id);
+  var opt = {
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    half      : false,
+    readOnly  : true,
+    score: <%= score %>,
+  }
+  // 再読み込みする際、星が増えないようにする
+  // （再読み込み前の星の空文字にする）
+  elem.innerHTML=""
+  raty(elem, opt);
+</script>
