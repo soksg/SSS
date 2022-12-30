@@ -71,21 +71,8 @@
                            <% score = count != 0 ? (post.post_comments.sum(:star) / post.post_comments.size) : 0 %>
                          </td>
                        </tr>
-                       <script>
-                         var elem = document.getElementById("star-rate-<%= post.id %>");
-                         var opt = {
-                           size      : 36,
-                           starOff   : '<%= asset_path('star-off.png') %>',
-                           starOn    : '<%= asset_path('star-on.png') %>',
-                           half      : false,
-                           readOnly: true,
-                           score: <%= score %>,
-                          }
-                          // 再読み込みする際、星が増えないようにする
-                          // （再読み込み前の星の空文字にする）
-                          elem.innerHTML=""
-                          raty(elem, opt);
-                        </script>
+                       <!--５段階評価のscript-->
+                       <%= render "admin/shared/raty_script", element_id: "star-rate-#{post.id}", score: score %>
                        <tr>
                          <td class="sentiment-score">説明文の感情分析スコア：<b><%= post.score %></b></td>
                        </tr>
