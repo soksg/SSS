@@ -92,8 +92,8 @@
           // 検索実行ボタンが押下されたとき
           document.getElementById('search').addEventListener('click', function() {
 
-            const place = document.getElementById('keyword').value;
-            const geocoder = new google.maps.Geocoder();      // geocoderのコンストラクタ
+            let place = document.getElementById('keyword').value;
+            let geocoder = new google.maps.Geocoder();      // geocoderのコンストラクタ
 
             geocoder.geocode({
               address: place
