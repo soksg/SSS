@@ -71,15 +71,15 @@
   <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
 
       <script>
-        var map;
-        var marker;
-        var infoWindow;
+        let map;
+        let marker;
+        let infoWindow;
 
         function initMap() {
 
           //マップ初期表示の位置設定
-          var target = document.getElementById('target');
-          var centerp = {lat: 35.6713275, lng: 139.7583772};
+          const target = document.getElementById('target');
+          const centerp = {lat: 35.6713275, lng: 139.7583772};
 
           //マップ表示
           map = new google.maps.Map(target, {
@@ -90,17 +90,17 @@
           // 検索実行ボタンが押下されたとき
           document.getElementById('search').addEventListener('click', function() {
 
-            var place = document.getElementById('keyword').value;
-            var geocoder = new google.maps.Geocoder();      // geocoderのコンストラクタ
+            const place = document.getElementById('keyword').value;
+            const geocoder = new google.maps.Geocoder();      // geocoderのコンストラクタ
 
             geocoder.geocode({
               address: place
             }, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-                var bounds = new google.maps.LatLngBounds();
-                var geoCnt = results[0].address_components.length;
-                var prefName = "";
-                for (var i = 0; i < geoCnt; i++) {
+                let bounds = new google.maps.LatLngBounds();
+                let geoCnt = results[0].address_components.length;
+                let prefName = "";
+                for (let i = 0; i < geoCnt; i++) {
                   if (results[0].address_components[i].types[0] === "administrative_area_level_1") {
                     prefName = results[0].address_components[i].long_name;
                   }
@@ -110,12 +110,12 @@
                 const prefectureName = document.getElementById("prefectureName")
                 prefectureName.value = prefName
 
-                for (var i in results) {
+                for (const i in results) {
                   if (results[0].geometry) {
                     // 緯度経度を取得
-                    var latlng = results[0].geometry.location;
+                    const latlng = results[0].geometry.location;
                     // 住所を取得
-                    var address = results[0].formatted_address;
+                    const address = results[0].formatted_address;
 
                     // 検索結果地が含まれるように範囲を拡大
                     map.panTo(latlng)
