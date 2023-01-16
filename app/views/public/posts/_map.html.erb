@@ -7,8 +7,8 @@
       map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: <%= post.latitude %>, lng: <%= post.longitude %>},
         zoom: 15,
-        
       });
+
       (function(){
         marker = new google.maps.Marker({
           position:{lat: <%= post.latitude %>, lng: <%= post.longitude %>},

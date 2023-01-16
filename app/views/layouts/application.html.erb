@@ -11,18 +11,18 @@
   </head>
 
   <body class = "mb-auto">
-      <header class="shadow-sm" style = "background-color: #87cefa;"><%= render 'layouts/header' %></header>
-          <!--フラッシュメッセージ-->
-          <% unless controller_name == "post_comments" %>
-            <div style = "text-align: center;">
-              <% if flash[:notice] %>
-                <p class = "alert alert-success"><%= notice %></p>
-              <% elsif flash[:alert] %>
-                <p class = "alert alert-danger"><%= alert %></p>
-              <% end %>
-            </div>
-          <% end %>
-          <%= yield %>
+    <header class="shadow-sm" style = "background-color: #87cefa;"><%= render 'layouts/header' %></header>
+        <!--フラッシュメッセージ-->
+        <% unless controller_name == "post_comments" %>
+          <div style = "text-align: center;">
+            <% if flash[:notice] %>
+              <p class = "alert alert-success"><%= notice %></p>
+            <% elsif flash[:alert] %>
+              <p class = "alert alert-danger"><%= alert %></p>
+            <% end %>
+          </div>
+        <% end %>
+        <%= yield %>
     <footer class = "bg-dark pt-5 pb-4"><%= render 'layouts/footer' %></footer>
   </body>
 </html>

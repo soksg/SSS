@@ -91,10 +91,10 @@
   </div>
 </div>
 <!--５段階評価のscript-->
-<%= render 'public/shared/raty_script', element_id: 'star-rate', score: @reviews_avg_score %>
+<%#= render 'public/shared/raty_script', element_id: 'star-rate', score: @reviews_avg_score %>
   <script>
-    const elem = document.getElementById("star-rate");
-    const opt = {
+    var elem = document.getElementById("star-rate");
+    var opt = {
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
       starOn    : '<%= asset_path('star-on.png') %>',
