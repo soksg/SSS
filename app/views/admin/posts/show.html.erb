@@ -95,5 +95,18 @@
     </div>
   </div>
 </div>
-<!--５段階評価のscript-->
-<%= render "admin/shared/raty_script", element_id: "star-rate-#{@post.id}", score: @reviews_avg_score %>
+<script>
+  var elem = document.getElementById("star-rate");
+  var opt = {
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    half      : false,
+    readOnly  : true,
+    score: <%= @reviews_avg_score %>,
+  }
+  // 再読み込みする際、星が増えないようにする
+  // （再読み込み前の星の空文字にする）
+  elem.innerHTML=""
+  raty(elem, opt);
+</script>
